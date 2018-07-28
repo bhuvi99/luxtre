@@ -184,13 +184,14 @@ export default class LuxgateMarketInfoStore extends Store {
 
   @action
   _addLGPriceArray = (info: LGPriceArray) => {
-    for (let i = 0; i < this.lstLGPriceArray.length; i++) {
+    let i = 0;
+    for (i; i < this.lstLGPriceArray.length; i++) {
       if (this.lstLGPriceArray[i] === info.prices[i]) {
         this.lstLGPriceArray[i] = info.prices[i];
         return;
       }
     }
-    this.lstLGPriceArray.concat(info.prices);
+    this.lstLGPriceArray.concat(info.prices.slice(i, info.prices.length));
   };
 
   @action
