@@ -13,7 +13,7 @@ export default class SidebarStore extends Store {
   CATEGORIES = sidebarConfig.CATEGORIES;
 
   @observable activeSidebarCategory: string = this.CATEGORIES[0].route;
-  @observable isShowingLuxtre: boolean = false;
+  @observable isShowingLuxtre: boolean = true;
 
   setup() {
     const actions = this.actions.sidebar;
