@@ -5,7 +5,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 
 export LUX_NAME="./lux-qt"
 export LUX_ZIP="lux-qt-linux.zip"
-export LUX_ZIP_PATH="https://github.com/216k155/lux/releases/download/v4.2.0/lux-qt-linux.zip"
+export LUX_ZIP_PATH="https://github.com/LUX-Core/lux/releases/download/v5.1.0/lux-qt-linux.zip"
 
 if [ ! -f "$LUX_NAME" ]; then
     if [ ! -f "$LUX_ZIP" ]; then

@@ -1,4 +1,4 @@
-![LUX Logo](https://github.com/216k155/lux/blob/master/src/qt/res/images/lux_logo_horizontal.png)
+![LUX Logo](https://github.com/LUX-Core/lux/blob/master/src/qt/res/images/lux_logo_horizontal.png)
 
 # LUXtre Wallet
 
@@ -15,10 +15,10 @@ LUXtre is platform agnostic and will form the base for our upcoming technical fe
 Platform-specific build scripts facilitate building Luxcore the way it is built
 by the IOHK CI:
 
-   - `scripts/build-installer-unix.sh     <LUXCORE-VERSION> <LUXCOIN-BRANCH> [OPTIONS..]`
+   - `scripts/build-installer/linux.sh     <LUXCORE-VERSION> <LUXCOIN-BRANCH> [OPTIONS..]`
       - where OS is either `linux` or `osx`
       - facilitates installer upload to S3 via `--upload-s3`
-   - `scripts/build-installer-windows.bat <LUXCORE-VERSION> <LUXCOIN-BRANCH>`
+   - `scripts/build-installer/win64.bat <LUXCORE-VERSION> <LUXCOIN-BRANCH>`
 
 The result can be found at:
    - on OS X:    `${BUILD}/installers/dist/Luxcore-installer-*.pkg`
@@ -38,15 +38,15 @@ Dependencies:
    - on Windows: `Node.js`, `7zip`
 
 Location:
-   - on OS X:    https://github.com/216k155/luxcore/blob/master/scripts/osx-build-fresh-luxcore.sh
-   - on Windows: https://github.com/216k155/luxcore/blob/master/scripts/windows-build-fresh-luxcore.bat
+   - on OS X:    https://github.com/LUX-Core/luxtre/blob/master/scripts/osx-bundle.sh
+   - on Windows: https://github.com/LUX-Core/luxtre/blob/master/scripts/windows-bundle.bat
 
 Invocation:
    ```shell
-   {osx,windows}-build-fresh-luxcore.{sh,bat} [BRANCH] [GITHUB-USER] [OPTIONS...]
+   {osx,windows}-bundle.{sh,bat} [BRANCH] [GITHUB-USER] [OPTIONS...]
    ```
    ..where `BRANCH` defaults to the current release branch, and `GITHUB-USER`
-   defaults to `216k155`.
+   defaults to `LUX-Core`.
 
    The remaining `OPTIONS` are passed as-is to the respective build scripts.
 
@@ -78,7 +78,7 @@ defaults to 6.x*
 
 ### Development - with Luxcoin Wallet (luxcore-bridge)
 
-Build and run luxcore-bridge [using instructions in the repo](https://github.com/216k155/luxcore)
+Build and run luxcore-bridge [using instructions in the repo](https://github.com/LUX-Core/luxtre)
 
 Symlink the npm package in the subfolder `pos-haskell-prototype/luxcore`:
 * `npm link` (inside the luxcore sub folder of the Luxcoin client)
@@ -127,7 +127,7 @@ and then this:
 $ npm run test-watch
 ```
 
-You can find more details regarding tests setup within [Running Luxcore acceptance tests](https://github.com/216k155/luxcore/README.md) README file.
+You can find more details regarding tests setup within [Running Luxcore acceptance tests](https://github.com/LUX-Core/luxtre/README.md) README file.
 
 ### CSS Modules
 
