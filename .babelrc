@@ -1,36 +1,30 @@
 {
-  presets: ['es2015', 'stage-0', 'react'],
-  plugins: [
-    'add-module-exports',
-    'transform-decorators-legacy',
-    'lodash',
-    [
-      'transform-runtime',
-      {
-        polyfill: true,
-        regenerator: true
-      }
-    ],
-    [
-      'react-intl',
-      {
-        messagesDir: './translations/messages/',
-        enforceDescriptions: true,
-        extractSourceLocation: true
-      }
-    ]
+  "presets": ["es2015", "stage-0", "react"],
+  "plugins": [
+    "add-module-exports",
+    "transform-decorators-legacy",
+    "lodash",
+    ["transform-runtime", {
+      "polyfill": true,
+      "regenerator": true
+    }],
+    ["react-intl", {
+      "messagesDir": "./translations/messages/",
+      "enforceDescriptions": true,
+      "extractSourceLocation": true
+    }]
   ],
-  env: {
-    production: {
-      presets: ['react-optimize'],
-      plugins: ['babel-plugin-dev-expression']
+  "env": {
+    "production": {
+      "presets": ["react-optimize"],
+      "plugins": ["babel-plugin-dev-expression"]
     },
-    development: {
-      presets: []
+    "development": {
+      "presets": ["react-hmre"]
     },
-    test: {
-      plugins: [
-        ['webpack-loaders', { config: './webpack/webpack.config.development.js', verbose: false }]
+    "test": {
+      "plugins": [
+        ["webpack-loaders", { "config": "./webpack/webpack.config.development.js", "verbose": false }]
       ]
     }
   }
