@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { format } from 'd3-format';
 import { timeFormat } from 'd3-time-format';
@@ -221,13 +220,6 @@ class CandleStickChartWithMACDIndicator extends React.Component {
     );
   }
 }
-
-CandleStickChartWithMACDIndicator.propTypes = {
-  data: PropTypes.array.isRequired,
-  width: PropTypes.number.isRequired,
-  ratio: PropTypes.number.isRequired,
-  type: PropTypes.oneOf(['svg', 'hybrid']).isRequired
-};
 
 CandleStickChartWithMACDIndicator.defaultProps = {
   type: 'svg'

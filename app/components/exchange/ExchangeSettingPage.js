@@ -29,6 +29,20 @@ import { LuxgateLog } from '../../types/LuxgateLogType';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import ExchangeChartPage from './ExchangeChartPage';
+// import { Tabs, TabList, Tab, PanelList, Panel } from 'react-tabtab';
+
+// {
+//   /* <Tabs>
+// <TabList>
+//   <Tab>Tab1</Tab>
+//   <Tab>Tab2</Tab>
+// </TabList>
+// <PanelList>
+//   <Panel>Content1</Panel>
+//   <Panel>Content2</Panel>
+// </PanelList>
+// </Tabs> */
+// }
 
 import type { LGPrice } from '../../domain/LGPriceArray';
 
@@ -340,6 +354,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
           </div>
         </div>
         <div>
+          {/* Replace here? */}
           <div className={styles.graph}>
             <ExchangeChartPage data={lgPriceArrayList} />
           </div>

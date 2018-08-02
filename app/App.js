@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Provider, observer } from 'mobx-react';
 import { ThemeProvider } from 'react-css-themr';
-import DevTools from 'mobx-react-devtools';
+// import DevTools from 'mobx-react-devtools';
 import { Router } from 'react-router';
 import { IntlProvider } from 'react-intl';
 import { Routes } from './Routes';
@@ -17,12 +17,12 @@ import ThemeManager from './ThemeManager';
 export default class App extends Component<{
   stores: StoresMap,
   actions: ActionsMap,
-  history: Object,
+  history: Object
 }> {
   render() {
     const { stores, actions, history } = this.props;
     const locale = stores.profile.currentLocale;
-    const mobxDevTools = environment.MOBX_DEV_TOOLS ? <DevTools /> : null;
+    // const mobxDevTools = environment.MOBX_DEV_TOOLS ? <DevTools /> : null;
     const currentTheme = stores.profile.currentTheme;
     const theme = require(`./themes/luxcore/${currentTheme}.js`); // eslint-disable-line
 
@@ -34,7 +34,7 @@ export default class App extends Component<{
             <IntlProvider {...{ locale, key: locale, messages: translations[locale] }}>
               <div style={{ height: '100%' }}>
                 <Router history={history} routes={Routes} />
-                {mobxDevTools}
+                {/* {mobxDevTools} */}
               </div>
             </IntlProvider>
           </ThemeProvider>
