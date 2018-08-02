@@ -18,7 +18,6 @@ import ReceiveAddressDialog from './ReceiveAddressDialog';
 import ReceiveAddressDialogContainer from '../../containers/wallet/dialogs/ReceiveAddressDialogContainer';
 import SendCoinDialog from './SendCoinDialog';
 import SendCoinDialogContainer from '../../containers/wallet/dialogs/SendCoinDialogContainer';
-import styles from './ExchangeSettingPage.scss';
 import { CoinInfo, LGOrders } from '../../domain/CoinInfo';
 import COINS from './coins';
 import sendImage from '../../assets/images/wallet-nav/send.png';
@@ -29,7 +28,9 @@ import { LuxgateLog } from '../../types/LuxgateLogType';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import ExchangeChartPage from './ExchangeChartPage';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+import styles from './ExchangeSettingPage.scss';
 import type { LGPrice } from '../../domain/LGPriceArray';
 
 type Props = {
@@ -339,142 +340,155 @@ export default class ExchangeSettingPage extends Component<Props, State> {
             </div>
           </div>
         </div>
-        <div>
+        <div className={styles.content}>
           <div className={styles.graph}>
-            <ExchangeChartPage data={lgPriceArrayList} />
+            <Tabs>
+              <TabList>
+                <Tab>Title 1</Tab>
+                <Tab>Title 2</Tab>
+                <span>lol</span>
+              </TabList>
+
+              <TabPanel>
+                <ExchangeChartPage data={lgPriceArrayList} />
+              </TabPanel>
+              <TabPanel>
+                <div className={styles.orderTable1}>
+                  <div className={styles.orderTableCaptionBar}>
+                    <span className={styles.order}> Orders </span>
+                    <div className={styles.tableCaptionPos}>
+                      {Coin2} &rArr; {Coin1}{' '}
+                    </div>
+                  </div>
+                  <ReactTable
+                    data={ordersData.bids}
+                    columns={orderColumns}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
+                <div className={styles.orderTable2}>
+                  <div className={styles.orderTableCaptionBar}>
+                    <span className={styles.order}> Orders </span>
+                    <div className={styles.tableCaptionPos}>
+                      {' '}
+                      {Coin1} &rArr; {Coin2}{' '}
+                    </div>
+                  </div>
+                  <ReactTable
+                    data={ordersData.asks}
+                    columns={orderColumns}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
+              </TabPanel>
+            </Tabs>
           </div>
-          <div className={styles.setting}>
-            <div className={styles.card}>
-              <div className={styles.cardTitle}>Coupled Asset Swap</div>
-              <h6 className={styles.cardSubtitle}>Please swap your currency from here</h6>
-            </div>
-            <div className={styles.component}>
-              {!isBuy ? (
-                <img src={sendImage} className={styles.imageStyle} />
-              ) : (
-                <img src={recvImage} className={styles.imageStyle} />
-              )}
-              <Select {...selectProps} value={Coin1} onChange={this.changeCoin1.bind(this)} />
-              {Coin1 === '' ? null : (
+          <div className={styles.assistContainer}>
+            <div className={styles.setting}>
+              <div className={styles.card}>
+                <div className={styles.cardTitle}>Coupled Asset Swap</div>
+                <h6 className={styles.cardSubtitle}>Please swap your currency from here</h6>
+              </div>
+              <div className={styles.component}>
+                {!isBuy ? (
+                  <img src={sendImage} className={styles.imageStyle} />
+                ) : (
+                  <img src={recvImage} className={styles.imageStyle} />
+                )}
+                <Select {...selectProps} value={Coin1} onChange={this.changeCoin1.bind(this)} />
+                {Coin1 === '' ? null : (
+                  <img
+                    src={require('../../assets/crypto/' + Coin1 + '.png')}
+                    style={coinImageStyle}
+                  />
+                )}
+                {/* <div className={styles.span}> Amount </div>*/}
+                <NumericInput
+                  {...inputProps}
+                  placeholder={'0.000000 ' + Coin1}
+                  value={AmountInput}
+                  onChange={this.changeAmountInput.bind(this)}
+                />
+              </div>
+              <div className={styles.switch}>
                 <img
-                  src={require('../../assets/crypto/' + Coin1 + '.png')}
-                  style={coinImageStyle}
+                  src={switchCoinImage}
+                  className={styles.switchButton}
+                  onClick={this.handleSwitchCoin.bind(this)}
                 />
-              )}
-              {/* <div className={styles.span}> Amount </div>*/}
-              <NumericInput
-                {...inputProps}
-                placeholder={'0.000000 ' + Coin1}
-                value={AmountInput}
-                onChange={this.changeAmountInput.bind(this)}
-              />
+              </div>
+              <div className={styles.component}>
+                {!isBuy ? (
+                  <img src={recvImage} className={styles.imageStyle} />
+                ) : (
+                  <img src={sendImage} className={styles.imageStyle} />
+                )}
+                <Select {...selectProps} value={Coin2} onChange={this.changeCoin2.bind(this)} />
+                {Coin2 === '' ? null : (
+                  <img
+                    src={require('../../assets/crypto/' + Coin2 + '.png')}
+                    style={coinImageStyle}
+                  />
+                )}
+                {/* <span className={styles.span}> Value </span>*/}
+                <NumericInput
+                  {...inputProps}
+                  placeholder={'0.000000 ' + Coin2 + '/' + Coin1}
+                  value={ValueInput}
+                  onChange={this.changeValueInput.bind(this)}
+                />
+              </div>
+              <div className={styles.divTotal}>
+                <span className={styles.spanMargin36}> Total: </span>
+                <span>
+                  {' '}
+                  {this.calculateTotal(AmountInput, ValueInput)} {Coin2}{' '}
+                </span>
+              </div>
+              <div className={styles.swapbutton}>
+                <Button
+                  className={swapButtonClasses}
+                  label="Swap Now"
+                  onClick={this.swapCoin.bind(this)}
+                  skin={<ButtonSkin />}
+                />
+              </div>
             </div>
-            <div className={styles.switch}>
-              <img
-                src={switchCoinImage}
-                className={styles.switchButton}
-                onClick={this.handleSwitchCoin.bind(this)}
-              />
-            </div>
-            <div className={styles.component}>
-              {!isBuy ? (
-                <img src={recvImage} className={styles.imageStyle} />
+
+            <div className={styles.dataTable}>
+              <div className={styles.LogListCaptionBar}>
+                <Checkbox
+                  className={styles.checkboxTab}
+                  labelLeft="Status"
+                  labelRight="History"
+                  onChange={this.toggleLogAndHistory.bind(this)}
+                  checked={isShowLog}
+                  skin={<TogglerSkin />}
+                />
+              </div>
+              {isShowLog ? (
+                <div className={styles.logTable}>
+                  <ReactTable
+                    data={logbuff.slice()}
+                    columns={loggerColumns}
+                    sortable={false}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
               ) : (
-                <img src={sendImage} className={styles.imageStyle} />
+                <div className={styles.historyTable}>
+                  <ReactTable
+                    data={data}
+                    columns={historyColumns}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
               )}
-              <Select {...selectProps} value={Coin2} onChange={this.changeCoin2.bind(this)} />
-              {Coin2 === '' ? null : (
-                <img
-                  src={require('../../assets/crypto/' + Coin2 + '.png')}
-                  style={coinImageStyle}
-                />
-              )}
-              {/* <span className={styles.span}> Value </span>*/}
-              <NumericInput
-                {...inputProps}
-                placeholder={'0.000000 ' + Coin2 + '/' + Coin1}
-                value={ValueInput}
-                onChange={this.changeValueInput.bind(this)}
-              />
             </div>
-            <div className={styles.divTotal}>
-              <span className={styles.spanMargin36}> Total: </span>
-              <span>
-                {' '}
-                {this.calculateTotal(AmountInput, ValueInput)} {Coin2}{' '}
-              </span>
-            </div>
-            <div className={styles.swapbutton}>
-              <Button
-                className={swapButtonClasses}
-                label="Swap Now"
-                onClick={this.swapCoin.bind(this)}
-                skin={<ButtonSkin />}
-              />
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className={styles.orderTable1}>
-            <div className={styles.orderTableCaptionBar}>
-              <span className={styles.order}> Orders </span>
-              <div className={styles.tableCaptionPos}>
-                {Coin2} &rArr; {Coin1}{' '}
-              </div>
-            </div>
-            <ReactTable
-              data={ordersData.bids}
-              columns={orderColumns}
-              defaultPageSize={10}
-              className="-striped -highlight"
-            />
-          </div>
-          <div className={styles.orderTable2}>
-            <div className={styles.orderTableCaptionBar}>
-              <span className={styles.order}> Orders </span>
-              <div className={styles.tableCaptionPos}>
-                {' '}
-                {Coin1} &rArr; {Coin2}{' '}
-              </div>
-            </div>
-            <ReactTable
-              data={ordersData.asks}
-              columns={orderColumns}
-              defaultPageSize={10}
-              className="-striped -highlight"
-            />
-          </div>
-          <div className={styles.dataTable}>
-            <div className={styles.LogListCaptionBar}>
-              <Checkbox
-                className={styles.checkboxTab}
-                labelLeft="Status"
-                labelRight="History"
-                onChange={this.toggleLogAndHistory.bind(this)}
-                checked={isShowLog}
-                skin={<TogglerSkin />}
-              />
-            </div>
-            {isShowLog ? (
-              <div className={styles.logTable}>
-                <ReactTable
-                  data={logbuff.slice()}
-                  columns={loggerColumns}
-                  sortable={false}
-                  defaultPageSize={10}
-                  className="-striped -highlight"
-                />
-              </div>
-            ) : (
-              <div className={styles.historyTable}>
-                <ReactTable
-                  data={data}
-                  columns={historyColumns}
-                  defaultPageSize={10}
-                  className="-striped -highlight"
-                />
-              </div>
-            )}
           </div>
         </div>
         {isDialogOpen(ReceiveAddressDialog) ? (

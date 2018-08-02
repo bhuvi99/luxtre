@@ -15,38 +15,38 @@
   display: flex;
   padding: 7px;
   :global .SimpleFormField_root {
-    .SimpleFormField_error{
-      display:none;
+    .SimpleFormField_error {
+      display: none;
     }
-    .SimpleFormField_inputWrapper { 
+    .SimpleFormField_inputWrapper {
       .SimpleInput_input {
-        padding:10px;
+        padding: 10px;
         margin-left: 5px;
         font-weight: bold;
       }
     }
     &:after {
-      bottom:12px;
+      bottom: 12px;
       left: calc(100% - 20px);
     }
   }
   :global .SimpleSelect_select {
     .SimpleFormField_root {
       .SimpleFormField_inputWrapper {
-        .SimpleInput_input{
+        .SimpleInput_input {
           padding-left: 40px;
           //  background-color: transparent;
-        //  border: 0px;
+          //  border: 0px;
         }
         .SimpleOptions_ul {
           font-size: 14px;
-          .SimpleOptions_option{
+          .SimpleOptions_option {
             padding: 10px;
           }
         }
       }
     }
-  }     
+  }
 }
 
 //Exchange Setting
@@ -56,14 +56,14 @@
 }
 
 .span {
-  width:80px;
-  margin-left: 20px; 
+  width: 80px;
+  margin-left: 20px;
   padding-top: 7px;
 }
 
 .numericInput {
   margin-left: 5px;
-  width:45%;
+  width: 45%;
 }
 
 .divTotal {
@@ -96,7 +96,7 @@
 
 .coinbalance {
   float: left;
-  width:100%;
+  width: 100%;
 }
 .left {
   float: left;
@@ -132,12 +132,12 @@
 }
 
 .center {
-  width:40%;
+  width: 40%;
   left: 30%;
 }
 
 .swapbutton {
-  :global .SimpleButton_root  {
+  :global .SimpleButton_root {
     width: 50%;
     margin-top: 40px;
     margin-bottom: 40px;
@@ -150,7 +150,7 @@
 }
 
 .totalInput {
-  width:35%;
+  width: 35%;
 }
 
 .logContainer {
@@ -173,7 +173,7 @@
 }
 
 .logContent {
-  position:relative;
+  position: relative;
   width: calc(100% - 70px);
   display: inline-block;
 }
@@ -182,7 +182,7 @@
   color: red;
 }
 
-.checkboxTab{
+.checkboxTab {
   width: 100%;
   :global .SimpleToggler_toggler {
     background-color: transparent;
@@ -190,18 +190,18 @@
     .SimpleToggler_label {
       font-family: var(--font-bold);
       font-size: 16px;
-      padding-top:5px;
+      padding-top: 5px;
       width: 80px;
     }
     .SimpleToggler_checked {
       border: solid 1px #0097e0;
       color: #0097e0 !important;
-      position:relative;
+      position: relative;
     }
-    
+
     .SimpleToggler_label:not(.SimpleToggler_checked) {
-      border: solid 1px #FFF;
-      color: #FFF !important;
+      border: solid 1px #fff;
+      color: #fff !important;
     }
   }
 }
@@ -219,7 +219,11 @@
   :global .SimpleButton_root {
     background: #069a06;
     box-shadow: 1px 1px 0px rgba(25, 24, 24, 0.75);
+  }
 }
+
+.content {
+  display: flex;
 }
 
 .divStatus,
@@ -235,7 +239,7 @@
   font: bold 14px/30px var(--font-semibold);
   padding: 3px 20px;
   background: #3ec3dd; //var(--theme-luxgate-statusbar-background-color);
-  color:#FFF;
+  color: #fff;
   vertical-align: top;
   //border-radius: 7px;
 }
@@ -246,13 +250,12 @@
   margin-right: 8px;
 }
 
-
-// chart 
+// chart
 
 .graph {
   //  border: solid 1px var(--theme-bordered-box-background-color);
-    background: var(--theme-bordered-box-background-color);
-    border-radius: 4px;
+  background: var(--theme-bordered-box-background-color);
+  border-radius: 4px;
 }
 
 .divBalance,
@@ -268,7 +271,7 @@
   font: bold 14px/30px var(--font-semibold);
   padding: 4px 20px;
   background: #3ec3dd; //var(--theme-luxgate-statusbar-background-color);
-  color:#FFF;
+  color: #fff;
   border: var(--theme-bordered-box-border);
   //border-radius: 7px;
   margin-bottom: 2px;
@@ -286,7 +289,7 @@
 }
 
 .setting {
-  //padding: 20px 0px;
+  width: 100%;
   background: var(--theme-bordered-box-background-color);
   border: var(--theme-bordered-box-border);
   border-radius: 4px;
@@ -297,8 +300,8 @@
 
 .card {
   padding-top: 8px;
-//  flex: 1 1 auto;
-//  padding: 1.25rem;
+  //  flex: 1 1 auto;
+  //  padding: 1.25rem;
 }
 .cardTitle {
   text-align: center;
@@ -316,7 +319,7 @@
 .orderTableCaptionBar {
   width: 100%;
   height: 36px;
-  color: #FFF;//var(--theme-bordered-box-text-color);
+  color: #fff; //var(--theme-bordered-box-text-color);
   background-color: #3ec3dd; //var(--theme-bordered-box-background-color);
   border: var(--theme-bordered-box-border);
 }
@@ -326,19 +329,20 @@
 }
 
 .order {
-  font-size:12px;
-  float:left;
-  color: #FFF;
+  font-size: 12px;
+  float: left;
+  color: #fff;
 }
 .tableCaptionPos {
   font-family: var(--font-bold);
-	margin-left: 38%;
+  margin-left: 38%;
 }
 
 .orderTable1,
 .orderTable2,
 .dataTable {
   display: inline-block;
+  width: 100%;
   border: solid 1px var(--theme-bordered-box-border);
   :global .ReactTable > .rt-noData {
     display: none;
@@ -353,9 +357,9 @@
 .orderTable1,
 .orderTable2,
 .historyTable {
-  :global .ReactTable{
+  :global .ReactTable {
     .rt-table {
-      .rt-thead{
+      .rt-thead {
         font: bold 14px/30px Georgia, serif;
         border-bottom: 1px solid #434754;
       }
@@ -365,18 +369,18 @@
       }
     }
     .pagination-bottom {
-        display:none;
+      display: none;
     }
     .rt-resizer {
-      width:auto;
+      width: auto;
     }
   }
 }
 
 .logTable {
-  :global .ReactTable{
+  :global .ReactTable {
     .rt-table {
-      .rt-thead{
+      .rt-thead {
         font: bold 14px/30px Georgia, serif;
         border-bottom: 1px solid #434754;
       }
@@ -385,10 +389,10 @@
       }
     }
     .pagination-bottom {
-        display:none;
+      display: none;
     }
     .rt-resizer {
-      width:auto;
+      width: auto;
     }
   }
 }
@@ -398,7 +402,7 @@
 }
 
 .margetTable {
-  height:40%;
+  height: 40%;
   padding-right: 10px;
   padding-bottom: 20px;
 }
@@ -409,10 +413,10 @@
   width: 20px;
   height: 20px;
   border-radius: 3px;
-  display: inline-block;  
+  display: inline-block;
   margin-right: 10px;
   position: relative;
-  top:-2px;
+  top: -2px;
   vertical-align: middle;
 }
 
@@ -429,4 +433,8 @@
   }
 }
 
-
+.assistContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 32%;
+}

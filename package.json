@@ -151,6 +151,7 @@
     "react-stockcharts": "^0.7.7",
     "react-svg-inline": "2.0.0",
     "react-table": "^6.8.2",
+    "react-tabs": "^2.2.2",
     "recharts": "1.0.0-alpha.4",
     "route-parser": "0.0.5",
     "safe-buffer": "5.1.1",
