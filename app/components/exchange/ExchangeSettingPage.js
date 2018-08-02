@@ -294,59 +294,19 @@ export default class ExchangeSettingPage extends Component<Props, State> {
 
     return (
       <div className={styles.pageContainer}>
-        <div>
-          <div className={styles.divStatus}>
-            <span>
-              {Coin1}/{Coin2}:
-            </span>
-            <span className={styles.spanPrice}>{coinPrice}</span>
-          </div>
-          <div className={styles.divBalance}>
-            <div className={styles.coinbalance}>
-              <div className={styles.coin}>{Coin1}</div>
-              <div className={styles.balance}>{this.getCoinBalance(Coin1)}</div>
-              <div className={styles.recv}>
-                <Button
-                  onClick={() => this.openReceiveDialog(Coin1)}
-                  label="Receive"
-                  skin={<ButtonSkin />}
-                />
-              </div>
-              <div className={styles.send}>
-                <Button
-                  onClick={() => this.openSendDialog(Coin1)}
-                  label="Send"
-                  skin={<ButtonSkin />}
-                />
-              </div>
-            </div>
-            <div className={styles.coinbalance}>
-              <div className={styles.coin}>{Coin2} </div>
-              <div className={styles.balance}>{this.getCoinBalance(Coin2)}</div>
-              <div className={styles.recv}>
-                <Button
-                  onClick={() => this.openReceiveDialog(Coin2)}
-                  label="Receive"
-                  skin={<ButtonSkin />}
-                />
-              </div>
-              <div className={styles.send}>
-                <Button
-                  onClick={() => this.openSendDialog(Coin2)}
-                  label="Send"
-                  skin={<ButtonSkin />}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
         <div className={styles.content}>
           <div className={styles.graph}>
             <Tabs>
               <TabList>
-                <Tab>Title 1</Tab>
-                <Tab>Title 2</Tab>
-                <span>lol</span>
+                <Tab>Chart</Tab>
+                <Tab>Order book</Tab>
+                <Tab>Send/Receive</Tab>
+                <li className={`${styles.divStatusTab}`}>
+                  <span>
+                    {Coin1}/{Coin2} Current:
+                  </span>
+                  <span className={styles.spanPrice}>{coinPrice}</span>
+                </li>
               </TabList>
 
               <TabPanel>
@@ -381,6 +341,46 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                     defaultPageSize={10}
                     className="-striped -highlight"
                   />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className={styles.divBalance}>
+                  <div className={styles.coinbalance}>
+                    <div className={styles.coin}>{Coin1}</div>
+                    <div className={styles.balance}>{this.getCoinBalance(Coin1)}</div>
+                    <div className={styles.recv}>
+                      <Button
+                        onClick={() => this.openReceiveDialog(Coin1)}
+                        label="Receive"
+                        skin={<ButtonSkin />}
+                      />
+                    </div>
+                    <div className={styles.send}>
+                      <Button
+                        onClick={() => this.openSendDialog(Coin1)}
+                        label="Send"
+                        skin={<ButtonSkin />}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.coinbalance}>
+                    <div className={styles.coin}>{Coin2} </div>
+                    <div className={styles.balance}>{this.getCoinBalance(Coin2)}</div>
+                    <div className={styles.recv}>
+                      <Button
+                        onClick={() => this.openReceiveDialog(Coin2)}
+                        label="Receive"
+                        skin={<ButtonSkin />}
+                      />
+                    </div>
+                    <div className={styles.send}>
+                      <Button
+                        onClick={() => this.openSendDialog(Coin2)}
+                        label="Send"
+                        skin={<ButtonSkin />}
+                      />
+                    </div>
+                  </div>
                 </div>
               </TabPanel>
             </Tabs>
