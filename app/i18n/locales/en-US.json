@@ -161,6 +161,7 @@
   "wallet.navigation.send": "Send",
   "wallet.navigation.settings": "Settings",
   "wallet.navigation.masternodes": "Masternodes",
+  "wallet.navigation.lsrtokens": "LSR Tokens",
   "wallet.navigation.smartcontracts": "Smart Contracts",
   "wallet.navigation.summary": "Summary",
   "wallet.navigation.transactions": "Transactions",
