@@ -14,6 +14,13 @@ export type LGBid = {
 
 export type LGAsk = LGBid;
 
+export type LGOrdersData = {
+  bids: Array<LGBid>,
+  numbids: number,
+  asks: Array<LGAsk>,
+  numasks: number
+};
+
 export default class LGOrders {
   @observable
   asks: Array<LGAsk>;

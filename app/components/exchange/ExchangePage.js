@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import ExchangeSettingPage from './ExchangeSettingPage';
 import styles from './ExchangePage.scss';
-import { CoinInfo, LGOrders } from '../../domain/CoinInfo';
+import { CoinInfo } from '../../domain/CoinInfo';
 import { LuxgateLog } from '../../types/LuxgateLogType';
+import type { LGOrdersData } from '../../domain/LGOrders';
 import type { LGPrice } from '../../domain/LGPriceArray';
 
 type Props = {
   coinPrice: number,
-  ordersData: LGOrders,
+  ordersData: LGOrdersData,
   coinInfoList: Array<CoinInfo>,
   logbuff: Array<LuxgateLog>,
   openDialogAction: Function,

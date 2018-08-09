@@ -17,7 +17,7 @@ import ReceiveAddressDialog from './ReceiveAddressDialog';
 import ReceiveAddressDialogContainer from '../../containers/wallet/dialogs/ReceiveAddressDialogContainer';
 import SendCoinDialog from './SendCoinDialog';
 import SendCoinDialogContainer from '../../containers/wallet/dialogs/SendCoinDialogContainer';
-import { CoinInfo, LGOrders } from '../../domain/CoinInfo';
+import { CoinInfo } from '../../domain/CoinInfo';
 import COINS from './coins';
 import sendImage from '../../assets/images/wallet-nav/send.png';
 import recvImage from '../../assets/images/wallet-nav/receive.png';
@@ -31,11 +31,12 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import styles from './ExchangeSettingPage.scss';
 import type { LGPrice } from '../../domain/LGPriceArray';
+import type { LGOrdersData } from '../../domain/LGOrders';
 import type { InjectedContainerProps } from '../../types/injectedPropsType';
 
 type Props = {
   coinPrice: number,
-  ordersData: LGOrders,
+  ordersData: LGOrdersData,
   coinInfoList: Array<CoinInfo>,
   logbuff: Array<LuxgateLog>,
   openDialogAction: Function,

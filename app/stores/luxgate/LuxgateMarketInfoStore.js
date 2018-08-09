@@ -14,6 +14,7 @@ import type {
 } from '../../api/common';
 
 import type { LGPrice } from '../../domain/LGPriceArray';
+import type { LGOrdersData } from '../../domain/LGOrders';
 
 export default class LuxgateMarketInfoStore extends Store {
   LGORDERS_REFRESH_INTERVAL = 10000;
@@ -30,7 +31,7 @@ export default class LuxgateMarketInfoStore extends Store {
   );
 
   @observable
-  LGOrdersData: Array<LGOrders> = [];
+  LGOrdersData: LGOrdersData = { asks: [], numasks: 0, bids: [], numbids: 0 };
   @observable
   lstLGTransactions: Array<LGTransactions> = [];
   @observable
@@ -124,7 +125,7 @@ export default class LuxgateMarketInfoStore extends Store {
   }
 
   @computed
-  get ordersData(): Array<LGOrders> {
+  get ordersData(): LGOrdersData {
     return this.LGOrdersData;
   }
 
