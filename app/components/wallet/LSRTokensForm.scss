@@ -158,12 +158,47 @@
   }
 }
 
-.button {
+.navButton {
   color:white;
-  background-color: #101820;
   border-radius: 5px;
   padding: 10px;
   margin: 2px 3px 1px 1px;
   width: 32%;
   cursor: pointer;
+  &:hover {
+    background-color: var(--theme-nav-item-background-color-hover);
+  }
+}
+
+.normal {
+  background-color: var(--theme-nav-item-background-color);
+}
+
+.active {
+  background-color: var(--theme-nav-item-background-color-active);
+}
+
+.tokenTable {
+  margin-top: 50px;
+  
+  :global .ReactTable{
+    .rt-table {
+      .rt-thead{
+        font: bold 14px/30px Georgia, serif;
+        border-bottom: 1px solid #434754;
+      }
+      .rt-tbody {
+        font-size: 13px;
+      }
+    }
+    .pagination-bottom {
+        display:none;
+    }
+    .rt-resizer {
+      width:auto;
+    }
+    .rt-noData {
+      display: none;
+    }
+  }
 }

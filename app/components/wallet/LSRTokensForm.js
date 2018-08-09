@@ -12,6 +12,8 @@ import Input from 'react-polymorph/lib/components/Input';
 import SimpleInputSkin from 'react-polymorph/lib/skins/simple/raw/InputSkin';
 import styles from './LSRTokensForm.scss';
 import BorderedBox from '../widgets/BorderedBox';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 type Props = {
   createContract: Function,
@@ -159,6 +161,27 @@ export default class LSRTokensForm extends Component<Props, State> {
       //styles.button
     ]);
 
+    const headerLabels = [{
+      Header: 'Data',
+      width: 150,
+      accessor: 'lt_data'
+    }, {
+      Header: 'Type',
+      width: 100,
+      accessor: 'lt_type',
+    }, {
+      Header: 'Label',
+      width: 200,
+      accessor: 'lt_label'
+    }, {
+      Header: 'Name',
+      accessor: 'lt_name'
+    }, {
+      Header: 'Amount',
+      width: 150,
+      accessor: 'lt_amount'
+    }]
+
     return (
       <div className={styles.component}>
         <div className={styles.categoryTitle}>
@@ -168,17 +191,27 @@ export default class LSRTokensForm extends Component<Props, State> {
           <div className={styles.tokenPage}/>
           <div>
             <button 
-              className={styles.button} 
-              onClick={() => this.setState({selectTab: 'send'})}> 
-                Send 
+              className={classnames([
+                styles.navButton, 
+                selectTab == 'send' ? styles.active : styles.normal
+              ])} 
+              onClick={() => this.setState({selectTab: 'send'})}
+            > 
+              Send
             </button>
             <button 
-              className={styles.button} 
+              className={classnames([
+                styles.navButton, 
+                selectTab == 'receive' ? styles.active : styles.normal
+              ])} 
               onClick={() => this.setState({selectTab: 'receive'})}> 
                 Receive 
             </button>
             <button 
-              className={styles.button} 
+              className={classnames([
+                styles.navButton, 
+                selectTab == 'addtoken' ? styles.active : styles.normal
+              ])} 
               onClick={() => this.setState({selectTab: 'addtoken'})}> 
                 AddToken 
             </button>
@@ -273,6 +306,14 @@ export default class LSRTokensForm extends Component<Props, State> {
           </div>
           ) : (null)
         }
+        </div>
+        <div className={styles.tokenTable}>
+          <ReactTable
+              columns={headerLabels}
+              sortable={false}
+              defaultPageSize={10}
+              className="-striped -highlight"
+          />
         </div>
       </div>
     );
