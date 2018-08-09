@@ -124,7 +124,7 @@ export default class LuxgateMarketInfoStore extends Store {
   }
 
   @computed
-  get ordersData(): LGOrders {
+  get ordersData(): Array<LGOrders> {
     return this.LGOrdersData;
   }
 
