@@ -47,7 +47,7 @@
   width: 100%;
 }
 
-.inputContainer {
+.inputRegion {
   width:54%; 
   display: inline-block;
   float: right;
@@ -55,14 +55,14 @@
   font-size: 16px;
 }
 
-.sendInputContainer {
+.inputContainer {
   height:200px;
   font-size: 14px;
   background-color: #efefef;
   padding: 10px 20px;
 }
 
-.sendInputContainer {
+.inputContainer {
   //font-size: 12px;
   input {
     width: 60%;
@@ -78,6 +78,38 @@
 	input[type=number]:hover::-webkit-inner-spin-button {  
 	  height: 30px;
 	}
+}
+
+.receiveContainer {
+  margin-top: 100px;
+  height:200px;
+  font-size: 14px;
+  background-color: #efefef;
+  padding: 10px 20px;
+  text-align: center;
+  
+  input {
+    width: 100%;
+	  height: 30px;
+	  font-size: 14px;
+    outline: 0;
+    border: var(--theme-bordered-box-border) !important;
+    padding-left: 10px !important;
+    padding-right: 2px;
+    margin: 5px 0;
+	}
+
+	input[type=number]:hover::-webkit-inner-spin-button {  
+	  height: 30px;
+	}
+
+  :global .SimpleButton_root {
+    width: 50%;
+    height: 34px;
+    padding: 10px 30px;
+    text-align: center;
+    margin: 30px 10px;
+  }
 }
 
 .sendInputLabel {
@@ -107,9 +139,12 @@
   margin: 5px 0px;
 }
 
-
 .tokenInputBox {
   width: calc(100% - 160px);
+}
+
+.inputCopyAddress {
+  width: calc(100% - 30px);
 }
 
 .buttonContainer {

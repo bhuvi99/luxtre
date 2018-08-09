@@ -27,7 +27,7 @@ type Props = {
 };
 
 type State = {
-  bytecode: string,
+  selectTab: string,
   abi: string,
   arrInputs : Array<Object>,
   gasLimit: number,
@@ -43,7 +43,8 @@ export default class LSRTokensForm extends Component<Props, State> {
     arrInputs:[],
     gasLimit: this.props.gaslimit,
     gasPrice: this.props.gasprice,
-    senderAddress: this.props.senderaddress
+    senderAddress: this.props.senderaddress,
+    selectTab: 'send'
   };
 
   _isMounted = false;
@@ -136,7 +137,7 @@ export default class LSRTokensForm extends Component<Props, State> {
 
   render() {
     const {
-      bytecode, 
+      selectTab, 
       abi, 
       arrInputs,
       gasLimit,
@@ -166,16 +167,29 @@ export default class LSRTokensForm extends Component<Props, State> {
         <div className={styles.tokenContrainer}>
           <div className={styles.tokenPage}/>
           <div>
-            <button className={styles.button}> Send </button>
-            <button className={styles.button}> Receive </button>
-            <button className={styles.button}> AddToken </button>
+            <button 
+              className={styles.button} 
+              onClick={() => this.setState({selectTab: 'send'})}> 
+                Send 
+            </button>
+            <button 
+              className={styles.button} 
+              onClick={() => this.setState({selectTab: 'receive'})}> 
+                Receive 
+            </button>
+            <button 
+              className={styles.button} 
+              onClick={() => this.setState({selectTab: 'addtoken'})}> 
+                AddToken 
+            </button>
           </div>  
         </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.sendInputContainer}> 
+        <div className={styles.inputRegion}>
+        {selectTab == 'send' ? (
+          <div className={styles.inputContainer}> 
             <div>
               <div className={styles.sendInputLabel}> PayTo </div>
-              <input value={senderAddress} type="text" onChange={event => this.setState({senderAddress: event.target.value})}/>
+              <input type="text"/>
             </div>
             <div>
               <div className={styles.sendInputLabel}> Amount </div>
@@ -207,6 +221,58 @@ export default class LSRTokensForm extends Component<Props, State> {
               />
             </div>
           </div>
+          ) : (null)
+        }
+        {selectTab == 'receive' ? (
+          <div className={styles.receiveContainer}> 
+            <div>
+              <input className={styles.inputCopyAddress} type="text"/>
+            </div>
+            <Button
+              className={buttonClasses}
+              label="Copy Address"
+              skin={<SimpleButtonSkin/>}
+            />
+          </div>
+          ) : (null)
+        }
+        {selectTab == 'addtoken' ? (
+          <div className={styles.inputContainer}> 
+            <div>
+              <div className={styles.addTokenInputLabel}> Contract Address </div>
+              <input type="text"/>
+            </div>
+            <div>
+              <div className={styles.addTokenInputLabel}> Token Name </div>
+              <input type="text"/>
+            </div>
+            <div>
+              <div className={styles.addTokenInputLabel}> Token Symbol</div>
+              <input type="text"/>
+            </div>
+            <div>
+              <div className={styles.addTokenInputLabel}> Decimals </div>
+              <input type="text"/>
+            </div>
+            <div> 
+              <div className={styles.addTokenInputLabel}> Sender Address </div>
+              <input type="text"/>
+            </div>
+            <div className={styles.buttonContainer}>
+              <Button
+                className={buttonClasses}
+                label="Confirm"
+                skin={<SimpleButtonSkin/>}
+              />
+              <Button
+                className={buttonClasses}
+                label="Clear"
+                skin={<SimpleButtonSkin/>}
+              />
+            </div>
+          </div>
+          ) : (null)
+        }
         </div>
       </div>
     );
