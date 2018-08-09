@@ -212,11 +212,15 @@ export default class ExchangeSettingPage extends Component<Props, State> {
 
     const orderColumns = [
       {
-        Header: 'Value',
+        Header: 'Price',
         accessor: 'price' // String-based value accessors!
       },
       {
-        Header: 'Amount',
+        Header: 'Min Volume',
+        accessor: 'minvolume'
+      },
+      {
+        Header: 'Max Volume',
         accessor: 'maxvolume'
       },
       {
@@ -325,7 +329,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               <TabPanel>
                 <div className={styles.orderTable1}>
                   <div className={styles.orderTableCaptionBar}>
-                    <span className={styles.order}> Orders </span>
+                    <span className={styles.order}>{`${ordersData.numbids || 0} Bids`}</span>
                     <div className={styles.tableCaptionPos}>
                       {Coin2} &rArr; {Coin1}{' '}
                     </div>
@@ -339,7 +343,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 </div>
                 <div className={styles.orderTable2}>
                   <div className={styles.orderTableCaptionBar}>
-                    <span className={styles.order}> Orders </span>
+                    <span className={styles.order}>{`${ordersData.numasks || 0} Asks`}</span>
                     <div className={styles.tableCaptionPos}>
                       {' '}
                       {Coin1} &rArr; {Coin2}{' '}
