@@ -217,12 +217,12 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       },
       {
         Header: 'Amount',
-        accessor: 'volumn'
+        accessor: 'maxvolume'
       },
       {
         id: 'Total', // Required because our accessor is not a string
         Header: 'Total',
-        accessor: 'total' // Custom value accessors!
+        accessor: 'numutxos' // Custom value accessors!
       }
     ];
 
