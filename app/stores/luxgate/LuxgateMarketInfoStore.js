@@ -17,7 +17,7 @@ import type { LGPrice } from '../../domain/LGPriceArray';
 import type { LGOrdersData } from '../../domain/LGOrders';
 
 export default class LuxgateMarketInfoStore extends Store {
-  LGORDERS_REFRESH_INTERVAL = 10000;
+  LGORDERS_REFRESH_INTERVAL = 3600;
   LGPRICEARRAY_REFRESH_INTERVAL = 10000;
 
   // REQUESTS
