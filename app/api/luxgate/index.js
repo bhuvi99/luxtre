@@ -270,7 +270,7 @@ export default class LuxApi {
       } else {
         await setLuxgateLocalWallet({ password, coin });
       }
-      let response = await getLuxgateCoinPrice({ password, base, rel });
+      response = await getLuxgateCoinPrice({ password, base, rel });
       if (response !== undefined && response.result === 'success') {
         return response.price;
       }

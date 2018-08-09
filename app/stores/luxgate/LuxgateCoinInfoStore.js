@@ -23,13 +23,18 @@ export default class LuxgateCoinInfoStore extends Store {
   getCoinBalanceRequest: Request<GetCoinBalanceResponse> = new Request(
     this.api.luxgate.getCoinBalanace
   );
-  @observable sendCoinRequest: Request<SendCoinResponse> = new Request(this.api.luxgate.sendCoin);
-  @observable swapCoinRequest: Request<SwapCoinResponse> = new Request(this.api.luxgate.swapCoin);
+  @observable
+  sendCoinRequest: Request<SendCoinResponse> = new Request(this.api.luxgate.sendCoin);
+  @observable
+  swapCoinRequest: Request<SwapCoinResponse> = new Request(this.api.luxgate.swapCoin);
   // @observable getCoinPriceRequest: Request<GetCoinPriceResponse> = new Request(this.api.luxgate.getCoinPrice);
 
-  @observable lstCoinInfo: Array<CoinInfo> = [];
-  @observable swap_coin1: string = 'BTC';
-  @observable swap_coin2: string = 'LUX';
+  @observable
+  lstCoinInfo: Array<CoinInfo> = [];
+  @observable
+  swap_coin1: string = 'BTC';
+  @observable
+  swap_coin2: string = 'LUX';
   // @observable coinPrice: number = 0;
 
   setup() {
@@ -88,7 +93,7 @@ export default class LuxgateCoinInfoStore extends Store {
     const isLogined = this.stores.luxgate.loginInfo.isLogined;
     if (!isLogined) {
       const logData = {
-        content: 'First, need to login',
+        content: 'Please login first to atomic swap!',
         type: 'info'
       };
       this.actions.luxgate.logger.addLog.trigger(logData);
