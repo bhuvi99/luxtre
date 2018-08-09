@@ -29,11 +29,16 @@ export default class LuxgateMarketInfoStore extends Store {
     this.api.luxgate.getLGPriceArray
   );
 
-  @observable LGOrdersData: Array<LGOrders> = [];
-  @observable lstLGTransactions: Array<LGTransactions> = [];
-  @observable lstLGTradeArray: Array<LGTradeArray> = [];
-  @observable lstLGPriceArray: Array<LGPrice> = [];
-  @observable coinPrice: number = 0;
+  @observable
+  LGOrdersData: Array<LGOrders> = [];
+  @observable
+  lstLGTransactions: Array<LGTransactions> = [];
+  @observable
+  lstLGTradeArray: Array<LGTradeArray> = [];
+  @observable
+  lstLGPriceArray: Array<LGPrice> = [];
+  @observable
+  coinPrice: number = 0;
 
   setup() {
     super.setup();
