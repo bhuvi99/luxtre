@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import type { Node } from 'react';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import classnames from 'classnames';
 import Select from 'react-polymorph/lib/components/Select';
 import SelectSkin from 'react-polymorph/lib/skins/simple/SelectSkin';
@@ -32,6 +31,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import styles from './ExchangeSettingPage.scss';
 import type { LGPrice } from '../../domain/LGPriceArray';
+import type { InjectedContainerProps } from '../../types/injectedPropsType';
 
 type Props = {
   coinPrice: number,
@@ -43,7 +43,7 @@ type Props = {
   onChangeCoin: Function,
   onSwapCoin: Function,
   lgPriceArrayList: Array<LGPrice>
-};
+} & InjectedContainerProps;
 
 type State = {
   isBuy: boolean,
@@ -56,6 +56,7 @@ type State = {
   isShowLog: boolean
 };
 
+@inject('stores', 'actions')
 @observer
 export default class ExchangeSettingPage extends Component<Props, State> {
   state = {
@@ -76,6 +77,13 @@ export default class ExchangeSettingPage extends Component<Props, State> {
   }
 
   toggleLogAndHistory() {
+    const isLogined = this.props.stores.luxgate.loginInfo.isLogined;
+    if (this.state.isShowLog && !isLogined) {
+      return this.props.actions.luxgate.logger.addLog.trigger({
+        content: 'Please login first to view history',
+        type: 'info'
+      });
+    }
     this.setState({ isShowLog: !this.state.isShowLog });
   }
 
@@ -181,8 +189,9 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       onChangeCoin,
       lgPriceArrayList
     } = this.props;
+    const isLogined = this.props.stores.luxgate.loginInfo.isLogined;
 
-    const data = [
+    const historyData = [
       {
         amount: 19.0171143,
         value: 0.0011686,
@@ -481,7 +490,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               ) : (
                 <div className={styles.historyTable}>
                   <ReactTable
-                    data={data}
+                    data={historyData}
                     columns={historyColumns}
                     defaultPageSize={10}
                     className="-striped -highlight"

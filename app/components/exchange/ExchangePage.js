@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import ExchangeSettingPage from './ExchangeSettingPage';
 import styles from './ExchangePage.scss';
 import { CoinInfo, LGOrders } from '../../domain/CoinInfo';
