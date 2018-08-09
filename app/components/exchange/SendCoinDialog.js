@@ -146,15 +146,18 @@ export default class SendCoinDialog extends Component<Props> {
       {
         label: 'Cancel',
         onClick: !isSubmitting && onCancel
-      },
-      {
+      }
+    ];
+
+    if (isLogined) {
+      actions.push({
         label: 'Send',
         onClick: this.submit.bind(this),
         primary: true,
         className: confirmButtonClasses,
         disabled: !amountField.isValid || !receiverField.isValid
-      }
-    ];
+      });
+    }
 
     return (
       <Dialog
