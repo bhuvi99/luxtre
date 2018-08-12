@@ -46,15 +46,12 @@ export default class LuxgateTransactionsStore extends Store {
 
     const { router, luxgate } = this.actions;
     const { transactions } = luxgate;
-    transactions.getLGTransactions.listen(this._getLGTransactions);
+    // transactions.getLGTransactions.listen(this._getLGTransactions);
     transactions.getLGOpenOrders.listen(this._getLGOpenOrders);
+    transactions.getLGSwapStatus.listen(this._getLGSwapStatus);
 
-    //  setInterval(this._pollRefresh, this.LGTRANSACTIONS_REFRESH_INTERVAL);
+    // TODO: Uncomment
     //  setInterval(this._pollRefresh, this.LGOPENORDERS_REFRESH_INTERVAL);
-
-    // coininfo.getcoinarray.listen(this._createMasternode);
-    // coininfo.getbalanacefromaddress
-    // router.goToRoute.listen(this._onRouteChange);
   }
 
   _getLGTransactions = async (coin: string) => {
@@ -177,8 +174,11 @@ export default class LuxgateTransactionsStore extends Store {
     return this.LGSwapStatus;
   }
 
-  // _pollRefresh = async () => {
-  //  this.stores.networkStatus.isSynced && await this.refreshLGTransactionsData()
-  //  this.stores.networkStatus.isSynced && await this.refreshLGOpenOrdersData()
-  // }
+  _pollRefresh = async () => {
+    if (this.stores.networkStatus.isSynced) {
+      // await this.refreshLGTransactionsData()
+      await this._getLGOpenOrders();
+      await this._getLGSwapStatus();
+    }
+  };
 }
