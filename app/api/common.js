@@ -5,6 +5,8 @@ import { Wallet } from '../domain/Wallet';
 import { Masternode } from '../domain/Masternode';
 import { CoinInfo } from '../domain/CoinInfo';
 
+import type { LGOpenOrder } from '../domain/LGOpenOrders';
+
 const messages = defineMessages({
   genericApiError: {
     id: 'api.errors.GenericApiError',
@@ -190,6 +192,7 @@ export type GetLGOrdersResponse = Array;
 export type GetLGTransactionsResponse = string;
 export type GetLGTradeArrayResponse = string;
 export type GetLGPriceArrayResponse = string;
+export type GetLGOpenOrdersResponse = Array<LGOpenOrder>;
 export type GetAccountNewPhraseResponse = Array<string>;
 export type GetPasswordInfoResponse = string;
 export type SetCoinSettingResponse = string;

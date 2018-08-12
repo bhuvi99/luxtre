@@ -3,6 +3,7 @@ import { action } from 'mobx';
 import environment from '../../environment';
 import { getLuxgateCoinInfo } from './getLuxgateCoinInfo';
 import { getLuxgateOrders } from './getLuxgateOrders';
+import { getLuxgateOpenOrders } from './getLuxgateOpenOrders';
 import { getLuxgateTransactions } from './getLuxgateTransactions';
 import { getLuxgateCoinBalanceFromAddress } from './getLuxgateCoinBalanceFromAddress';
 import { swapLuxgateCoin } from './swapLuxgateCoin';
@@ -34,6 +35,7 @@ import type {
   SwapCoinResponse,
   SendCoinResponse,
   GetLGOrdersResponse,
+  GetLGOpenOrdersResponse,
   GetLGTransactionsResponse,
   GetLGTradeArrayResponse,
   GetLGPriceArrayResponse,
@@ -164,7 +166,7 @@ export default class LuxApi {
     try {
       const scale = 60;
       const response = await getLuxgateTradeArray({ password, base, rel, scale });
-      if (response !== undefined) {
+      if (response !== undefined && !response.error) {
         return stringifyData(response);
       }
       return '';
@@ -183,7 +185,7 @@ export default class LuxApi {
     try {
       const scale = 60;
       const response = await getLuxgatePriceArray({ password, base, rel, scale });
-      if (response !== undefined) {
+      if (response !== undefined && !response.error) {
         return stringifyData(response);
       }
       return '';
@@ -277,6 +279,20 @@ export default class LuxApi {
       return 0;
     } catch (error) {
       Logger.error('LuxgateApi::getCoinPrice error: ' + stringifyError(error));
+      throw new GenericApiError();
+    }
+  }
+
+  async getLGOpenOrders(password: string): Promise<GetLGOpenOrdersResponse> {
+    Logger.debug('LuxgateApi::getLGOpenOrders called');
+    try {
+      const response = await getLuxgateOpenOrders({ password });
+      if (response !== undefined && !response.error) {
+        return stringifyData(response);
+      }
+      return '';
+    } catch (error) {
+      Logger.error('LuxgateApi::getLGOpenOrders error: ' + stringifyError(error));
       throw new GenericApiError();
     }
   }

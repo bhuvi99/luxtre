@@ -3,12 +3,17 @@ import { observable, computed, action, runInAction } from 'mobx';
 import BigNumber from 'bignumber.js';
 import Store from '../lib/Store';
 import LGTransactions from '../../domain/LGTransactions';
+import LGOpenOrders from '../../domain/LGOpenOrders';
 import Request from '.././lib/LocalizedRequest';
 
 import type { GetLGTransactionsResponse } from '../../api/common';
+import type { GetLGOpenOrdersResponse } from '../../api/common';
+
+import type { LGOpenOrder } from '../../domain/LGOpenOrders';
 
 export default class LuxgateTransactionsStore extends Store {
   LGTRANSACTIONS_REFRESH_INTERVAL = 10000;
+  LGOPENORDERS_REFRESH_INTERVAL = 5000;
 
   // REQUESTS
   @observable
@@ -17,16 +22,26 @@ export default class LuxgateTransactionsStore extends Store {
   );
 
   @observable
+  getLGOpenOrdersRequest: Request<GetLGOpenOrdersResponse> = new Request(
+    this.api.luxgate.getLGOpenOrders
+  );
+
+  @observable
   lstLGTransactions: Array<LGTransactions> = [];
+  @observable
+  LGOpenOrders: Array<LGOpenOrder> = [];
 
   setup() {
     super.setup();
 
-    //  setInterval(this._pollRefresh, this.LGTRANSACTIONS_REFRESH_INTERVAL);
-
     const { router, luxgate } = this.actions;
-    const { coinInfo } = luxgate;
-    coinInfo.getLGTransactions.listen(this._getLGTransactions);
+    const { transactions } = luxgate;
+    transactions.getLGTransactions.listen(this._getLGTransactions);
+    transactions.getLGOpenOrders.listen(this._getLGOpenOrders);
+
+    //  setInterval(this._pollRefresh, this.LGTRANSACTIONS_REFRESH_INTERVAL);
+    //  setInterval(this._pollRefresh, this.LGOPENORDERS_REFRESH_INTERVAL);
+
     // coininfo.getcoinarray.listen(this._createMasternode);
     // coininfo.getbalanacefromaddress
     // router.goToRoute.listen(this._onRouteChange);
@@ -85,7 +100,29 @@ export default class LuxgateTransactionsStore extends Store {
     this.lstLGTransactions.splice(index, 1);
   };
 
+  // OpenOrders
+
+  _getLGOpenOrders = async () => {
+    const password = this.stores.luxgate.loginInfo.password;
+    if (password == '') return;
+
+    const info: GetLGOpenOrdersResponse = await this.getLGOpenOrdersRequest.execute(password)
+      .promise;
+    if (info !== '') {
+      const openOrders = JSON.parse(info);
+      this.replaceOpenOrders(new LGOpenOrders({ openOrders }));
+    }
+
+    this.getLGOpenOrdersRequest.reset();
+  };
+
+  @action
+  replaceOpenOrders(info: *) {
+    this.LGOpenOrders = info;
+  }
+
   // _pollRefresh = async () => {
   //  this.stores.networkStatus.isSynced && await this.refreshLGTransactionsData()
+  //  this.stores.networkStatus.isSynced && await this.refreshLGOpenOrdersData()
   // }
 }
