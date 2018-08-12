@@ -183,6 +183,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     const {
       coinPrice,
       ordersData,
+      openOrders,
       coinInfoList,
       logbuff,
       openDialogAction,
@@ -227,6 +228,25 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         id: 'Total', // Required because our accessor is not a string
         Header: 'Total',
         accessor: 'numutxos' // Custom value accessors!
+      }
+    ];
+
+    const openOrderColumns = [
+      {
+        Header: 'Base Coin',
+        accessor: 'base' // String-based value accessors!
+      },
+      {
+        Header: 'Related Coin',
+        accessor: 'rel'
+      },
+      {
+        Header: 'Bid',
+        accessor: 'bid'
+      },
+      {
+        id: 'Ask',
+        accessor: 'ask' // Custom value accessors!
       }
     ];
 
@@ -315,6 +335,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 <Tab>Chart</Tab>
                 <Tab>Order book</Tab>
                 <Tab>Send/Receive</Tab>
+                <Tab>Open Orders</Tab>
                 <li className={`${styles.divStatusTab}`}>
                   <span>
                     {Coin1}/{Coin2} Current:
@@ -336,7 +357,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                   </div>
                   <ReactTable
                     data={ordersData.bids}
-                    columns={orderColumns}
+                    columns={openOrderColumns}
                     defaultPageSize={10}
                     className="-striped -highlight"
                   />
@@ -396,6 +417,14 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                     </div>
                   </div>
                 </div>
+              </TabPanel>
+              <TabPanel>
+                <ReactTable
+                  data={openOrders}
+                  columns={openOrderColumns}
+                  defaultPageSize={10}
+                  className="-striped -highlight"
+                />
               </TabPanel>
             </Tabs>
           </div>
