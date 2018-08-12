@@ -189,9 +189,13 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       openDialogAction,
       isDialogOpen,
       onChangeCoin,
-      lgPriceArrayList
+      lgPriceArrayList,
+      stores
     } = this.props;
     const isLogined = this.props.stores.luxgate.loginInfo.isLogined;
+    const {
+      luxgate: { transactions }
+    } = stores;
 
     const historyData = [
       {
@@ -420,7 +424,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               </TabPanel>
               <TabPanel>
                 <ReactTable
-                  data={openOrders}
+                  data={transactions.lgOpenOrders}
                   columns={openOrderColumns}
                   defaultPageSize={10}
                   className="-striped -highlight"
