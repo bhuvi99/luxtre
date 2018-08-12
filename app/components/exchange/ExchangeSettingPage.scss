@@ -266,7 +266,7 @@
 .divBalance,
 .setting,
 .dataTable {
-  width: 32%;
+  width: 42%;
   vertical-align: top;
 }
 
@@ -345,6 +345,7 @@
 
 .orderTable1,
 .orderTable2,
+.openOrdersTable,
 .dataTable {
   display: inline-block;
   width: 100%;
@@ -355,12 +356,8 @@
 }
 
 .orderTable1,
-.orderTable2 {
-  width: calc(33% - 1px);
-}
-
-.orderTable1,
 .orderTable2,
+.openOrdersTable,
 .historyTable {
   :global .ReactTable {
     .rt-table {

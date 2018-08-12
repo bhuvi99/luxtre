@@ -183,7 +183,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     const {
       coinPrice,
       ordersData,
-      openOrders,
       coinInfoList,
       logbuff,
       openDialogAction,
@@ -423,12 +422,17 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 </div>
               </TabPanel>
               <TabPanel>
-                <ReactTable
-                  data={transactions.lgOpenOrders}
-                  columns={openOrderColumns}
-                  defaultPageSize={10}
-                  className="-striped -highlight"
-                />
+                <div className={styles.openOrdersTable}>
+                  <div className={styles.orderTableCaptionBar}>
+                    <div className={styles.tableCaptionPos}>Open Orders</div>
+                  </div>
+                  <ReactTable
+                    data={transactions.lgOpenOrders}
+                    columns={openOrderColumns}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
               </TabPanel>
             </Tabs>
           </div>

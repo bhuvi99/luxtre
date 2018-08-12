@@ -12,7 +12,7 @@ export const luxgateStoreClasses = {
   settingInfo: LuxgateSettingInfoStore,
   coinInfo: LuxgateCoinInfoStore,
   marketInfo: LuxgateMarketInfoStore,
-  transactionsInfo: LuxgateTransactionsStore,
+  transactions: LuxgateTransactionsStore,
   loggerInfo: LuxgateLoggerStore
 };
 
