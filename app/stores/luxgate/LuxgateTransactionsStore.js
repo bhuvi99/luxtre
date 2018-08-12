@@ -100,7 +100,9 @@ export default class LuxgateTransactionsStore extends Store {
     this.lstLGTransactions.splice(index, 1);
   };
 
-  // OpenOrders
+  /*  *************************************
+  OpenOrders
+  ************************************* */
 
   _getLGOpenOrders = async () => {
     const password = this.stores.luxgate.loginInfo.password;
@@ -119,6 +121,11 @@ export default class LuxgateTransactionsStore extends Store {
   @action
   replaceOpenOrders(info: *) {
     this.LGOpenOrders = info;
+  }
+
+  @computed
+  get lgOpenOrders(): Array<LGOpenOrder> {
+    return this.LGOpenOrders;
   }
 
   // _pollRefresh = async () => {
