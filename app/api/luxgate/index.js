@@ -16,6 +16,7 @@ import { setLuxgateDisableWallet } from './setLuxgateDisableWallet';
 import { setLuxgateLocalWallet } from './setLuxgateLocalWallet';
 import { setLuxgateRemoteWallet } from './setLuxgateRemoteWallet';
 import { getLuxgateCoinPrice } from './getLuxgateCoinPrice';
+import { getLuxgateSwapStatus } from './getLuxgateSwapStatus';
 
 export const LUXGATE_API_HOST = 'localhost';
 export const LUXGATE_API_PORT = 9883;
@@ -39,6 +40,7 @@ import type {
   GetLGTransactionsResponse,
   GetLGTradeArrayResponse,
   GetLGPriceArrayResponse,
+  GetLGSwapStatusResponse,
   GetPasswordInfoResponse,
   GetAccountNewPhraseResponse,
   SetCoinSettingResponse,
@@ -293,6 +295,24 @@ export default class LuxApi {
       return '';
     } catch (error) {
       Logger.error('LuxgateApi::getLGOpenOrders error: ' + stringifyError(error));
+      throw new GenericApiError();
+    }
+  }
+
+  async getLGSwapStatus(
+    password: string,
+    requestid?: string,
+    quoteid?: string
+  ): Promise<GetLGSwapStatusResponse> {
+    Logger.debug('LuxgateApi::getLGSwapStatus called');
+    try {
+      const response = await getLuxgateSwapStatus({ password });
+      if (response !== undefined && !response.error) {
+        return stringifyData(response);
+      }
+      return '';
+    } catch (error) {
+      Logger.error('LuxgateApi::getLGSwapStatus  error: ' + stringifyError(error));
       throw new GenericApiError();
     }
   }

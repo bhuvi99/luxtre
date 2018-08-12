@@ -4,12 +4,15 @@ import BigNumber from 'bignumber.js';
 import Store from '../lib/Store';
 import LGTransactions from '../../domain/LGTransactions';
 import LGOpenOrders from '../../domain/LGOpenOrders';
+import LGSwapStatus from '../../domain/LGSwapStatus';
 import Request from '.././lib/LocalizedRequest';
 
 import type { GetLGTransactionsResponse } from '../../api/common';
 import type { GetLGOpenOrdersResponse } from '../../api/common';
+import type { GetLGSwapStatusResponse } from '../../api/common';
 
 import type { LGOpenOrder } from '../../domain/LGOpenOrders';
+import type { LGSwap } from '../../domain/LGSwapStatus';
 
 export default class LuxgateTransactionsStore extends Store {
   LGTRANSACTIONS_REFRESH_INTERVAL = 10000;
@@ -27,9 +30,16 @@ export default class LuxgateTransactionsStore extends Store {
   );
 
   @observable
+  getLGSwapStatusRequest: Request<GetLGSwapStatusResponse> = new Request(
+    this.api.luxgate.getLGSwapStatus
+  );
+
+  @observable
   lstLGTransactions: Array<LGTransactions> = [];
   @observable
   LGOpenOrders: Array<LGOpenOrder> = [];
+  @observable
+  LGSwapStatus: Array<LGSwap> = [];
 
   setup() {
     super.setup();
@@ -126,6 +136,45 @@ export default class LuxgateTransactionsStore extends Store {
   @computed
   get lgOpenOrders(): Array<LGOpenOrder> {
     return this.LGOpenOrders;
+  }
+
+  /*  *************************************
+    SwapStatus
+  ************************************* */
+
+  _getLGSwapStatus = async () => {
+    const password = this.stores.luxgate.loginInfo.password;
+    if (password == '') return;
+
+    const info: GetLGSwapStatusResponse = await this.getLGSwapStatusRequest.execute(password)
+      .promise;
+    if (info !== '') {
+      let { swaps } = JSON.parse(info);
+      swaps = await Promise.all(
+        swaps.map(async ({ requestid, quoteid }) => {
+          const response: GetLGSwapStatusResponse = await this.getLGSwapStatusRequest.execute(
+            password,
+            requestid,
+            quoteid
+          ).promise;
+
+          return response;
+        })
+      );
+      await this.replaceSwapStatus(new LGSwapStatus({ swaps }));
+    }
+
+    this.getLGSwapStatusRequest.reset();
+  };
+
+  @action
+  replaceSwapStatus(info: *) {
+    this.LGSwapStatus = info.swaps;
+  }
+
+  @computed
+  get lgSwapStatus(): Array<LGSwap> {
+    return this.LGSwapStatus;
   }
 
   // _pollRefresh = async () => {

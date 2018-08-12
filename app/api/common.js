@@ -6,6 +6,7 @@ import { Masternode } from '../domain/Masternode';
 import { CoinInfo } from '../domain/CoinInfo';
 
 import type { LGOpenOrder } from '../domain/LGOpenOrders';
+import type { LGSwap } from '../domain/LGSwapStatus';
 
 const messages = defineMessages({
   genericApiError: {
@@ -193,6 +194,7 @@ export type GetLGTransactionsResponse = string;
 export type GetLGTradeArrayResponse = string;
 export type GetLGPriceArrayResponse = string;
 export type GetLGOpenOrdersResponse = Array<LGOpenOrder>;
+export type GetLGSwapStatusResponse = Array<LGSwap>;
 export type GetAccountNewPhraseResponse = Array<string>;
 export type GetPasswordInfoResponse = string;
 export type SetCoinSettingResponse = string;
