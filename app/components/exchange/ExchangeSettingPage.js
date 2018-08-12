@@ -361,7 +361,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                   </div>
                   <ReactTable
                     data={ordersData.bids}
-                    columns={openOrderColumns}
+                    columns={orderColumns}
                     defaultPageSize={10}
                     className="-striped -highlight"
                   />
