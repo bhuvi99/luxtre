@@ -228,7 +228,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         accessor: 'maxvolume'
       },
       {
-        id: 'Total', // Required because our accessor is not a string
+        id: 'Total',
         Header: 'Total',
         accessor: 'numutxos' // Custom value accessors!
       }
@@ -248,8 +248,27 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         accessor: 'bid'
       },
       {
-        id: 'Ask',
+        Header: 'Ask',
         accessor: 'ask' // Custom value accessors!
+      }
+    ];
+
+    const swapStatusColumns = [
+      {
+        Header: 'Request ID',
+        accessor: 'requestid' // String-based value accessors!
+      },
+      {
+        Header: 'Quote ID',
+        accessor: 'quoteid'
+      },
+      {
+        Header: 'Source Amount',
+        accessor: 'srcamount'
+      },
+      {
+        Header: 'Status',
+        accessor: 'status' // Custom value accessors!
       }
     ];
 
@@ -280,7 +299,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         accessor: 'amount'
       },
       {
-        id: 'Total', // Required because our accessor is not a string
+        id: 'Total',
         Header: 'Total',
         accessor: 'total' // Custom value accessors!
       }
@@ -337,8 +356,8 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               <TabList>
                 <Tab>Chart</Tab>
                 <Tab>Order book</Tab>
-                <Tab>Send/Receive</Tab>
                 <Tab>Open Orders</Tab>
+                <Tab>Send/Receive</Tab>
                 <li className={`${styles.divStatusTab}`}>
                   <span>
                     {Coin1}/{Coin2} Current:
@@ -382,6 +401,31 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 </div>
               </TabPanel>
               <TabPanel>
+                <div className={styles.openOrdersTable}>
+                  <div className={styles.orderTableCaptionBar}>
+                    <div className={styles.tableCaptionPos}>Open Orders</div>
+                  </div>
+                  <ReactTable
+                    data={transactions.lgOpenOrders}
+                    columns={openOrderColumns}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
+
+                <div className={styles.openOrdersTable}>
+                  <div className={styles.orderTableCaptionBar}>
+                    <div className={styles.tableCaptionPos}>Personal Swaps</div>
+                  </div>
+                  <ReactTable
+                    data={transactions.lgSwapStatus}
+                    columns={swapStatusColumns}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
+              </TabPanel>
+              <TabPanel>
                 <div className={styles.divBalance}>
                   <div className={styles.coinbalance}>
                     <div className={styles.coin}>{Coin1}</div>
@@ -419,19 +463,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                       />
                     </div>
                   </div>
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div className={styles.openOrdersTable}>
-                  <div className={styles.orderTableCaptionBar}>
-                    <div className={styles.tableCaptionPos}>Open Orders</div>
-                  </div>
-                  <ReactTable
-                    data={transactions.lgOpenOrders}
-                    columns={openOrderColumns}
-                    defaultPageSize={10}
-                    className="-striped -highlight"
-                  />
                 </div>
               </TabPanel>
             </Tabs>
