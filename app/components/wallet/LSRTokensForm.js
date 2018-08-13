@@ -11,7 +11,6 @@ import TextAreaSkin from 'react-polymorph/lib/skins/simple/TextAreaSkin';
 import Input from 'react-polymorph/lib/components/Input';
 import SimpleInputSkin from 'react-polymorph/lib/skins/simple/raw/InputSkin';
 import styles from './LSRTokensForm.scss';
-import BorderedBox from '../widgets/BorderedBox';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
@@ -222,23 +221,33 @@ export default class LSRTokensForm extends Component<Props, State> {
           <div className={styles.inputContainer}> 
             <div>
               <div className={styles.sendInputLabel}> PayTo </div>
-              <input type="text"/>
+              <div className={styles.sendInputPos}>
+                <input type="text"/>
+              </div>
             </div>
             <div>
               <div className={styles.sendInputLabel}> Amount </div>
-              <input value={gasLimit} type="number" min="1000000" max="1000000000" onChange={event => this.setState({gasLimit: event.target.value.replace(/\D/,'')})}/>
+              <div className={styles.sendInputPos}>
+                <input value={gasLimit} type="number" min="1000000" max="1000000000" onChange={event => this.setState({gasLimit: event.target.value.replace(/\D/,'')})}/>
+              </div>
             </div>
             <div>
               <div className={styles.sendInputLabel}> Description</div>
-              <input value={senderAddress} type="text" onChange={event => this.setState({senderAddress: event.target.value})}/>
+              <div className={styles.sendInputPos}>
+                <input value={senderAddress} type="text" onChange={event => this.setState({senderAddress: event.target.value})}/>
+              </div>
             </div>
             <div>
               <div className={styles.sendInputLabel}> GasLimit </div>
-              <input value={gasLimit} type="number" min="1000000" max="1000000000" onChange={event => this.setState({gasLimit: event.target.value.replace(/\D/,'')})}/>
+              <div className={styles.sendInputPos}>
+                <input value={gasLimit} type="number" min="1000000" max="1000000000" onChange={event => this.setState({gasLimit: event.target.value.replace(/\D/,'')})}/>
+              </div>
             </div>
             <div> 
               <div className={styles.sendInputLabel}> GasPrice </div>
-              <input value={gasPrice} type="number" min="0.00000001" max="0.00001" step="0.00000001" onChange={event => this.setState({gasPrice: event.target.value})} onInput={this.precise.bind(this)}/>
+              <div className={styles.gasPriceInputPos}>
+                <input value={gasPrice} type="number" min="0.00000001" max="0.00001" step="0.00000001" onChange={event => this.setState({gasPrice: event.target.value})} onInput={this.precise.bind(this)}/>
+              </div>
               <span className={styles.luxFont}> LUX </span>
             </div>
             <div className={styles.buttonContainer}>
@@ -273,23 +282,33 @@ export default class LSRTokensForm extends Component<Props, State> {
           <div className={styles.inputContainer}> 
             <div>
               <div className={styles.addTokenInputLabel}> Contract Address </div>
-              <input type="text"/>
+              <div className={styles.tokenInputPos}>
+                <input type="text"/>
+              </div>
             </div>
             <div>
               <div className={styles.addTokenInputLabel}> Token Name </div>
-              <input type="text"/>
+              <div className={styles.tokenInputPos}>
+                <input type="text"/>
+              </div>
             </div>
             <div>
               <div className={styles.addTokenInputLabel}> Token Symbol</div>
-              <input type="text"/>
+              <div className={styles.tokenInputPos}>
+                <input type="text"/>
+              </div>
             </div>
             <div>
               <div className={styles.addTokenInputLabel}> Decimals </div>
-              <input type="text"/>
+              <div className={styles.tokenInputPos}>
+                <input type="text"/>
+              </div>
             </div>
             <div> 
               <div className={styles.addTokenInputLabel}> Sender Address </div>
-              <input type="text"/>
+              <div className={styles.tokenInputPos}>
+                <input type="text"/>
+              </div>
             </div>
             <div className={styles.buttonContainer}>
               <Button
