@@ -6,88 +6,59 @@ import LocalizableError from '../../i18n/LocalizableError';
 import { defineMessages, intlShape, FormattedHTMLMessage } from 'react-intl';
 import Button from 'react-polymorph/lib/components/Button';
 import SimpleButtonSkin from 'react-polymorph/lib/skins/simple/raw/ButtonSkin';
-import TextArea from 'react-polymorph/lib/components/TextArea';
-import TextAreaSkin from 'react-polymorph/lib/skins/simple/TextAreaSkin';
-import Input from 'react-polymorph/lib/components/Input';
-import SimpleInputSkin from 'react-polymorph/lib/skins/simple/raw/InputSkin';
 import styles from './LSRTokensForm.scss';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 type Props = {
-  createContract: Function,
-  openDialogAction: Function,
-  saveContract: Function,
-  bytecode: string,
-  abi: string,
-  gaslimit: number,
+  payto: string,
+  amount: number,
+  description: string,
+  gasLimit: number,
   gasprice: number,
+  receiveaddress: string,
+  contractaddress: string,
+  tokenname: string,
+  tokensymbol: string,
+  decimals: string,
   senderaddress: string,
-  isDialogOpen: Function,
-  error: ?LocalizableError
+  saveTokens: Function
 };
 
 type State = {
-  selectTab: string,
-  abi: string,
-  arrInputs : Array<Object>,
+  payto: string,
+  amount: number,
+  description: string,
   gasLimit: number,
-  gasPrice: number,
-  senderAddress: string
+  gasprice: number,
+  receiveaddress: string,
+  contractaddress: string,
+  tokenname: string,
+  tokensymbol: string,
+  decimals: string,
+  senderaddress: string
 };
 
 @observer
 export default class LSRTokensForm extends Component<Props, State> {
   state = {
-    bytecode: this.props.bytecode,
-    abi: this.props.abi,
-    arrInputs:[],
     gasLimit: this.props.gaslimit,
     gasPrice: this.props.gasprice,
     senderAddress: this.props.senderaddress,
     selectTab: 'send'
   };
 
-  _isMounted = false;
-  defaultPrice = 0.0000004;
   
   componentDidMount() {
-    this._isMounted = true;
-    this.onChangeABI(this.props.abi);
   }
 
   componentWillUnmount() {
-    this._isMounted = false;
-    this.props.saveContract(this.state.bytecode, this.state.abi, this.state.gasLimit, Number(this.state.gasPrice), this.state.senderAddress);
+  //  this.props.saveContract(this.state.bytecode, this.state.abi, this.state.gasLimit, Number(this.state.gasPrice), this.state.senderAddress);
   }
 
   static contextTypes = {
     intl: intlShape.isRequired,
   };
-
-  onChangeBytecode(value) {
-    if(value != this.state.bytecode)
-      this.setState( {bytecode: value});
-  }
-
-  onChangeABI(value) {
-    this.setState( {abi: value});
-    if(value == "") {
-      this.setState( {arrInputs: []} );
-    } else {
-      try {
-        let arrABI = JSON.parse(value);
-        let element = arrABI.find((data) => { return data.type == "constructor" });
-        if(element !== undefined) {
-          this.setState( {arrInputs: element.inputs});
-        } else {
-          this.setState( {arrInputs: []} );
-        }
-      } catch (error) {
-        
-      }
-    }
-  }
 
   onClickClearAll() {
     this.setState({
@@ -104,43 +75,9 @@ export default class LSRTokensForm extends Component<Props, State> {
     event.target.value = Number(event.target.value).toFixed(8);
   }
 
-  async _createContract() {
-    try {
-      let bytecode = this.state.bytecode;
-      for(var i = 0; i < this.state.arrInputs.length; i++)
-      {
-        var parameter = this.refs['constructor_parameter' + i].value;
-        if(parameter == null || parameter == '')
-          return;
-
-        var encoded = Web3EthAbi.encodeParameter(this.state.arrInputs[i].type, parameter);
-        bytecode += encoded;
-      }
-
-      let senderaddress = this.state.senderAddress !== '' ? this.state.senderAddress : null;
-      let gasLimit = this.state.gasLimit !== '' ? this.state.gasLimit : 2500000;
-      let gasPrice = this.state.gasPrice !== '' ? this.state.gasPrice : this.defaultPrice.toFixed(8);
-      const outputs = await this.props.createContract(bytecode, gasLimit, gasPrice, senderaddress);
-      if (this._isMounted) {
-        this.setState({
-          outputs: outputs,
-          outputsError: null,
-        });
-      }
-    } catch (error) {
-      if (this._isMounted) {
-        this.setState({
-          outputsError: this.context.intl.formatMessage(error)
-        });
-      }
-    }
-  }
-
   render() {
     const {
       selectTab, 
-      abi, 
-      arrInputs,
       gasLimit,
       gasPrice,
       senderAddress
