@@ -12,11 +12,12 @@ type Props = InjectedDialogContainerProps;
 export default class WalletExportToFileDialogContainer extends Component<Props> {
 
   static defaultProps = { actions: null, stores: null, children: null, onClose: () => {} };
-
+  
   onSubmit = (params: OnSubmitParams) => {
     const filePath = remote.dialog.showSaveDialog({
       filters: [
-        { name: 'Json', extensions: ['json'] },
+        { name: 'dat', extensions: ['dat'] },
+        { name: 'json', extensions: ['json']}
       ]
     });
     const { stores, actions } = this.props;
