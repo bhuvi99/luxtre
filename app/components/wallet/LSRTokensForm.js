@@ -42,8 +42,16 @@ type State = {
 @observer
 export default class LSRTokensForm extends Component<Props, State> {
   state = {
+    payto: this.props.payto,
+    amount: this.props.amount,
+    description: this.props.description,
     gasLimit: this.props.gaslimit,
     gasPrice: this.props.gasprice,
+    receiveaddress: this.props.receiveaddress,
+    contractaddress: this.props.contractaddress,
+    tokenname: this.props.tokenname,
+    tokensymbol: this.props.tokensymbol,
+    decimals: this.props.decimals,
     senderAddress: this.props.senderaddress,
     selectTab: 'send'
   };
@@ -62,9 +70,6 @@ export default class LSRTokensForm extends Component<Props, State> {
 
   onClickClearAll() {
     this.setState({
-      bytecode: '',
-      abi: '',
-      arrInputs:[],
       gasLimit: 2500000,
       gasPrice: this.defaultPrice.toFixed(8),
       senderAddress: ''
@@ -78,8 +83,16 @@ export default class LSRTokensForm extends Component<Props, State> {
   render() {
     const {
       selectTab, 
+      payto,
+      amount,
+      description,
       gasLimit,
       gasPrice,
+      receiveaddress,
+      contractaddress,
+      tokenname,
+      tokensymbol,
+      decimals,
       senderAddress
       } = this.state;
     
@@ -88,7 +101,6 @@ export default class LSRTokensForm extends Component<Props, State> {
     const {
       openDialogAction, 
       isDialogOpen,
-      createContract,
       error
     } = this.props;
 

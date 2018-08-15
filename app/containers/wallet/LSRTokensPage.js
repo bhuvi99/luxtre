@@ -13,13 +13,36 @@ export default class LSRTokensPage extends Component<Props> {
   static defaultProps = { actions: null, stores: null };
 
   render() {
-    const { wallets } = this.props.stores.lux;
     const { actions } = this.props;
-    const activeWallet = wallets.active;
+    const { lsrtokens } = this.props.stores.lux;
+    const {       
+      payto,
+      amount,
+      description,
+      gasLimit,
+      gasprice,
+      receiveaddress,
+      contractaddress,
+      tokenname,
+      tokensymbol,
+      decimals,
+      senderaddress
+    } = lsrtokens;
 
     return (
-      <LSRTokensForm>
-      </LSRTokensForm>
+      <LSRTokensForm
+        payto={payto}
+        amount={amount}
+        description={description}
+        gasLimit={gasLimit}
+        gasprice={gasprice}
+        receiveaddress={receiveaddress}
+        contractaddress={contractaddress}
+        tokenname={tokenname}
+        tokensymbol={tokensymbol}
+        decimals={decimals}
+        senderaddress={senderaddress}
+      />
     );
   }
 
