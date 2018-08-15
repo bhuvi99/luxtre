@@ -26,15 +26,16 @@ export default class LuxLSRTokensStore extends Store {
   setup() {
     super.setup();
     const { router, lux } = this.actions;
-    const { contracts } = lux;
+    const { lsrtokens } = lux;
+    lsrtokens.saveToken.listen(this._saveToken);
   }
 
-  saveToken = (
+  @action _saveToken = (
     params: {
       payto: string,
       amount: number,
       description: string,
-      gasLimit: number,
+      gaslimit: number,
       gasprice: number,
       receiveaddress: string,
       contractaddress: string,

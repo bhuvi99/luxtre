@@ -13,13 +13,13 @@ export default class LSRTokensPage extends Component<Props> {
   static defaultProps = { actions: null, stores: null };
 
   render() {
-    const { actions } = this.props;
+    const actions = this.props.actions;
     const { lsrtokens } = this.props.stores.lux;
     const {       
       payto,
       amount,
       description,
-      gasLimit,
+      gaslimit,
       gasprice,
       receiveaddress,
       contractaddress,
@@ -34,7 +34,7 @@ export default class LSRTokensPage extends Component<Props> {
         payto={payto}
         amount={amount}
         description={description}
-        gasLimit={gasLimit}
+        gaslimit={gaslimit}
         gasprice={gasprice}
         receiveaddress={receiveaddress}
         contractaddress={contractaddress}
@@ -42,6 +42,33 @@ export default class LSRTokensPage extends Component<Props> {
         tokensymbol={tokensymbol}
         decimals={decimals}
         senderaddress={senderaddress}
+        saveToken={(
+          payto,
+          amount,
+          description,
+          gaslimit,
+          gasprice,
+          receiveaddress,
+          contractaddress,
+          tokenname,
+          tokensymbol,
+          decimals,
+          senderaddress
+        ) => (
+          actions.lux.lsrtokens.saveToken.trigger({
+            payto: payto,
+            amount: amount,
+            description: description,
+            gasLimit: gaslimit,
+            gasprice: gasprice,
+            receiveaddress: receiveaddress,
+            contractaddress: contractaddress,
+            tokenname: tokenname,
+            tokensymbol: tokensymbol,
+            decimals: decimals,
+            senderaddress: senderaddress
+          })
+        )}
       />
     );
   }

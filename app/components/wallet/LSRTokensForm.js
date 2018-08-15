@@ -14,7 +14,7 @@ type Props = {
   payto: string,
   amount: number,
   description: string,
-  gasLimit: number,
+  gaslimit: number,
   gasprice: number,
   receiveaddress: string,
   contractaddress: string,
@@ -22,14 +22,14 @@ type Props = {
   tokensymbol: string,
   decimals: string,
   senderaddress: string,
-  saveTokens: Function
+  saveToken: Function
 };
 
 type State = {
   payto: string,
   amount: number,
   description: string,
-  gasLimit: number,
+  gaslimit: number,
   gasprice: number,
   receiveaddress: string,
   contractaddress: string,
@@ -45,14 +45,14 @@ export default class LSRTokensForm extends Component<Props, State> {
     payto: this.props.payto,
     amount: this.props.amount,
     description: this.props.description,
-    gasLimit: this.props.gaslimit,
-    gasPrice: this.props.gasprice,
+    gaslimit: this.props.gaslimit,
+    gasprice: this.props.gasprice,
     receiveaddress: this.props.receiveaddress,
     contractaddress: this.props.contractaddress,
     tokenname: this.props.tokenname,
     tokensymbol: this.props.tokensymbol,
     decimals: this.props.decimals,
-    senderAddress: this.props.senderaddress,
+    senderaddress: this.props.senderaddress,
     selectTab: 'send'
   };
 
@@ -61,7 +61,19 @@ export default class LSRTokensForm extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-  //  this.props.saveContract(this.state.bytecode, this.state.abi, this.state.gasLimit, Number(this.state.gasPrice), this.state.senderAddress);
+    this.props.saveToken(
+      this.state.payto,
+      this.state.amount,
+      this.state.description,
+      this.state.gaslimit,
+      Number(this.state.gasprice),
+      this.state.receiveaddress,
+      this.state.contractaddress,
+      this.state.tokenname,
+      this.state.tokensymbol,
+      this.state.decimals,
+      this.state.senderaddress,
+    );
   }
 
   static contextTypes = {
@@ -70,9 +82,9 @@ export default class LSRTokensForm extends Component<Props, State> {
 
   onClickClearAll() {
     this.setState({
-      gasLimit: 2500000,
-      gasPrice: this.defaultPrice.toFixed(8),
-      senderAddress: ''
+      gaslimit: 2500000,
+      gasprice: this.defaultPrice.toFixed(8),
+      senderaddress: ''
     })
   }
 
@@ -86,14 +98,14 @@ export default class LSRTokensForm extends Component<Props, State> {
       payto,
       amount,
       description,
-      gasLimit,
-      gasPrice,
+      gaslimit,
+      gasprice,
       receiveaddress,
       contractaddress,
       tokenname,
       tokensymbol,
       decimals,
-      senderAddress
+      senderaddress
       } = this.state;
     
     const { intl } = this.context;
@@ -171,31 +183,31 @@ export default class LSRTokensForm extends Component<Props, State> {
             <div>
               <div className={styles.sendInputLabel}> PayTo </div>
               <div className={styles.sendInputPos}>
-                <input type="text"/>
+                <input value={payto} type="text" onChange={event => this.setState({payto: event.target.value})}/>
               </div>
             </div>
             <div>
               <div className={styles.sendInputLabel}> Amount </div>
               <div className={styles.sendInputPos}>
-                <input value={gasLimit} type="number" min="1000000" max="1000000000" onChange={event => this.setState({gasLimit: event.target.value.replace(/\D/,'')})}/>
+                <input value={amount} type="number" min="1000000" max="1000000000" onChange={event => this.setState({amount: event.target.value.replace(/\D/,'')})}/>
               </div>
             </div>
             <div>
               <div className={styles.sendInputLabel}> Description</div>
               <div className={styles.sendInputPos}>
-                <input value={senderAddress} type="text" onChange={event => this.setState({senderAddress: event.target.value})}/>
+                <input value={description} type="text" onChange={event => this.setState({description: event.target.value})}/>
               </div>
             </div>
             <div>
               <div className={styles.sendInputLabel}> GasLimit </div>
               <div className={styles.sendInputPos}>
-                <input value={gasLimit} type="number" min="1000000" max="1000000000" onChange={event => this.setState({gasLimit: event.target.value.replace(/\D/,'')})}/>
+                <input value={gaslimit} type="number" min="1000000" max="1000000000" onChange={event => this.setState({gaslimit: event.target.value.replace(/\D/,'')})}/>
               </div>
             </div>
             <div> 
               <div className={styles.sendInputLabel}> GasPrice </div>
               <div className={styles.gasPriceInputPos}>
-                <input value={gasPrice} type="number" min="0.00000001" max="0.00001" step="0.00000001" onChange={event => this.setState({gasPrice: event.target.value})} onInput={this.precise.bind(this)}/>
+                <input value={gasprice} type="number" min="0.00000001" max="0.00001" step="0.00000001" onChange={event => this.setState({gasprice: event.target.value})} onInput={this.precise.bind(this)}/>
               </div>
               <span className={styles.luxFont}> LUX </span>
             </div>
@@ -217,7 +229,7 @@ export default class LSRTokensForm extends Component<Props, State> {
         {selectTab == 'receive' ? (
           <div className={styles.receiveContainer}> 
             <div>
-              <input className={styles.inputCopyAddress} type="text"/>
+              <input value={receiveaddress} className={styles.inputCopyAddress} type="text" onChange={event => this.setState({receiveaddress: event.target.value})}/>
             </div>
             <Button
               className={buttonClasses}
@@ -232,31 +244,31 @@ export default class LSRTokensForm extends Component<Props, State> {
             <div>
               <div className={styles.addTokenInputLabel}> Contract Address </div>
               <div className={styles.tokenInputPos}>
-                <input type="text"/>
+                <input value={contractaddress} type="text" onChange={event => this.setState({contractaddress: event.target.value})}/>
               </div>
             </div>
             <div>
               <div className={styles.addTokenInputLabel}> Token Name </div>
               <div className={styles.tokenInputPos}>
-                <input type="text"/>
+                <input value={tokenname} type="text" onChange={event => this.setState({tokenname: event.target.value})}/>
               </div>
             </div>
             <div>
               <div className={styles.addTokenInputLabel}> Token Symbol</div>
               <div className={styles.tokenInputPos}>
-                <input type="text"/>
+                <input value={tokensymbol} type="text" onChange={event => this.setState({tokensymbol: event.target.value})}/>
               </div>
             </div>
             <div>
               <div className={styles.addTokenInputLabel}> Decimals </div>
               <div className={styles.tokenInputPos}>
-                <input type="text"/>
+                <input value={decimals} type="text" onChange={event => this.setState({decimals: event.target.value})}/>
               </div>
             </div>
             <div> 
               <div className={styles.addTokenInputLabel}> Sender Address </div>
               <div className={styles.tokenInputPos}>
-                <input type="text"/>
+                <input value={senderaddress} type="text" onChange={event => this.setState({senderaddress: event.target.value})}/>
               </div>
             </div>
             <div className={styles.buttonContainer}>
