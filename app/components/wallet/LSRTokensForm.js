@@ -56,7 +56,8 @@ export default class LSRTokensForm extends Component<Props, State> {
     selectTab: 'send'
   };
 
-  
+  defaultPrice = 0.0000004;
+
   componentDidMount() {
   }
 
@@ -80,10 +81,22 @@ export default class LSRTokensForm extends Component<Props, State> {
     intl: intlShape.isRequired,
   };
 
-  onClickClearAll() {
+  onClickClearSend() {
     this.setState({
+      payto: '',
+      amount: 0,
+      description: '',
       gaslimit: 2500000,
       gasprice: this.defaultPrice.toFixed(8),
+    })
+  }
+
+  onClickClearAddToken() {
+    this.setState({
+      contractaddress: '',
+      tokenname: '',
+      tokensymbol: '',
+      decimals: '',
       senderaddress: ''
     })
   }
@@ -221,6 +234,7 @@ export default class LSRTokensForm extends Component<Props, State> {
                 className={buttonClasses}
                 label="Clear"
                 skin={<SimpleButtonSkin/>}
+                onClick={this.onClickClearSend.bind(this)}
               />
             </div>
           </div>
@@ -281,6 +295,7 @@ export default class LSRTokensForm extends Component<Props, State> {
                 className={buttonClasses}
                 label="Clear"
                 skin={<SimpleButtonSkin/>}
+                onClick={this.onClickClearAddToken.bind(this)}
               />
             </div>
           </div>
