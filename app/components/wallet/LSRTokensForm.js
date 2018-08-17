@@ -202,7 +202,7 @@ export default class LSRTokensForm extends Component<Props, State> {
             <div>
               <div className={styles.sendInputLabel}> Amount </div>
               <div className={styles.sendInputPos}>
-                <input value={amount} type="number" min="1000000" max="1000000000" onChange={event => this.setState({amount: event.target.value.replace(/\D/,'')})}/>
+                <input value={amount} type="number" min="0.0001" max="1000000" step="0.0001" onChange={event => this.setState({amount: event.target.value.replace(/\D/,'')})}/>
               </div>
             </div>
             <div>
