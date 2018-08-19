@@ -196,24 +196,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       luxgate: { transactions }
     } = stores;
 
-    const historyData = [
-      {
-        amount: 19.0171143,
-        value: 0.0011686,
-        total: 0.01222473
-      },
-      {
-        amount: 18.0171143,
-        value: 0.00116801,
-        total: 0.05222473
-      },
-      {
-        amount: 17.0171143,
-        value: 0.00115555,
-        total: 0.06222473
-      }
-    ];
-
     const orderColumns = [
       {
         Header: 'Price',
@@ -286,22 +268,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       {
         Header: 'Description',
         accessor: 'content'
-      }
-    ];
-
-    const historyColumns = [
-      {
-        Header: 'Value',
-        accessor: 'value' // String-based value accessors!
-      },
-      {
-        Header: 'Amount',
-        accessor: 'amount'
-      },
-      {
-        id: 'Total',
-        Header: 'Total',
-        accessor: 'total' // Custom value accessors!
       }
     ];
 
@@ -541,35 +507,17 @@ export default class ExchangeSettingPage extends Component<Props, State> {
 
             <div className={styles.dataTable}>
               <div className={styles.LogListCaptionBar}>
-                <Checkbox
-                  className={styles.checkboxTab}
-                  labelLeft="Status"
-                  labelRight="History"
-                  onChange={this.toggleLogAndHistory.bind(this)}
-                  checked={isShowLog}
-                  skin={<TogglerSkin />}
+                <span>Status</span>
+              </div>
+              <div className={styles.logTable}>
+                <ReactTable
+                  data={logbuff.slice()}
+                  columns={loggerColumns}
+                  sortable={false}
+                  defaultPageSize={10}
+                  className="-striped -highlight"
                 />
               </div>
-              {isShowLog ? (
-                <div className={styles.logTable}>
-                  <ReactTable
-                    data={logbuff.slice()}
-                    columns={loggerColumns}
-                    sortable={false}
-                    defaultPageSize={10}
-                    className="-striped -highlight"
-                  />
-                </div>
-              ) : (
-                <div className={styles.historyTable}>
-                  <ReactTable
-                    data={historyData}
-                    columns={historyColumns}
-                    defaultPageSize={10}
-                    className="-striped -highlight"
-                  />
-                </div>
-              )}
             </div>
           </div>
         </div>
