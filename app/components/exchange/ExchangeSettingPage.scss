@@ -329,6 +329,14 @@
   border: var(--theme-bordered-box-border);
 }
 
+.LogListCaptionBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-family: var(--font-medium);
+}
+
 .orderTableCaptionBar {
   padding: 10px;
 }
