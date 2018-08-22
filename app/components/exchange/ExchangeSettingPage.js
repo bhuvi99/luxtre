@@ -203,6 +203,65 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     );
   };
 
+  orderBook = () => {
+    const orderColumns = [
+      {
+        Header: 'Price',
+        accessor: 'price' // String-based value accessors!
+      },
+      // {
+      //   Header: 'Min Volume',
+      //   accessor: 'minvolume'
+      // },
+      {
+        Header: 'Volume',
+        accessor: 'maxvolume'
+      },
+      {
+        id: 'Total',
+        Header: 'Sum',
+        accessor: 'numutxos' // Custom value accessors!
+      }
+    ];
+
+    const { ordersData } = this.props;
+    const { Coin1, Coin2 } = this.state;
+
+    return (
+      <div className={styles.orderBook}>
+        <div className={styles.orderTable1}>
+          <div className={styles.orderTableCaptionBar}>
+            <span className={styles.order}>{`${ordersData.numbids || 0} Bids`}</span>
+            <div className={styles.tableCaptionPos}>
+              {Coin2} &rArr; {Coin1}{' '}
+            </div>
+          </div>
+          <ReactTable
+            data={ordersData.bids}
+            columns={orderColumns}
+            defaultPageSize={10}
+            className="-striped -highlight"
+          />
+        </div>
+        <div className={styles.orderTable2}>
+          <div className={styles.orderTableCaptionBar}>
+            <span className={styles.order}>{`${ordersData.numasks || 0} Asks`}</span>
+            <div className={styles.tableCaptionPos}>
+              {' '}
+              {Coin1} &rArr; {Coin2}{' '}
+            </div>
+          </div>
+          <ReactTable
+            data={ordersData.asks}
+            columns={orderColumns}
+            defaultPageSize={10}
+            className="-striped -highlight"
+          />
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const {
       isBuy,
@@ -232,26 +291,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     const {
       luxgate: { transactions }
     } = stores;
-
-    const orderColumns = [
-      {
-        Header: 'Price',
-        accessor: 'price' // String-based value accessors!
-      },
-      {
-        Header: 'Min Volume',
-        accessor: 'minvolume'
-      },
-      {
-        Header: 'Max Volume',
-        accessor: 'maxvolume'
-      },
-      {
-        id: 'Total',
-        Header: 'Total',
-        accessor: 'numutxos' // Custom value accessors!
-      }
-    ];
 
     const openOrderColumns = [
       {
@@ -354,6 +393,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     return (
       <div className={styles.pageContainer}>
         <div className={styles.content}>
+          {this.orderBook()}
           <div className={styles.graph}>
             <Tabs>
               <TabList>
@@ -371,37 +411,9 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               <TabPanel>
                 <ExchangeChartPage data={lgPriceArrayList} />
               </TabPanel>
-              <TabPanel>
-                <div className={styles.orderTable1}>
-                  <div className={styles.orderTableCaptionBar}>
-                    <span className={styles.order}>{`${ordersData.numbids || 0} Bids`}</span>
-                    <div className={styles.tableCaptionPos}>
-                      {Coin2} &rArr; {Coin1}{' '}
-                    </div>
-                  </div>
-                  <ReactTable
-                    data={ordersData.bids}
-                    columns={orderColumns}
-                    defaultPageSize={10}
-                    className="-striped -highlight"
-                  />
-                </div>
-                <div className={styles.orderTable2}>
-                  <div className={styles.orderTableCaptionBar}>
-                    <span className={styles.order}>{`${ordersData.numasks || 0} Asks`}</span>
-                    <div className={styles.tableCaptionPos}>
-                      {' '}
-                      {Coin1} &rArr; {Coin2}{' '}
-                    </div>
-                  </div>
-                  <ReactTable
-                    data={ordersData.asks}
-                    columns={orderColumns}
-                    defaultPageSize={10}
-                    className="-striped -highlight"
-                  />
-                </div>
-              </TabPanel>
+
+              <TabPanel>{this.orderBook()}</TabPanel>
+
               <TabPanel>
                 <div className={styles.openOrdersTable}>
                   <div className={styles.orderTableCaptionBar}>

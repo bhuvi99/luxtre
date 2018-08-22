@@ -222,9 +222,20 @@
   }
 }
 
+.orderBook {
+  display: flex;
+  flex-direction: column;
+  > div {
+    flex: 1;
+  }
+}
+
 .content {
   display: flex;
   height: 100%;
+  > .orderBook {
+    width: 20%;
+  }
 }
 
 .divStatus,
@@ -347,7 +358,8 @@
 }
 
 .order {
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 700;
   float: left;
   color: #fff;
 }
@@ -410,10 +422,6 @@
       width: auto;
     }
   }
-}
-
-.orderTable1 {
-  margin-right: 2px;
 }
 
 .margetTable {
