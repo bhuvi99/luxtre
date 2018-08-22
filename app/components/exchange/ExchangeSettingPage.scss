@@ -230,7 +230,7 @@
 .divStatus,
 .graph {
   display: inline-block;
-  width: 66%;
+  width: 75%;
   margin-bottom: 2px;
   border: var(--theme-bordered-box-border);
 }
@@ -446,5 +446,5 @@
 .assistContainer {
   display: flex;
   flex-direction: column;
-  max-width: 32%;
+  max-width: 25%;
 }

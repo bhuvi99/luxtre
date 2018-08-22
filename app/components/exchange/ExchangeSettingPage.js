@@ -483,7 +483,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 {/* <span className={styles.span}> Value </span>*/}
                 <NumericInput
                   {...inputProps}
-                  placeholder={'0.000000 ' + Coin2 + '/' + Coin1}
+                  placeholder={'0.000000 ' + Coin2}
                   value={ValueInput}
                   onChange={this.changeValueInput.bind(this)}
                 />
@@ -498,7 +498,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               <div className={styles.swapbutton}>
                 <Button
                   className={swapButtonClasses}
-                  label="Swap Now"
+                  label="Swap"
                   onClick={this.swapCoin.bind(this)}
                   skin={<ButtonSkin />}
                 />
