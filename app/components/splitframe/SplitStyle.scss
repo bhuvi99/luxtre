@@ -5,3 +5,10 @@
   height: 100vh;
   flex-direction: row;
 }
+
+.paneWrapper {
+  position: relative;
+  flex-grow: 1;
+  flex-basis: 0;
+  overflow: hidden;
+}
