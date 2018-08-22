@@ -288,6 +288,11 @@
   }
 }
 
+.sendReceivePanel {
+  @extend .divBalance;
+  width: 100%;
+}
+
 .div {
   margin-bottom: 2px;
   border: solid 1px var(--theme-bordered-box-background-color);

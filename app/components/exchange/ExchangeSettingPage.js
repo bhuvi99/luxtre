@@ -166,6 +166,43 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     this.props.openDialogAction({ dialog: SendCoinDialog });
   }
 
+  sendReceivePanel = () => {
+    const { Coin1, Coin2 } = this.state;
+
+    return (
+      <div className={styles.sendReceivePanel}>
+        <div className={styles.coinbalance}>
+          <div className={styles.coin}>{Coin1}</div>
+          <div className={styles.balance}>{this.getCoinBalance(Coin1)}</div>
+          <div className={styles.recv}>
+            <Button
+              onClick={() => this.openReceiveDialog(Coin1)}
+              label="Receive"
+              skin={<ButtonSkin />}
+            />
+          </div>
+          <div className={styles.send}>
+            <Button onClick={() => this.openSendDialog(Coin1)} label="Send" skin={<ButtonSkin />} />
+          </div>
+        </div>
+        <div className={styles.coinbalance}>
+          <div className={styles.coin}>{Coin2} </div>
+          <div className={styles.balance}>{this.getCoinBalance(Coin2)}</div>
+          <div className={styles.recv}>
+            <Button
+              onClick={() => this.openReceiveDialog(Coin2)}
+              label="Receive"
+              skin={<ButtonSkin />}
+            />
+          </div>
+          <div className={styles.send}>
+            <Button onClick={() => this.openSendDialog(Coin2)} label="Send" skin={<ButtonSkin />} />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const {
       isBuy,
@@ -323,7 +360,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 <Tab>Chart</Tab>
                 <Tab>Order book</Tab>
                 <Tab>Open Orders</Tab>
-                <Tab>Send/Receive</Tab>
                 <li className={`${styles.divStatusTab}`}>
                   <span>
                     {Coin1}/{Coin2} Current:
@@ -389,46 +425,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                     defaultPageSize={10}
                     className="-striped -highlight"
                   />
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div className={styles.divBalance}>
-                  <div className={styles.coinbalance}>
-                    <div className={styles.coin}>{Coin1}</div>
-                    <div className={styles.balance}>{this.getCoinBalance(Coin1)}</div>
-                    <div className={styles.recv}>
-                      <Button
-                        onClick={() => this.openReceiveDialog(Coin1)}
-                        label="Receive"
-                        skin={<ButtonSkin />}
-                      />
-                    </div>
-                    <div className={styles.send}>
-                      <Button
-                        onClick={() => this.openSendDialog(Coin1)}
-                        label="Send"
-                        skin={<ButtonSkin />}
-                      />
-                    </div>
-                  </div>
-                  <div className={styles.coinbalance}>
-                    <div className={styles.coin}>{Coin2} </div>
-                    <div className={styles.balance}>{this.getCoinBalance(Coin2)}</div>
-                    <div className={styles.recv}>
-                      <Button
-                        onClick={() => this.openReceiveDialog(Coin2)}
-                        label="Receive"
-                        skin={<ButtonSkin />}
-                      />
-                    </div>
-                    <div className={styles.send}>
-                      <Button
-                        onClick={() => this.openSendDialog(Coin2)}
-                        label="Send"
-                        skin={<ButtonSkin />}
-                      />
-                    </div>
-                  </div>
                 </div>
               </TabPanel>
             </Tabs>
@@ -504,7 +500,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 />
               </div>
             </div>
-
+            {this.sendReceivePanel()}
             <div className={styles.dataTable}>
               <div className={styles.LogListCaptionBar}>
                 <span>Status</span>
