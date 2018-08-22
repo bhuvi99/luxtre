@@ -400,6 +400,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 <Tab>Chart</Tab>
                 <Tab>Order book</Tab>
                 <Tab>Open Orders</Tab>
+                <Tab>Balances</Tab>
                 <li className={`${styles.divStatusTab}`}>
                   <span>
                     {Coin1}/{Coin2} Current:
@@ -438,6 +439,10 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                     className="-striped -highlight"
                   />
                 </div>
+              </TabPanel>
+
+              <TabPanel>
+                <p>TODO</p>
               </TabPanel>
             </Tabs>
           </div>
