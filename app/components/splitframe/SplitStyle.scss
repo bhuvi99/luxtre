@@ -1,0 +1,7 @@
+.window {
+  display: flex;
+  min-width: 300px;
+  width: calc(100vw - 300px - 1px);
+  height: 100vh;
+  flex-direction: row;
+}
