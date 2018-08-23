@@ -12,3 +12,10 @@
   flex-basis: 0;
   overflow: hidden;
 }
+
+.resizableContainer {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0%;
+  overflow: hidden;
+}
