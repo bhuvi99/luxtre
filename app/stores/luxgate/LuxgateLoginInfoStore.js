@@ -6,8 +6,8 @@ import Request from '.././lib/LocalizedRequest';
 
 import type { GetAccountNewPhraseResponse, GetPasswordInfoResponse } from '../../api/common';
 
-export const LUXGATE_USER = 'luxgate user';
-export const LUXGATE_PASSWORD = '734f9979dd69851a7957b282d777b89a038428cb2b5657d36a2db35a78993748';
+export const LUXGATE_USER = 'luxgateuser';
+export const LUXGATE_PASSWORD = '23544cbcbad7192697167cc6a4d6c1a273b535a24019e966c738204a5d53e418';
 
 export default class LuxgateLoginInfoStore extends Store {
   // REQUESTS
