@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styles from './SplitStyle.scss';
+import SplitPane from './SplitPane';
+import SplitContainer from './SplitContainer';
 
 import { cloneDeep } from 'lodash';
 
@@ -12,7 +14,7 @@ import {
   createContainerNode,
   addPaneNodeByMutation,
   orientationFromDirection,
-} from './splitLayoutHelpers';
+} from './SplitFrameHelpers';
 
 @observer
 export default class SplitWindow extends Component<Props> {
@@ -135,3 +137,29 @@ export default class SplitWindow extends Component<Props> {
   }
 }
 
+export const renderFromRoot = (
+  root,
+  handleSplit,
+  handleClose,
+  handleResize,
+  handleUpdateContent
+) => {
+  const render = node => {
+    if (hasChildren(node)) {
+      return (
+        <SplitContainer key={node.id} node={node} onResize={handleResize}>
+          {node.children.map(child => render(child))}
+        </SplitContainer>
+      );
+    }
+    return (
+      <SplitPane
+        key={node.id}
+        node={node}
+        onSplit={handleSplit}
+        onUpdateContent={handleUpdateContent}
+      />
+    );
+  };
+  return render(root);
+};
