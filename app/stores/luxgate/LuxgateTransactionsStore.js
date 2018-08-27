@@ -208,4 +208,9 @@ export default class LuxgateTransactionsStore extends Store {
 
     await this.getLGBalancesRequest.reset();
   };
+
+  @computed
+  get lgBalances(): Array<LGBalance> {
+    return this.LGBalances;
+  }
 }
