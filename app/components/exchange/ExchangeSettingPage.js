@@ -330,6 +330,17 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       }
     ];
 
+    const balancesColumns = [
+      {
+        Header: 'Coin',
+        accessor: 'coin' // String-based value accessors!
+      },
+      {
+        Header: 'Balance',
+        accessor: 'balance' // String-based value accessors!
+      }
+    ];
+
     const loggerColumns = [
       {
         Header: 'Time',
@@ -442,7 +453,17 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               </TabPanel>
 
               <TabPanel>
-                <p>TODO</p>
+                <div className={styles.openOrdersTable}>
+                  <div className={styles.orderTableCaptionBar}>
+                    <div className={styles.tableCaptionPos}>Personal Swaps</div>
+                  </div>
+                  <ReactTable
+                    data={transactions.lgBalances}
+                    columns={balancesColumns}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                  />
+                </div>
               </TabPanel>
             </Tabs>
           </div>
