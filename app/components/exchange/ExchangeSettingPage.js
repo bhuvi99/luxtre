@@ -453,9 +453,9 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               </TabPanel>
 
               <TabPanel>
-                <div className={styles.openOrdersTable}>
-                  <div className={styles.orderTableCaptionBar}>
-                    <div className={styles.tableCaptionPos}>Personal Swaps</div>
+                <div className={styles.balancesTable}>
+                  <div className={styles.balancesTableCaptionBar}>
+                    <div className={styles.tableCaptionPos}>Coin Balances</div>
                   </div>
                   <ReactTable
                     data={transactions.lgBalances}

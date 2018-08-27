@@ -337,6 +337,7 @@
 
 // table style
 .LogListCaptionBar,
+.balancesTableCaptionBar,
 .orderTableCaptionBar {
   width: 100%;
   height: 36px;
@@ -371,6 +372,7 @@
 .orderTable1,
 .orderTable2,
 .openOrdersTable,
+.balancesTable,
 .dataTable {
   display: inline-block;
   width: 100%;
@@ -383,6 +385,7 @@
 .orderTable1,
 .orderTable2,
 .openOrdersTable,
+.balancesTable,
 .historyTable {
   :global .ReactTable {
     .rt-table {
