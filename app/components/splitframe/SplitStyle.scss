@@ -19,3 +19,41 @@
   flex-basis: 0%;
   overflow: hidden;
 }
+
+.resizer_row,
+.resizer_col  {
+  transition: all 0.2s;
+  position: relative;
+  &:hover,
+  &:active {
+    transition: all 0.2s;
+  }
+
+  &:before {
+    content: '';
+    z-index: 3;
+    position: absolute;
+  }
+}
+
+.resizer_row {
+  height: 1px;
+  width: 100%;
+  cursor: ns-resize;
+  &:before {
+    width: 100%;
+    height: 10px;
+    bottom: -5px;
+  }
+}
+
+.resizer_col {
+  width: 1px;
+  height: 100%;
+  cursor: ew-resize;
+  &:before {
+    height: 100%;
+    width: 10px;
+    left: -5px;
+  }
+}
