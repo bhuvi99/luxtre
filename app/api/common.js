@@ -7,6 +7,7 @@ import { CoinInfo } from '../domain/CoinInfo';
 
 import type { LGOpenOrder } from '../domain/LGOpenOrders';
 import type { LGSwap } from '../domain/LGSwapStatus';
+import type { LGBalance } from '../domain/LGBalances';
 
 const messages = defineMessages({
   genericApiError: {
@@ -199,3 +200,4 @@ export type GetAccountNewPhraseResponse = Array<string>;
 export type GetPasswordInfoResponse = string;
 export type SetCoinSettingResponse = string;
 export type GetCoinPriceResponse = number;
+export type GetLGBalancesResponse = Array<LGBalance>;

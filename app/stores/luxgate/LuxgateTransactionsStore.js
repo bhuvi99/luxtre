@@ -10,9 +10,11 @@ import Request from '.././lib/LocalizedRequest';
 import type { GetLGTransactionsResponse } from '../../api/common';
 import type { GetLGOpenOrdersResponse } from '../../api/common';
 import type { GetLGSwapStatusResponse } from '../../api/common';
+import type { GetLGBalancesResponse } from '../../api/common';
 
 import type { LGOpenOrder } from '../../domain/LGOpenOrders';
 import type { LGSwap } from '../../domain/LGSwapStatus';
+import type { LGBalance } from '../../domain/LGBalances';
 
 export default class LuxgateTransactionsStore extends Store {
   LGTRANSACTIONS_REFRESH_INTERVAL = 10000;
@@ -35,11 +37,18 @@ export default class LuxgateTransactionsStore extends Store {
   );
 
   @observable
+  getLGBalancesRequest: Request<GetLGBalancesResponse> = new Request(
+    this.api.luxgate.getLGBalances
+  );
+
+  @observable
   lstLGTransactions: Array<LGTransactions> = [];
   @observable
   LGOpenOrders: Array<LGOpenOrder> = [];
   @observable
   LGSwapStatus: Array<LGSwap> = [];
+  @observable
+  LGBalances: Array<LGBalance> = [];
 
   setup() {
     super.setup();
@@ -49,6 +58,7 @@ export default class LuxgateTransactionsStore extends Store {
     // transactions.getLGTransactions.listen(this._getLGTransactions);
     transactions.getLGOpenOrders.listen(this._getLGOpenOrders);
     transactions.getLGSwapStatus.listen(this._getLGSwapStatus);
+    transactions.getLGBalances.listen(this._getLGBalances);
 
     // TODO: Uncomment
     //  setInterval(this._pollRefresh, this.LGOPENORDERS_REFRESH_INTERVAL);
@@ -179,6 +189,23 @@ export default class LuxgateTransactionsStore extends Store {
       // await this.refreshLGTransactionsData()
       await this._getLGOpenOrders();
       await this._getLGSwapStatus();
+      await this._getLGBalances();
     }
+  };
+
+  /*  *************************************
+  Balances
+  ************************************* */
+
+  _getLGBalances = async () => {
+    const password = this.stores.luxgate.loginInfo.password;
+    if (password === '') return;
+    const info: GetLGBalancesResponse = await this.getLGBalancesRequest.execute(password).promise;
+    if (info !== '') {
+      const balances: Array<LGBalance> = JSON.parse(info);
+      this.LGBalances = balances;
+    }
+
+    await this.getLGBalancesRequest.reset();
   };
 }
