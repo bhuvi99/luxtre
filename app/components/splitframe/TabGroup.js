@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import partial from 'lodash/partial';
 import cloneDeep from 'lodash/cloneDeep';
 
-import { defaultTab, defaultTabContent } from '../splitLayoutHelpers';
+import { defaultTab, defaultTabContent } from '../SplitFrameHelpers';
+import TabBar from './TabBar';
+import TabContent from './TabContent';
 
 export const getNextActiveTabIndex = (
   indexToRemove,
@@ -76,8 +79,41 @@ export default class TabGroup extends Component<Props> {
   }
 
   render() {
+    const { node, onUpdateContent, dropDownMenu } = this.props;
+    const content = node.content;
+    const handleNewTab = partial(newTab, content, onUpdateContent);
+    const handleFocusTab = partial(focusTab, content, onUpdateContent);
+    const handleCloseTab = partial(closeTab, content, onUpdateContent);
+    const handleUpdateTabContent = partial(
+      updateTabContent,
+      content,
+      onUpdateContent
+    );
+    let isTabClosable = false;
+    if (!node.parent) {
+      isTabClosable =
+        node.content.tabs.length === 1 &&
+        node.content.tabs[0].componentDisplayName ===
+          defaultTab.componentDisplayName;
+    }
     return (
       <div classname={styles.tabGroupWrapper} data-ci="TabGroupWrapper">
+        <TabBar
+          isTabClosable={isTabClosable}
+          tabs={content.tabs}
+          activeIndex={content.activeIndex}
+          tabTitles={this.state.tabTitles}
+          onNewTab={handleNewTab}
+          onFocusTab={handleFocusTab}
+          onCloseTab={handleCloseTab}
+          dropDownMenu={dropDownMenu}
+        />
+
+        <TabContent
+          node={node}
+          onUpdateTabContent={handleUpdateTabContent}
+          onUpdateTabTitle={this.handleUpdateTabTitle}
+        />
       </div>
     );
   }
