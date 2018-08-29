@@ -20,7 +20,7 @@ export const getLuxgateOrders = ({
       port: LUXGATE_API_PORT
     },
     {
-      method: 'orderbook',
+      method: 'listorders',
       password,
       base,
       rel
