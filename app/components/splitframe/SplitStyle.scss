@@ -66,3 +66,26 @@
   flex-grow: 1;
   height: calc(100% - 3rem);
 }
+
+.selectionWrapper {
+  height: calc(100% - 4rem);
+}
+
+.selectModule{
+  color: var(--theme-instructions-text-color);
+}
+
+.tabContentSelection {
+  color: var(--theme-nav-item-background-color);
+  transition: all 0.3s;
+  cursor: pointer;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 0.5rem;
+
+  &:hover,
+  &:focus {
+    transition: all 0.3s;
+    color: var(--theme-nav-item-background-color-hover);
+  }
+}
