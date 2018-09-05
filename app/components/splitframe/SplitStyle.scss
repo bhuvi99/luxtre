@@ -89,3 +89,20 @@
     color: var(--theme-nav-item-background-color-hover);
   }
 }
+
+.tabDiv {
+  flex-grow: 1;
+  max-width: 204px;
+  min-width: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.dropDownMenu {
+  width: 40px;
+}
