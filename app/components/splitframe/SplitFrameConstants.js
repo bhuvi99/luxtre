@@ -16,3 +16,5 @@ export const ORDERBOOK = 'Order Book';
 export const MYORDERHISTORY = 'Order History';
 export const CHART = 'Chart';
 export const TABCONTENTSELECTOR = 'New Tab';
+
+export const KEYCODES = { ESCAPE: 27 };

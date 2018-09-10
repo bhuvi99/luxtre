@@ -106,3 +106,24 @@
 .dropDownMenu {
   width: 40px;
 }
+
+
+.btnPopOver {
+  display: block;
+  width: 100%;
+  transition: all 0.1s;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  color: inherit;
+  font: inherit;
+  position: relative;
+  padding: 0;
+  text-align: center;
+  background: transparent;
+}
+
+.popOverWrapper {
+  position: relative;
+}
