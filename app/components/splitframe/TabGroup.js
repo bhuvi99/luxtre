@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import partial from 'lodash/partial';
 import cloneDeep from 'lodash/cloneDeep';
+import styles from './SplitStyle.scss';
 
-import { defaultTab, defaultTabContent } from '../SplitFrameHelpers';
+import { defaultTab, defaultTabContent } from './SplitFrameHelpers';
 import TabBar from './TabBar';
 import TabContent from './TabContent';
 

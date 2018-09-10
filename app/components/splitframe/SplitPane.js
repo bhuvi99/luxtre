@@ -4,10 +4,10 @@ import PopOver from './PopOver';
 import { isEqual } from 'lodash';
 import styles from './SplitStyle.scss';
 
-import TabGroup from '../TabGroup';
+import TabGroup from './TabGroup';
 import { defaultTabContent } from './SplitFrameHelpers';
 import { SFC_LEFT, SFC_DOWN, SFC_RIGHT, SFC_UP } from './SplitFrameConstants';
-import Options from 'components/Options';
+import Options from './Options';
 
 const SplitPane = ({ node, onSplit, onUpdateContent, innerRef, flexGrow }) => {
   const flexGrowValue = flexGrow || node.flexGrow;

@@ -127,3 +127,26 @@
 .popOverWrapper {
   position: relative;
 }
+
+.groupUL {
+  list-style: none;
+}
+
+.iconWrapper {
+  width: 2.66rem;
+  height: 2.66rem;
+
+  > * {
+    max-width: inherit;
+    max-height: inherit;
+  }
+}
+
+.optli {
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.3s;
+  }
+}

@@ -2,8 +2,7 @@ import React from 'react';
 import cloneDeep from 'lodash/cloneDeep';
 
 import ElementName from '../../utils/ElementNames';
-import getNodeId from './getNodeId';
-import TabContentSelector from './TabGroup/TabContentSelector'; // eslint-disable-line
+import GetNodeId from './GetNodeId';
 import { SFC_COLUMN, SFC_DOWN, SFC_LEFT, SFC_RIGHT, SFC_ROW } from './SplitFrameConstants';
 
 export const defaultTab = {
@@ -30,7 +29,7 @@ export const orientationFromDirection = direction => {
 
 export const createNode = orientation => {
   const node = {
-    id: getNodeId(),
+    id: GetNodeId(),
     orientation
   };
   return node;
@@ -38,7 +37,7 @@ export const createNode = orientation => {
 
 export const createNodeWithParent = parent => {
   const node = {
-    id: getNodeId(),
+    id: GetNodeId(),
     parent,
     flexGrow: 1,
     content: cloneDeep(defaultTabContent)
