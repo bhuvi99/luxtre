@@ -12,6 +12,68 @@ export const ANY_POPOVERS_OPEN = observable.box(false);
 export default class PopOver extends React.PureComponent {
   state = { isPopOverOpen: false };
 
+  addEventListeners() {
+    if (this.props.shouldCloseOnEsc) {
+      document.addEventListener('keydown', this.handleKeyDown);
+    }
+    if (this.props.shouldCloseOnBlur) {
+      document.addEventListener('mousedown', this.handleMouseDown);
+    }
+    window.addEventListener('resize', this.closePopOver);
+  }
+
+  removeEventListeners() {
+    if (this.props.shouldCloseOnEsc) {
+      document.removeEventListener('keydown', this.handleKeyDown);
+    }
+    if (this.props.shouldCloseOnBlur) {
+      document.removeEventListener('mousedown', this.handleMouseDown);
+    }
+    window.removeEventListener('resize', this.closePopOver);
+  }
+
+  componentWillUnmount() {
+    this.removeEventListeners();
+  }
+
+  closePopOver = () => this.togglePopOver(false);
+
+  handleKeyDown = evt => {
+    if (evt.keyCode === KEYCODES.ESCAPE && this.state.isPopOverOpen) {
+      this.closePopOver();
+    }
+  };
+
+  handleMouseDown = evt => {
+    if (this.state.isPopOverOpen) {
+      const isTargetInsideToolTip = document
+        .querySelector('.ToolTipPortal')
+        .contains(evt.target);
+
+      if (this.props.disableCloseInsideContent && isTargetInsideToolTip) {
+        evt.preventDefault();
+        return;
+      } else if (
+        !this.popOverWrapper ||
+        this.popOverWrapper.contains(evt.target)
+      ) {
+        return;
+      } else {
+        this.closePopOver();
+      }
+    }
+  };
+
+  togglePopOver = isPopOverOpen => {
+    if (isPopOverOpen) {
+      this.addEventListeners();
+    } else {
+      this.removeEventListeners();
+    }
+    this.setState({ isPopOverOpen });
+    ANY_POPOVERS_OPEN.set(isPopOverOpen);
+  };
+
   render() {
     const { css, children, clickableLabel, showArrow } = this.props;
     const { isPopOverOpen } = this.state;
@@ -29,6 +91,7 @@ export default class PopOver extends React.PureComponent {
         // eslint-disable-next-line react/jsx-handler-names
         onBlur={this.closePopOver}>
         <button
+          classname={styles.btnPopOver}
           onClickCapture={e => {
             e.stopPropagation();
             e.preventDefault();

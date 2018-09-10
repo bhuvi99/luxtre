@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PopOver from 'components/PopOver';
+import PopOver from './PopOver';
 import { isEqual } from 'lodash';
 import styles from './SplitStyle.scss';
 
