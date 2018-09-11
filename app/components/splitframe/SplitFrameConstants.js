@@ -18,3 +18,11 @@ export const CHART = 'Chart';
 export const TABCONTENTSELECTOR = 'New Tab';
 
 export const KEYCODES = { ESCAPE: 27 };
+
+export const componentNameMap = {
+    [ORDERBOOK]: OrderBook,
+    [CHART]: Chart,
+    [TABCONTENTSELECTOR]: TabContentSelector,
+    [MYORDERHISTORY]: MyOrderHistory,
+  };
+  

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SplitStyle.scss'; 
 
-import TabController from 'components/TabController';
+import TabController from './TabController';
 
 @observer
 export default class TabContent extends Component {
