@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import styles from './SplitStyle.scss'; 
 import componentNameMap from './SplitFrameConstants';
-import Icon from 'components/Icon';
+import closeCross from '../../../assets/images/close-cross.inline.svg';
 
 @observer
 export default class TabController extends React.Component {
@@ -17,7 +17,7 @@ export default class TabController extends React.Component {
 
   componentDidMount() {
     if (this.state.hasError) {
-      this.props.onUpdateTabTitle(<Icon iconId="Cancel" />);
+      this.props.onUpdateTabTitle(<SvgInline svg={closeCross}/>);
     }
   }
 

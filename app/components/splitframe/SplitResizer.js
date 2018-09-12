@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { SFC_ROW, SFC_COLUMN } from '../SplitFrameConstants';
+import { SFC_ROW, SFC_COLUMN } from './SplitFrameConstants';
 
 const SplitResizer = ({ orientation, onMouseDown, onTouchStart }) => (
   <span

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SplitStyle.scss'; 
 
-import Icon from 'components/Icon';
 import { observable } from 'mobx';
 import { KEYCODES } from './SplitFrameConstants';
+import arrowIcon from '../../../assets/images/arrow.inline.svg';
 
 export const ANY_POPOVERS_OPEN = observable.box(false);
 
@@ -78,9 +78,9 @@ export default class PopOver extends React.PureComponent {
     const { css, children, clickableLabel, showArrow } = this.props;
     const { isPopOverOpen } = this.state;
 
-    const dropdownIcon = (
-      <Icon iconId={isPopOverOpen ? 'Dropdown-Selected' : 'Dropdown-caret'} />
-    );
+    const arrowClasses = classnames([
+      isPopOverOpen ? styles.arrow : styles.arrowCollapsed
+    ]);
 
     return (
       <div
@@ -103,7 +103,11 @@ export default class PopOver extends React.PureComponent {
               ? node.querySelector('[data-popover-icon]') || node
               : null;
           }}>
-          {clickableLabel ? clickableLabel(dropdownIcon) : dropdownIcon}
+          { !isPopOverOpen ? (
+            <SvgInline svg={arrowIcon} className={arrowClasses} />
+          ) : (
+            <SvgInline svg={arrowIcon} className={arrowClasses} />
+          ) }
         </button>
       </div>
     );

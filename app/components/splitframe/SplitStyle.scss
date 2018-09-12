@@ -163,3 +163,22 @@
   position: relative;
   overflow: hidden;
 }
+
+.arrow {
+  & > svg {
+    width: 16px;
+    transform: rotate(180deg);
+    polyline {
+      stroke: var(--theme-icon-node-update-notification-arrow-color);
+    }
+  }
+}
+
+.arrowCollapsed {
+  & > svg {
+    width: 16px;
+    polyline {
+      stroke: var(--theme-icon-node-update-notification-arrow-color);
+    }
+  }
+}
