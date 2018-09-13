@@ -8,6 +8,10 @@ import TabGroup from './TabGroup';
 import { defaultTabContent } from './SplitFrameHelpers';
 import { SFC_LEFT, SFC_DOWN, SFC_RIGHT, SFC_UP } from './SplitFrameConstants';
 import Options from './Options';
+import SplitLeftIcon from '../../assets/images/split-left.svg';
+import SplitRightIcon from '../../assets/images/split-right.svg';
+import SplitUpIcon from '../../assets/images/split-up.svg';
+import SplitDownIcon from '../../assets/images/split-down.svg';
 
 const SplitPane = ({ node, onSplit, onUpdateContent, innerRef, flexGrow }) => {
   const flexGrowValue = flexGrow || node.flexGrow;
@@ -19,29 +23,29 @@ const SplitPane = ({ node, onSplit, onUpdateContent, innerRef, flexGrow }) => {
         onUpdateContent={content => onUpdateContent(node, content)}
         dropDownMenu={() => (
           <PopOver ariaLabel="Pane Options" shouldCloseOnEsc shouldCloseOnBlur>
-            <Options.Group style={{ minWidth: '200px' }}>
-              <Options.Item
-                icon="Split-Left"
+            <ul>
+              <Options
+                icon={SplitLeftIcon}
                 label="Split Left"
                 onMouseDown={() => onSplit(node, SFC_LEFT)}
               />
-              <Options.Item
-                icon="Split-Right"
+              <Options
+                icon={SplitRightIcon}
                 label="Split Right"
                 onMouseDown={() => onSplit(node, SFC_RIGHT)}
               />
-              <Options.Item
-                icon="Split-Up"
+              <Options
+                icon={SplitUpIcon}
                 label="Split Up"
                 onMouseDown={() => onSplit(node, SFC_UP)}
               />
-              <Options.Item
-                icon="Split-Down"
+              <Options
+                icon={SplitDownIcon}
                 label="Split Down"
                 onMouseDown={() => onSplit(node, SFC_DOWN)}
               />
-              <Options.Separator />
-              <Options.Item
+              <hr/>
+              <Options
                 icon="Close-No-Circle"
                 label="Close All Tabs"
                 disabled={isEqual(node.content, defaultTabContent)}
@@ -50,7 +54,7 @@ const SplitPane = ({ node, onSplit, onUpdateContent, innerRef, flexGrow }) => {
                   e.stopPropagation();
                 }}
               />
-              <Options.Item
+              <Options
                 icon="Close"
                 label="Close Pane"
                 disabled={!node.parent}
@@ -59,7 +63,7 @@ const SplitPane = ({ node, onSplit, onUpdateContent, innerRef, flexGrow }) => {
                   e.stopPropagation();
                 }}
               />
-            </Options.Group>
+            </ul>
           </PopOver>
         )}
       />
