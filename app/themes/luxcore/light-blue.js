@@ -1,7 +1,7 @@
 //  ==== Theme: Light blue === //
 
 export default {
-  '--preferred-font': '"Times New Roman", serif',
+  '--preferred-font': '"Roboto", Montserrat',
 
   '--font-ultralight': 'SFUIDisplay-Ultralight',
   '--font-thin': 'SFUIDisplay-Thin',

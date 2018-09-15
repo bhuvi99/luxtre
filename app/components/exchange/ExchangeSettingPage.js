@@ -28,6 +28,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import ExchangeChartPage from './ExchangeChartPage';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { NotificationBadge, TransactionNegativeAmount, TransactionPositiveAmount, TransactionHigh, Total, BoldText, MiniBalance } from '../lux-ui';
 
 import styles from './ExchangeSettingPage.scss';
 import type { LGPrice } from '../../domain/LGPriceArray';
@@ -231,10 +232,12 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       <div className={styles.orderBook}>
         <div className={styles.orderTable1}>
           <div className={styles.orderTableCaptionBar}>
-            <span className={styles.order}>{`${ordersData.numbids || 0} Bids`}</span>
-            <div className={styles.tableCaptionPos}>
-              {Coin2} &rArr; {Coin1}{' '}
+            <div className={styles.order}>
+              <TransactionPositiveAmount>{`${ordersData.numbids || 0} Bids`} </TransactionPositiveAmount>
+              <NotificationBadge>{Coin2} &rArr; {Coin1}{' '}</NotificationBadge>
             </div>
+            {/* <div className={styles.tableCaptionPos}>
+            </div> */}
           </div>
           <ReactTable
             data={ordersData.bids}
@@ -245,7 +248,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         </div>
         <div className={styles.orderTable2}>
           <div className={styles.orderTableCaptionBar}>
-            <span className={styles.order}>{`${ordersData.numasks || 0} Asks`}</span>
+            <span className={styles.order}><TransactionNegativeAmount>{`${ordersData.numasks || 0} Asks`}</TransactionNegativeAmount></span>
             <div className={styles.tableCaptionPos}>
               {' '}
               {Coin1} &rArr; {Coin2}{' '}
@@ -408,15 +411,14 @@ export default class ExchangeSettingPage extends Component<Props, State> {
           <div className={styles.graph}>
             <Tabs>
               <TabList>
-                <Tab>Chart</Tab>
-                <Tab>Order book</Tab>
-                <Tab>Open Orders</Tab>
-                <Tab>Balances</Tab>
+                <Tab><BoldText>Chart</BoldText></Tab>
+                <Tab><BoldText>Order book</BoldText></Tab>
+                <Tab><BoldText>Open Orders</BoldText></Tab>
+                <Tab><BoldText>Balances</BoldText></Tab>
                 <li className={`${styles.divStatusTab}`}>
-                  <span>
-                    {Coin1}/{Coin2} Current:
-                  </span>
-                  <span className={styles.spanPrice}>{coinPrice}</span>
+                  <MiniBalance>
+                    {Coin1}/{Coin2} Balance: <TransactionHigh>{coinPrice}</TransactionHigh>
+                  </MiniBalance>
                 </li>
               </TabList>
 

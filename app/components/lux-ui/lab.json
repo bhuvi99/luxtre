@@ -1,0 +1,692 @@
+{
+  "name": "lux-ui",
+  "library": "styled-components",
+  "components": [
+    {
+      "name": "Balance",
+      "type": "h1",
+      "props": {
+        "fontSize": 48,
+        "fontWeight": "500"
+      },
+      "style": {},
+      "examples": [
+        "<Balance>123.4567890</Balance>"
+      ],
+      "system": [
+        "fontWeight"
+      ],
+      "keywords": [
+        "typography"
+      ],
+      "description": "Lux balance"
+    },
+    {
+      "name": "CoinName",
+      "type": "h4",
+      "props": {
+        "fontSize": 20,
+        "fontWeight": "700"
+      },
+      "style": {},
+      "examples": [
+        "<CoinName>LUX\n</CoinName>"
+      ],
+      "system": [
+        "fontWeight"
+      ],
+      "description": "Coin name"
+    },
+    {
+      "name": "Caption",
+      "type": "span",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": "500"
+      },
+      "style": {
+        "color": "inherit"
+      },
+      "examples": [
+        "<Caption>Connecting to network...</Caption>",
+        "<Caption>Wallet</Caption>"
+      ],
+      "description": "Caption indicator",
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "Total",
+      "type": "i",
+      "props": {
+        "fontSize": 12,
+        "color": "lightgray"
+      },
+      "style": {},
+      "examples": [
+        "<Total>Number of transactions: 1235</Total>"
+      ],
+      "system": []
+    },
+    {
+      "name": "Date",
+      "type": "i",
+      "props": {
+        "fontSize": 12,
+        "color": "lightgray"
+      },
+      "style": {},
+      "examples": [
+        "<Date>08/20/2018 - 5:42PM</Date>"
+      ],
+      "system": []
+    },
+    {
+      "name": "SentTransactionType",
+      "type": "strong",
+      "props": {
+        "color": "red",
+        "fontSize": 14
+      },
+      "style": {},
+      "examples": [
+        "<SentTransactionType>Sent</SentTransactionType>"
+      ],
+      "system": []
+    },
+    {
+      "name": "ReceivedTransactionType",
+      "type": "strong",
+      "props": {
+        "color": "green",
+        "fontSize": 14
+      },
+      "style": {},
+      "examples": [
+        "<ReceivedTransactionType>Received</ReceivedTransactionType>"
+      ],
+      "system": []
+    },
+    {
+      "name": "TransactionHigh",
+      "type": "div",
+      "props": {
+        "bg": "green",
+        "fontSize": 12
+      },
+      "style": {
+        "display": "flex",
+        "webkitAlignItems": "center",
+        "webkitBoxAlign": "center",
+        "msFlexAlign": "center",
+        "alignItems": "center",
+        "webkitBoxPack": "center",
+        "webkitJustifyContent": "center",
+        "msFlexPack": "center",
+        "justifyContent": "center",
+        "width": "48px",
+        "webkitTextTransform": "uppercase",
+        "textTransform": "uppercase",
+        "fontWeight": "700"
+      },
+      "examples": [
+        "<TransactionHigh>high</TransactionHigh>"
+      ],
+      "system": []
+    },
+    {
+      "name": "TransactionLow",
+      "type": "div",
+      "props": {
+        "bg": "red",
+        "fontSize": 12
+      },
+      "style": {
+        "display": "flex",
+        "webkitAlignItems": "center",
+        "webkitBoxAlign": "center",
+        "msFlexAlign": "center",
+        "alignItems": "center",
+        "webkitBoxPack": "center",
+        "webkitJustifyContent": "center",
+        "msFlexPack": "center",
+        "justifyContent": "center",
+        "width": "48px",
+        "webkitTextTransform": "uppercase",
+        "textTransform": "uppercase",
+        "fontWeight": "700"
+      },
+      "examples": [
+        "<TransactionLow>low</TransactionLow>"
+      ],
+      "system": []
+    },
+    {
+      "name": "TransactionPositiveAmount",
+      "type": "h4",
+      "props": {
+        "color": "green",
+        "fontSize": 16
+      },
+      "style": {},
+      "examples": [
+        "<TransactionPositiveAmount>+22.938543</TransactionPositiveAmount>"
+      ],
+      "system": []
+    },
+    {
+      "name": "TransactionNegativeAmount",
+      "type": "h4",
+      "props": {
+        "color": "red",
+        "fontSize": 16
+      },
+      "style": {},
+      "examples": [
+        "<TransactionNegativeAmount>-43.627244</TransactionNegativeAmount>"
+      ],
+      "system": []
+    },
+    {
+      "name": "MiniCaption",
+      "type": "span",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": "500",
+        "color": "lightgray"
+      },
+      "style": {},
+      "examples": [
+        "<MiniCaption>123.456789  LUX</MiniCaption>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "NotificationBadge",
+      "type": "div",
+      "props": {
+        "bg": "badgeblue",
+        "fontSize": 14
+      },
+      "style": {
+        "display": "flex",
+        "webkitBoxPack": "center",
+        "webkitJustifyContent": "center",
+        "msFlexPack": "center",
+        "justifyContent": "center",
+        "webkitAlignItems": "center",
+        "webkitBoxAlign": "center",
+        "msFlexAlign": "center",
+        "alignItems": "center",
+        "width": "48px",
+        "color": "white",
+        "fontWeight": "700"
+      },
+      "examples": [
+        "<NotificationBadge>2</NotificationBadge>"
+      ],
+      "system": []
+    },
+    {
+      "name": "MiniBalance",
+      "type": "h3",
+      "props": {
+        "fontSize": 16,
+        "fontWeight": "500"
+      },
+      "style": {},
+      "examples": [
+        "<MiniBalance>123456789.0</MiniBalance>"
+      ],
+      "system": [
+        "fontWeight",
+        "borderColor"
+      ]
+    },
+    {
+      "name": "AmountInput",
+      "type": "input",
+      "props": {
+        "m": 0,
+        "w": 1,
+        "px": 1,
+        "py": 1,
+        "color": "lightgray",
+        "bg": "transparent",
+        "fontSize": 12
+      },
+      "style": {
+        "display": "block",
+        "fontSize": "inherit",
+        "fontStyle": "italic",
+        "border": "none",
+        "borderBottom": "1px solid",
+        "borderColor": "inherit"
+      },
+      "examples": [
+        "<AmountInput placeholder='LUX Wallet Address' />"
+      ],
+      "system": []
+    },
+    {
+      "name": "ModalTitle",
+      "type": "h3",
+      "props": {
+        "fontSize": 14
+      },
+      "style": {
+        "webkitTextTransform": "uppercase",
+        "textTransform": "uppercase"
+      },
+      "examples": [
+        "<ModalTitle>Confirm Transaction</ModalTitle>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "ModalValue",
+      "type": "h4",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": "400"
+      },
+      "style": {
+        "fontStyle": "italic"
+      },
+      "examples": [
+        "<ModalValue>Lhkrh7QwYhWbHeUERZrENzHBfdcFNLpCrZ</ModalValue>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "SeedWordsTextArea",
+      "type": "textarea",
+      "props": {
+        "fontSize": 14,
+        "bg": "darkblue",
+        "color": "white",
+        "p": 3
+      },
+      "style": {
+        "fontStyle": "italic",
+        "minWidth": "300px",
+        "webkitTextAlign": "center",
+        "textAlign": "center"
+      },
+      "examples": [
+        "<SeedWordsTextArea placeholder='Type your wallet seedphrase'></SeedWordsTextArea>",
+        "<SeedWordsTextArea placeholder='Type your wallet seedphrase' >witch collapse practice feed shame open despair creek road again ice least</SeedWordsTextArea>"
+      ],
+      "system": []
+    },
+    {
+      "name": "ConfirmationHeader",
+      "type": "h2",
+      "props": {
+        "color": "confirmationgreen",
+        "fontSize": 24,
+        "fontWeight": "600"
+      },
+      "style": {},
+      "examples": [
+        "<ConfirmationHeader>Submitted Succesfully</ConfirmationHeader>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "ConfirmationMessage",
+      "type": "h4",
+      "props": {
+        "fontSize": 16
+      },
+      "style": {},
+      "examples": [
+        "<ConfirmationMessage>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus lacinia est, eget gravida justo molestie sed.</ConfirmationMessage>"
+      ],
+      "system": []
+    },
+    {
+      "name": "Text",
+      "type": "span",
+      "props": {
+        "fontWeight": "600",
+        "fontSize": 14
+      },
+      "style": {},
+      "examples": [
+        "<Text>Share this wallet address to receive payments. To protect your privacy, new addresses are generated automatically once you use them.</Text>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "UppercaseText",
+      "type": "span",
+      "props": {
+        "fontWeight": "600",
+        "fontSize": 14
+      },
+      "style": {
+        "webkitTextTransform": "uppercase",
+        "textTransform": "uppercase"
+      },
+      "examples": [
+        "<UppercaseText>Receive Payment</UppercaseText>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "BoldText",
+      "type": "span",
+      "props": {
+        "fontWeight": "700",
+        "fontSize": 14
+      },
+      "style": {},
+      "examples": [
+        "<BoldText>Lhkrh7QwYhWbHeUERZrENzHBfdcFNLpCrZ\n</BoldText>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "NavLabel",
+      "type": "span",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": "600"
+      },
+      "style": {},
+      "examples": [
+        "<NavLabel>Home</NavLabel>",
+        "<NavLabel>Send</NavLabel>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    },
+    {
+      "name": "MiniBalanceBoldItalic",
+      "type": "h3",
+      "props": {
+        "fontSize": 16,
+        "fontWeight": "700",
+        "color": "red"
+      },
+      "style": {
+        "fontStyle": "italic"
+      },
+      "examples": [
+        "<MiniBalanceBoldItalic>125.126636</MiniBalanceBoldItalic>"
+      ],
+      "system": [
+        "fontWeight"
+      ]
+    }
+  ],
+  "layout": [
+    {
+      "name": "Balance",
+      "i": "0",
+      "w": 3,
+      "h": 4,
+      "x": 0,
+      "y": 0,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "CoinName",
+      "i": "1",
+      "w": 3,
+      "h": 4,
+      "x": 6,
+      "y": 4,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "Caption",
+      "i": "2",
+      "w": 3,
+      "h": 4,
+      "x": 9,
+      "y": 0,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "Total",
+      "i": "3",
+      "w": 3,
+      "h": 4,
+      "x": 3,
+      "y": 8,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "Date",
+      "i": "4",
+      "w": 3,
+      "h": 4,
+      "x": 3,
+      "y": 20,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "SentTransactionType",
+      "i": "5",
+      "w": 3,
+      "h": 4,
+      "x": 3,
+      "y": 16,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "ReceivedTransactionType",
+      "i": "6",
+      "w": 3,
+      "h": 4,
+      "x": 6,
+      "y": 12,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "TransactionHigh",
+      "i": "7",
+      "w": 3,
+      "h": 4,
+      "x": 6,
+      "y": 8,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "TransactionLow",
+      "i": "8",
+      "w": 3,
+      "h": 4,
+      "x": 9,
+      "y": 4,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "TransactionPositiveAmount",
+      "i": "9",
+      "w": 3,
+      "h": 4,
+      "x": 9,
+      "y": 8,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "TransactionNegativeAmount",
+      "i": "10",
+      "w": 3,
+      "h": 4,
+      "x": 0,
+      "y": 16,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "MiniCaption",
+      "i": "11",
+      "w": 3,
+      "h": 4,
+      "x": 0,
+      "y": 8,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "NotificationBadge",
+      "i": "12",
+      "w": 3,
+      "h": 4,
+      "x": 0,
+      "y": 12,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "MiniBalance",
+      "i": "13",
+      "w": 3,
+      "h": 4,
+      "x": 3,
+      "y": 0,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "AmountInput",
+      "i": "14",
+      "w": 3,
+      "h": 4,
+      "x": 6,
+      "y": 20,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "ModalTitle",
+      "i": "15",
+      "w": 3,
+      "h": 4,
+      "x": 9,
+      "y": 16,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "ModalValue",
+      "i": "16",
+      "w": 3,
+      "h": 4,
+      "x": 0,
+      "y": 20,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "SeedWordsTextArea",
+      "i": "17",
+      "w": 3,
+      "h": 4,
+      "x": 3,
+      "y": 12,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "ConfirmationHeader",
+      "i": "18",
+      "w": 3,
+      "h": 4,
+      "x": 0,
+      "y": 24,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "ConfirmationMessage",
+      "i": "19",
+      "w": 3,
+      "h": 4,
+      "x": 9,
+      "y": 20,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "Text",
+      "i": "20",
+      "w": 3,
+      "h": 4,
+      "x": 0,
+      "y": 4,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "UppercaseText",
+      "i": "21",
+      "w": 3,
+      "h": 4,
+      "x": 3,
+      "y": 4,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "BoldText",
+      "i": "22",
+      "w": 3,
+      "h": 4,
+      "x": 6,
+      "y": 16,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "NavLabel",
+      "i": "23",
+      "w": 3,
+      "h": 4,
+      "x": 9,
+      "y": 12,
+      "moved": false,
+      "static": false
+    },
+    {
+      "name": "MiniBalanceBoldItalic",
+      "i": "24",
+      "w": 3,
+      "h": 4,
+      "x": 6,
+      "y": 0,
+      "moved": false,
+      "static": false
+    }
+  ]
+}

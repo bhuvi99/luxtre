@@ -248,7 +248,10 @@
 
 .divStatusTab {
   display: inline-block;
-  margin-left: 33%;
+  margin-left: 5px;
+  > :first-child {
+    display: flex;
+  }
 }
 
 .divStatus {

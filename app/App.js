@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Provider, observer } from 'mobx-react';
 import { ThemeProvider } from 'react-css-themr';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import DevTools from 'mobx-react-devtools';
 import { Router } from 'react-router';
 import { IntlProvider } from 'react-intl';
@@ -12,6 +13,7 @@ import translations from './i18n/translations';
 import type { StoresMap } from './stores/index';
 import type { ActionsMap } from './actions/index';
 import ThemeManager from './ThemeManager';
+import scTheme from './components/lux-ui/theme.json';
 
 @observer
 export default class App extends Component<{
@@ -31,12 +33,14 @@ export default class App extends Component<{
         <ThemeManager variables={theme} />
         <Provider stores={stores} actions={actions}>
           <ThemeProvider theme={luxcoreTheme}>
+            <SCThemeProvider theme={scTheme}>
             <IntlProvider {...{ locale, key: locale, messages: translations[locale] }}>
               <div style={{ height: '100%' }}>
                 <Router history={history} routes={Routes} />
                 {mobxDevTools}
               </div>
             </IntlProvider>
+          </SCThemeProvider>
           </ThemeProvider>
         </Provider>
       </div>
