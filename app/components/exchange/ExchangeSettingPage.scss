@@ -383,7 +383,8 @@
 }
 
 .orderTableCaptionBar {
-  padding: 10px;
+  padding: 8px;
+  padding-left: 16px;
 }
 
 .order {
@@ -392,9 +393,10 @@
   float: left;
   color: #fff;
 }
+
 .tableCaptionPos {
   font-family: var(--font-bold);
-  margin-left: 40%;
+  margin-left: 36%;
 }
 
 .orderTable1,
