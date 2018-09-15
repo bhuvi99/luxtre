@@ -28,7 +28,18 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import ExchangeChartPage from './ExchangeChartPage';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { NotificationBadge, TransactionNegativeAmount, TransactionPositiveAmount, TransactionHigh, Total, BoldText, MiniBalance } from '../lux-ui';
+import {
+  NotificationBadge,
+  TransactionNegativeAmount,
+  TransactionPositiveAmount,
+  TransactionHigh,
+  TransactionLow,
+  Total,
+  MiniBalance,
+  Caption,
+  BoldText,
+  ModalTitle,
+} from '../lux-ui';
 
 import styles from './ExchangeSettingPage.scss';
 import type { LGPrice } from '../../domain/LGPriceArray';
@@ -173,31 +184,23 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     return (
       <div className={styles.sendReceivePanel}>
         <div className={styles.coinbalance}>
-          <div className={styles.coin}>{Coin1}</div>
+          <div className={styles.coin}><BoldText>{Coin1}</BoldText></div>
           <div className={styles.balance}>{this.getCoinBalance(Coin1)}</div>
           <div className={styles.recv}>
-            <Button
-              onClick={() => this.openReceiveDialog(Coin1)}
-              label="Receive"
-              skin={<ButtonSkin />}
-            />
+            <TransactionHigh onClick={() => this.openReceiveDialog(Coin1)}> Receive </TransactionHigh>
           </div>
           <div className={styles.send}>
-            <Button onClick={() => this.openSendDialog(Coin1)} label="Send" skin={<ButtonSkin />} />
+            <TransactionLow onClick={() => this.openSendDialog(Coin1)}>Send</TransactionLow>
           </div>
         </div>
         <div className={styles.coinbalance}>
-          <div className={styles.coin}>{Coin2} </div>
+          <div className={styles.coin}><BoldText>{Coin2}</BoldText> </div>
           <div className={styles.balance}>{this.getCoinBalance(Coin2)}</div>
           <div className={styles.recv}>
-            <Button
-              onClick={() => this.openReceiveDialog(Coin2)}
-              label="Receive"
-              skin={<ButtonSkin />}
-            />
+            <TransactionHigh onClick={() => this.openReceiveDialog(Coin2)}> Receive </TransactionHigh>
           </div>
           <div className={styles.send}>
-            <Button onClick={() => this.openSendDialog(Coin2)} label="Send" skin={<ButtonSkin />} />
+            <TransactionLow onClick={() => this.openSendDialog(Coin2)}>Send</TransactionLow>
           </div>
         </div>
       </div>
@@ -207,20 +210,20 @@ export default class ExchangeSettingPage extends Component<Props, State> {
   orderBook = () => {
     const orderColumns = [
       {
-        Header: 'Price',
+        Header: 'PRICE',
         accessor: 'price' // String-based value accessors!
       },
       // {
-      //   Header: 'Min Volume',
+      //   Header: 'MIN' Volume',
       //   accessor: 'minvolume'
       // },
       {
-        Header: 'Volume',
+        Header: 'VOLUME',
         accessor: 'maxvolume'
       },
       {
         id: 'Total',
-        Header: 'Sum',
+        Header: 'SUM',
         accessor: 'numutxos' // Custom value accessors!
       }
     ];
@@ -233,11 +236,11 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         <div className={styles.orderTable1}>
           <div className={styles.orderTableCaptionBar}>
             <div className={styles.order}>
-              <TransactionPositiveAmount>{`${ordersData.numbids || 0} Bids`} </TransactionPositiveAmount>
-              <NotificationBadge>{Coin2} &rArr; {Coin1}{' '}</NotificationBadge>
+              <TransactionPositiveAmount fontSize={1} fontWeight={700}>{`${ordersData.numbids || 0} BIDS`} </TransactionPositiveAmount>
             </div>
-            {/* <div className={styles.tableCaptionPos}>
-            </div> */}
+            <div className={styles.tableCaptionPos}>
+              <BoldText>{Coin2} &rArr; {Coin1}{' '}</BoldText>
+            </div>
           </div>
           <ReactTable
             data={ordersData.bids}
@@ -248,10 +251,12 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         </div>
         <div className={styles.orderTable2}>
           <div className={styles.orderTableCaptionBar}>
-            <span className={styles.order}><TransactionNegativeAmount>{`${ordersData.numasks || 0} Asks`}</TransactionNegativeAmount></span>
+            <span className={styles.order}>
+              <TransactionNegativeAmount fontSize={1} fontWeight={700}>{`${ordersData.numasks || 0} ASKS`}</TransactionNegativeAmount></span>
             <div className={styles.tableCaptionPos}>
-              {' '}
-              {Coin1} &rArr; {Coin2}{' '}
+              <BoldText>
+                {Coin1} &rArr; {Coin2}{' '}
+              </BoldText>
             </div>
           </div>
           <ReactTable
@@ -297,66 +302,66 @@ export default class ExchangeSettingPage extends Component<Props, State> {
 
     const openOrderColumns = [
       {
-        Header: 'Base Coin',
+        Header: 'BASE COIN',
         accessor: 'base' // String-based value accessors!
       },
       {
-        Header: 'Related Coin',
+        Header: 'RELATED COIN',
         accessor: 'rel'
       },
       {
-        Header: 'Bid',
+        Header: 'BID',
         accessor: 'bid'
       },
       {
-        Header: 'Ask',
+        Header: 'ASK',
         accessor: 'ask' // Custom value accessors!
       }
     ];
 
     const swapStatusColumns = [
       {
-        Header: 'Request ID',
+        Header: 'REQUEST ID',
         accessor: 'requestid' // String-based value accessors!
       },
       {
-        Header: 'Quote ID',
+        Header: 'QUOTE ID',
         accessor: 'quoteid'
       },
       {
-        Header: 'Source Amount',
+        Header: 'SOURCE AMOUNT',
         accessor: 'srcamount'
       },
       {
-        Header: 'Status',
+        Header: 'STATUS',
         accessor: 'status' // Custom value accessors!
       }
     ];
 
     const balancesColumns = [
       {
-        Header: 'Coin',
+        Header: 'COIN',
         accessor: 'coin' // String-based value accessors!
       },
       {
-        Header: 'Balance',
+        Header: 'BALANCE',
         accessor: 'balance' // String-based value accessors!
       }
     ];
 
     const loggerColumns = [
       {
-        Header: 'Time',
+        Header: 'TIME',
         width: 70,
         accessor: 'time' // String-based value accessors!
       },
       {
-        Header: 'Type',
+        Header: 'TYPE',
         width: 50,
         accessor: 'type' // String-based value accessors!
       },
       {
-        Header: 'Description',
+        Header: 'DESCRIPTION',
         accessor: 'content'
       }
     ];
@@ -411,13 +416,13 @@ export default class ExchangeSettingPage extends Component<Props, State> {
           <div className={styles.graph}>
             <Tabs>
               <TabList>
-                <Tab><BoldText>Chart</BoldText></Tab>
-                <Tab><BoldText>Order book</BoldText></Tab>
-                <Tab><BoldText>Open Orders</BoldText></Tab>
-                <Tab><BoldText>Balances</BoldText></Tab>
+                <Tab><BoldText>CHART</BoldText></Tab>
+                <Tab><BoldText>ORDER BOOK</BoldText></Tab>
+                <Tab><BoldText>OPEN ORDERS</BoldText></Tab>
+                <Tab><BoldText>BALANCES</BoldText></Tab>
                 <li className={`${styles.divStatusTab}`}>
                   <MiniBalance>
-                    {Coin1}/{Coin2} Balance: <TransactionHigh>{coinPrice}</TransactionHigh>
+                    {Coin1}/{Coin2} BALANCE: <TransactionHigh>{coinPrice}</TransactionHigh>
                   </MiniBalance>
                 </li>
               </TabList>
@@ -431,7 +436,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               <TabPanel>
                 <div className={styles.openOrdersTable}>
                   <div className={styles.orderTableCaptionBar}>
-                    <div className={styles.tableCaptionPos}>Open Orders</div>
+                    <div className={styles.tableCaptionPos}><BoldText>OPEN ORDERS</BoldText></div>
                   </div>
                   <ReactTable
                     data={transactions.lgOpenOrders}
@@ -443,7 +448,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
 
                 <div className={styles.openOrdersTable}>
                   <div className={styles.orderTableCaptionBar}>
-                    <div className={styles.tableCaptionPos}>Personal Swaps</div>
+                    <div className={styles.tableCaptionPos}><BoldText>PERSONAL SWAPS</BoldText></div>
                   </div>
                   <ReactTable
                     data={transactions.lgSwapStatus}
@@ -456,8 +461,8 @@ export default class ExchangeSettingPage extends Component<Props, State> {
 
               <TabPanel>
                 <div className={styles.balancesTable}>
-                  <div className={styles.balancesTableCaptionBar}>
-                    <div className={styles.tableCaptionPos}>Coin Balances</div>
+                  <div className={styles.orderTableCaptionBar}>
+                    <div className={styles.tableCaptionPos}><BoldText>COIN BALANCES</BoldText></div>
                   </div>
                   <ReactTable
                     data={transactions.lgBalances}
@@ -472,8 +477,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
           <div className={styles.assistContainer}>
             <div className={styles.setting}>
               <div className={styles.card}>
-                <div className={styles.cardTitle}>Coupled Asset Swap</div>
-                <h6 className={styles.cardSubtitle}>Please swap your currency from here</h6>
+                <div className={styles.cardTitle}><ModalTitle>COUPLED ASSET SWAP</ModalTitle></div>
               </div>
               <div className={styles.component}>
                 {!isBuy ? (
@@ -525,11 +529,10 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 />
               </div>
               <div className={styles.divTotal}>
-                <span className={styles.spanMargin36}> Total: </span>
-                <span>
-                  {' '}
+                <Total fontSize={2}>Total: {' '}</Total>
+                <MiniBalance>
                   {this.calculateTotal(AmountInput, ValueInput)} {Coin2}{' '}
-                </span>
+                </MiniBalance>
               </div>
               <div className={styles.swapbutton}>
                 <Button
@@ -540,10 +543,12 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 />
               </div>
             </div>
+
             {this.sendReceivePanel()}
-            <div className={styles.dataTable}>
+
+            <div className={styles.statusTable}>
               <div className={styles.LogListCaptionBar}>
-                <span>Status</span>
+                <BoldText>STATUS</BoldText>
               </div>
               <div className={styles.logTable}>
                 <ReactTable
