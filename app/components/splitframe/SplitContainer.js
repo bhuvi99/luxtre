@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import flatten from 'lodash/flatten';
 import styles from './SplitStyle.scss';

@@ -1,10 +1,11 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import styles from './SplitStyle.scss'; 
 
 import { observable } from 'mobx';
 import { KEYCODES } from './SplitFrameConstants';
-import arrowIcon from '../../../assets/images/arrow.inline.svg';
+import arrowIcon from '../../assets/images/arrow.inline.svg';
 
 export const ANY_POPOVERS_OPEN = observable.box(false);
 

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import styles from './SplitStyle.scss'; 
 import componentNameMap from './SplitFrameConstants';
-import closeCross from '../../../assets/images/close-cross.inline.svg';
+import closeCross from '../../assets/images/close-cross.inline.svg';
 
 @observer
 export default class TabController extends React.Component {

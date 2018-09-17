@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import styles from './SplitStyle.scss';
 import SplitPane from './SplitPane';
 import SplitContainer from './SplitContainer';
