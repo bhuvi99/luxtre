@@ -1,3 +1,9 @@
+import OrderBook from "./OrderBook"
+import Chart from "./Chart"
+import TabContentSelector from "./TabContentSelector"
+import MyOrderHistory from "./MyOrderHistory"
+
+
 export const SFC_MIN_SIZE = 50;
 
 export const SFC_TABLE_HEADER_HEIGHT = 2.5;
