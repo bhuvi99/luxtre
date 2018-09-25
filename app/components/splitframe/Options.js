@@ -18,9 +18,9 @@ export default class Options extends Component<Props> {
   render() {
     const { icon } = this.props;
     return (
-      <li {...props} classname={styles.optli}>
+      <li {...props} className={styles.optli}>
         {icon && (
-          <div classname={styles.iconWrapper}>
+          <div className={styles.iconWrapper}>
             <SvgInline svg={icon} />
           </div>
         )}

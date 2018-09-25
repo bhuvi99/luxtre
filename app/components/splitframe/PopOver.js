@@ -85,14 +85,14 @@ export default class PopOver extends React.PureComponent {
 
     return (
       <div
-        classname={styles.popOverWrapper}
+        className={styles.popOverWrapper}
         innerRef={node => {
           this.popOverWrapper = node;
         }}
         // eslint-disable-next-line react/jsx-handler-names
         onBlur={this.closePopOver}>
         <button
-          classname={styles.btnPopOver}
+          className={styles.btnPopOver}
           onClickCapture={e => {
             e.stopPropagation();
             e.preventDefault();
