@@ -49,12 +49,12 @@ export default {
   '--theme-autocomplete-suggestions-list-item-font-color': '#050b2d',
   '--theme-autocomplete-suggestions-list-item-highlight-color': '#edeeef',
 
-  '--theme-bordered-box-background-color': '#fafbfc',
+  '--theme-bordered-box-background-color': '#85e3f6',
   '--theme-bordered-box-border': '1px solid #c6cdd6',
   '--theme-bordered-box-text-color': '#050b2d',
 
-  '--theme-button-primary-background-color': '#061532',
-  '--theme-button-primary-background-color-hover': '#85e3f6',
+  '--theme-button-primary-background-color': '#85e3f6',
+  '--theme-button-primary-background-color-hover': '#061532',
   '--theme-button-primary-background-color-active': '#40c2dc',
   '--theme-button-primary-background-color-disabled': '#596179',
   '--theme-button-primary-text-color-disabled': '#fafbfc',

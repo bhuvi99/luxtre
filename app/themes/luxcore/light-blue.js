@@ -53,8 +53,10 @@ export default {
   '--theme-bordered-box-border': '1px solid #c6cdd6',
   '--theme-bordered-box-text-color': '#5e6066',
 
-  '--theme-button-primary-background-color': '#243e62',
-  '--theme-button-primary-background-color-hover': '#2f496e',
+  // #243e62
+  '--theme-button-primary-background-color': '#2f496e',
+  // #2f496e
+  '--theme-button-primary-background-color-hover': '#243e62',
   '--theme-button-primary-background-color-active': '#1e304a',
   '--theme-button-primary-background-color-disabled': 'rgba(36, 62, 98, 0.3)',
   '--theme-button-primary-text-color-disabled': '#fafbfc',
