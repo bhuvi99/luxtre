@@ -36,8 +36,8 @@ export default class TabController extends React.Component {
     const { displayName, isActive } = this.props;
 
     return (
-      <div isActive={isActive} classname={styles.tabComponentWrapper}>
-        <div classname={styles.scrollBarWrapper}>
+      <div isActive={isActive} className={styles.tabComponentWrapper}>
+        <div className={styles.scrollBarWrapper}>
           {this.state.hasError ? (
             <div/>
           ) : (

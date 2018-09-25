@@ -99,7 +99,7 @@ export default class TabGroup extends Component<Props> {
           defaultTab.componentDisplayName;
     }
     return (
-      <div classname={styles.tabGroupWrapper} data-ci="TabGroupWrapper">
+      <div className={styles.tabGroupWrapper} data-ci="TabGroupWrapper">
         <TabBar
           isTabClosable={isTabClosable}
           tabs={content.tabs}

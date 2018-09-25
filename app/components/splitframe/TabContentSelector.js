@@ -29,8 +29,8 @@ const tabContentList = [
 
 export const TabContentSelector = ({ onUpdateTabContent }) => {
   return (
-    <div classname={styles.selectionWrapper}>
-      <div classname={styles.selectModule}>Select a Module</div>
+    <div className={styles.selectionWrapper}>
+      <div className={styles.selectModule}>Select a Module</div>
       <div>
         {tabContentList.map(tabContent => {
           const { iconId, label, componentDisplayName } = tabContent;
