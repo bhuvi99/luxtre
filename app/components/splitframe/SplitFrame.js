@@ -7,7 +7,9 @@ export default class SplitFrame extends Component {
 
   render() {
     return (
-      <SplitWindow/>
+      <SplitWindow
+        persistLayoutState={node => persistLayoutState(node, STORAGE_KEY)}
+      />
     );
   }
 }

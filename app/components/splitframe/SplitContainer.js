@@ -11,8 +11,8 @@ import { SFC_ROW, SFC_COLUMN, SFC_MIN_SIZE } from './SplitFrameConstants';
 export const fitWithinRange = (size, maxSize) =>
   Math.min(Math.max(size, SFC_MIN_SIZE), maxSize - SFC_MIN_SIZE);
 
-  @observer
-  export default class SplitContainer extends Component {
+@observer
+export default class SplitContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { isActive: false };
@@ -174,7 +174,7 @@ export const fitWithinRange = (size, maxSize) =>
     return (
       <div
         className={resizableStyles}
-        innerRef={this.props.innerRef}
+        ref={this.props.innerRef}
         orientation={this.props.node.orientation}
         onMouseMove={this.handleMove}
         onTouchMove={this.handleMove}

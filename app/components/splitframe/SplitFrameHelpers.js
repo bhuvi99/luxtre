@@ -98,7 +98,7 @@ const desktopDefaultRoot = () => {
   return root;
 };
 
-export const createDefaultRoot = breakpoint => {
+export const createDefaultRoot = () => {
   let root = desktopDefaultRoot();
   return root;
 };

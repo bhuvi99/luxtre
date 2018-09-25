@@ -17,7 +17,7 @@ const SplitPane = ({ node, onSplit, onUpdateContent, innerRef, flexGrow }) => {
   const flexGrowValue = flexGrow || node.flexGrow;
   const style = flexGrowValue ? { flexGrow: flexGrowValue } : {};
   return (
-    <div classname={styles.paneWrapper} innerRef={innerRef} style={style}>
+    <div className={styles.paneWrapper} ref={innerRef} style={style}>
       <TabGroup
         node={node}
         onUpdateContent={content => onUpdateContent(node, content)}
