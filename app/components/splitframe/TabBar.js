@@ -14,10 +14,10 @@ const TabBar = ({
   onFocusTab,
   dropDownMenu
 }) => (
-  <div data-ci="tabs-bar" m={0}>
+  <div data-ci="tabs-bar">
     {tabs.map((tab, index) => (
       <div
-        classname={styles.tabDiv}
+        className={styles.tabDiv}
         isActive={activeIndex === index}
         key={index}
         role="button"
@@ -36,7 +36,7 @@ const TabBar = ({
     ))}
     <div role="button" onClick={() => onNewTab()}>
     </div>
-    {dropDownMenu && <div classname={styles.dropDownMenu}>{dropDownMenu()}</div>}
+    {dropDownMenu && <div className={styles.dropDownMenu}>{dropDownMenu()}</div>}
   </div>
 );
 

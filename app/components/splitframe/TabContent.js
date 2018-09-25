@@ -56,7 +56,7 @@ export default class TabContent extends Component {
     const { node: { content }, onUpdateTabContent } = this.props;
     return (
       <div
-        classname={styles.tabContentWrapper}
+        className={styles.tabContentWrapper}
         innerRef={wrapper_element => (this.wrapper_element = wrapper_element)}
       >
         {this.state.initiated && this.state.dimensions
