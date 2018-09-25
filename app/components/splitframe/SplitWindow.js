@@ -15,7 +15,35 @@ import {
   createContainerNode,
   addPaneNodeByMutation,
   orientationFromDirection,
+  createDefaultRoot
 } from './SplitFrameHelpers';
+
+export const renderFromRoot = (
+  root,
+  handleSplit,
+  handleClose,
+  handleResize,
+  handleUpdateContent
+) => {
+  const render = node => {
+    if (hasChildren(node)) {
+      return (
+        <SplitContainer key={node.id} node={node} onResize={handleResize}>
+          {node.children.map(child => render(child))}
+        </SplitContainer>
+      );
+    }
+    return (
+      <SplitPane
+        key={node.id}
+        node={node}
+        onSplit={handleSplit}
+        onUpdateContent={handleUpdateContent}
+      />
+    );
+  };
+  return render(root);
+};
 
 @observer
 export default class SplitWindow extends Component<Props> {
@@ -26,6 +54,11 @@ export default class SplitWindow extends Component<Props> {
     this.handleClose = this.handleClose.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.handleUpdateContent = this.handleUpdateContent.bind(this);
+  }
+
+  componentWillMount() {
+    const root = createDefaultRoot();
+    this.setState({ root });
   }
 
   handleSplit(node, direction) {
@@ -134,33 +167,13 @@ export default class SplitWindow extends Component<Props> {
   }
 
   render() {
-    return <div className={styles.window}></div>;
+    const root = renderFromRoot(
+      this.state.root,
+      this.handleSplit,
+      this.handleClose,
+      this.handleResize,
+      this.handleUpdateContent
+    );
+    return <div className={styles.window}>{root}</div>;
   }
 }
-
-export const renderFromRoot = (
-  root,
-  handleSplit,
-  handleClose,
-  handleResize,
-  handleUpdateContent
-) => {
-  const render = node => {
-    if (hasChildren(node)) {
-      return (
-        <SplitContainer key={node.id} node={node} onResize={handleResize}>
-          {node.children.map(child => render(child))}
-        </SplitContainer>
-      );
-    }
-    return (
-      <SplitPane
-        key={node.id}
-        node={node}
-        onSplit={handleSplit}
-        onUpdateContent={handleUpdateContent}
-      />
-    );
-  };
-  return render(root);
-};
