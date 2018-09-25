@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-
+import SvgInline from 'react-svg-inline';
 import styles from './SplitStyle.scss'; 
 import componentNameMap from './SplitFrameConstants';
 import closeCross from '../../assets/images/close-cross.inline.svg';
@@ -36,7 +36,7 @@ export default class TabController extends React.Component {
     const { displayName, isActive } = this.props;
 
     return (
-      <div isActive={isActive} className={styles.tabComponentWrapper}>
+      <div className={styles.tabComponentWrapper}>
         <div className={styles.scrollBarWrapper}>
           {this.state.hasError ? (
             <div/>

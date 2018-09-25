@@ -47,7 +47,7 @@ export const focusTab = (content, onUpdateContent, index) => {
 export const closeTab = (content, onUpdateContent, index) => {
   if (index === 0 && content.tabs.length === 1) {
     if (
-      content.tabs[0].componentDisplayName === defaultTab.componentDisplayName
+      content.tabs[0].ElementName === defaultTab.ElementName
     ) {
       onUpdateContent(null);
     } else {
@@ -71,7 +71,7 @@ export default class TabGroup extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      tabTitles: props.node.content.tabs.map(tab => tab.componentDisplayName)
+      tabTitles: props.node.content.tabs.map(tab => tab.ElementName)
     };
     this.handleUpdateTabTitle = this.handleUpdateTabTitle.bind(this);
   }
@@ -95,8 +95,8 @@ export default class TabGroup extends Component<Props> {
     if (!node.parent) {
       isTabClosable =
         node.content.tabs.length === 1 &&
-        node.content.tabs[0].componentDisplayName ===
-          defaultTab.componentDisplayName;
+        node.content.tabs[0].ElementName ===
+          defaultTab.ElementName;
     }
     return (
       <div className={styles.tabGroupWrapper} data-ci="TabGroupWrapper">

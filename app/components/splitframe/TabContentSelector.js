@@ -13,17 +13,17 @@ const tabContentList = [
   {
     label: 'Chart',
     iconId: 'Chart',
-    componentDisplayName: CHART
+    ElementName: CHART
   },
   {
     label: 'Order Book',
     iconId: 'Order-Book',
-    componentDisplayName: ORDERBOOK
+    ElementName: ORDERBOOK
   },
   {
     label: 'Your Orders',
     iconId: 'Your-Orders',
-    componentDisplayName: MYORDERHISTORY
+    ElementName: MYORDERHISTORY
   }
 ];
 
@@ -33,11 +33,11 @@ export const TabContentSelector = ({ onUpdateTabContent }) => {
       <div className={styles.selectModule}>Select a Module</div>
       <div>
         {tabContentList.map(tabContent => {
-          const { iconId, label, componentDisplayName } = tabContent;
+          const { iconId, label, ElementName } = tabContent;
           return (
             <div
               key={label}
-              onClick={() => onUpdateTabContent({ componentDisplayName })}>
+              onClick={() => onUpdateTabContent({ ElementName })}>
               {label}
             </div>
           );

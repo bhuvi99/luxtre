@@ -18,7 +18,6 @@ const TabBar = ({
     {tabs.map((tab, index) => (
       <div
         className={styles.tabDiv}
-        isActive={activeIndex === index}
         key={index}
         role="button"
         onClick={() => onFocusTab(index)}>

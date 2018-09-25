@@ -57,7 +57,7 @@ export default class TabContent extends Component {
     return (
       <div
         className={styles.tabContentWrapper}
-        innerRef={wrapper_element => (this.wrapper_element = wrapper_element)}
+        ref={wrapper_element => (this.wrapper_element = wrapper_element)}
       >
         {this.state.initiated && this.state.dimensions
           ? content.tabs.map((tab, index) => {
@@ -74,7 +74,7 @@ export default class TabContent extends Component {
                   {...props}
                   key={index}
                   isActive={isActive}
-                  displayName={tab.componentDisplayName}
+                  displayName={tab.ElementName}
                 />
               );
             })
