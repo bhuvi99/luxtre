@@ -2,7 +2,9 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import styles from './SplitStyle.scss'; 
+import classnames from 'classnames';
 
+import SvgInline from 'react-svg-inline';
 import { observable } from 'mobx';
 import { KEYCODES } from './SplitFrameConstants';
 import arrowIcon from '../../assets/images/arrow.inline.svg';
@@ -86,7 +88,7 @@ export default class PopOver extends React.PureComponent {
     return (
       <div
         className={styles.popOverWrapper}
-        innerRef={node => {
+        ref={node => {
           this.popOverWrapper = node;
         }}
         // eslint-disable-next-line react/jsx-handler-names
@@ -99,7 +101,7 @@ export default class PopOver extends React.PureComponent {
             this.togglePopOver(!isPopOverOpen);
           }}
           aria-label={this.props.ariaLabel}
-          innerRef={node => {
+          ref={node => {
             this.popOverIcon = node
               ? node.querySelector('[data-popover-icon]') || node
               : null;
