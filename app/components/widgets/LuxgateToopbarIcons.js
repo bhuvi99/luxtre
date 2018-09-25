@@ -59,7 +59,6 @@ export default class LuxgateToopbarIcons extends Component<Props> {
     const { isLogined } = this.props;
     const { intl } = this.context;
     const componentClasses = classNames([styles.component]);
-
     return (
       <div className={componentClasses}>
         <button
