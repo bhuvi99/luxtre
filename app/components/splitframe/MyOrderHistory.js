@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import { MYORDERHISTORY } from './SplitFrameConstants';
 
 type Props = {
     coinPrice: number,
   };
 
-@observer
-export default class MyOrderHistory extends Component<Props> {
+const MyOrderHistory = observer(() => {
+  const order = "OrderList";
+  return (
+    <React.Fragment>
+        <div>My Order</div>
+    </React.Fragment>
+  );
+});
 
-    render() {
-        return (
-            <div>
-                Here is MyOrderHistory Page
-            </div>   
-        );
-    }
-}
-
-
+MyOrderHistory.displayName = MYORDERHISTORY;
+export default MyOrderHistory;

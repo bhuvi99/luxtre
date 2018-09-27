@@ -17,22 +17,22 @@ export default class PopOver extends React.PureComponent {
 
   addEventListeners() {
     if (this.props.shouldCloseOnEsc) {
-      document.addEventListener('keydown', this.handleKeyDown);
+      document.addEventListener('keydown', this.handleKeyDown.bind(this));
     }
     if (this.props.shouldCloseOnBlur) {
-      document.addEventListener('mousedown', this.handleMouseDown);
+      document.addEventListener('mousedown', this.handleMouseDown.bind(this));
     }
-    window.addEventListener('resize', this.closePopOver);
+    window.addEventListener('resize', this.closePopOver.bind(this));
   }
 
   removeEventListeners() {
     if (this.props.shouldCloseOnEsc) {
-      document.removeEventListener('keydown', this.handleKeyDown);
+      document.removeEventListener('keydown', this.handleKeyDown.bind(this));
     }
     if (this.props.shouldCloseOnBlur) {
-      document.removeEventListener('mousedown', this.handleMouseDown);
+      document.removeEventListener('mousedown', this.handleMouseDown.bind(this));
     }
-    window.removeEventListener('resize', this.closePopOver);
+    window.removeEventListener('resize', this.closePopOver.bind(this));
   }
 
   componentWillUnmount() {
