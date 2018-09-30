@@ -29,7 +29,21 @@ LUXtre is platform agnostic and will form the base for our upcoming technical fe
     cd luxtre
     npm update
     npm install
+ 
+ ### Production
+ --------------
+ - BUild Linux:
     
+        ./scripts/build-installer/linux.sh luxtre-version luxd-version
+        
+ - Build Wins x64:
+ 
+        START > RUN c:\path_to_luxtre\scripts\build-installer\win64.bat luxtre-version luxd-version
+        
+ - Build Mac:
+        
+        ./scripts/build-installer/mac.sh luxtre-version luxd-version
+-----------------------------------------------------------------------------
  ### Development
 ----------------
 
