@@ -1769,11 +1769,25 @@
         }
       },
       {
+        "defaultMessage": "!!!LSR Tokens",
+        "description": "Label for the \"LSR Tokens\" nav button in the wallet navigation.",
+        "end": {
+          "column": 3,
+          "line": 53
+        },
+        "file": "app/components/wallet/navigation/WalletNavigation.js",
+        "id": "wallet.navigation.lsrtokens",
+        "start": {
+          "column": 12,
+          "line": 34
+        }
+      },
+      {
         "defaultMessage": "!!!Smartcontracts",
         "description": "Label for the \"Smartcontracts\" nav button in the wallet navigation.",
         "end": {
           "column": 3,
-          "line": 53
+          "line": 58
         },
         "file": "app/components/wallet/navigation/WalletNavigation.js",
         "id": "wallet.navigation.smartcontracts",
