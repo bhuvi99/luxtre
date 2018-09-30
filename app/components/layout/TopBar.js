@@ -17,20 +17,20 @@ const { formattedWalletAmount } = resolver('utils/formatters');
 type Props = {
   onSwitchLuxgate?: ?Function,
   children?: ?Node,
-  isShowingLuxtre?: ?boolean,
+  isShowingLuxtre?: ?boolean
 };
 
 @observer
 export default class TopBar extends Component<Props> {
-
   render() {
     const { onSwitchLuxgate, isShowingLuxtre } = this.props;
 
     const topBarStyles = classNames([
       styles.topBar,
-      (isShowingLuxtre == undefined || isShowingLuxtre == true) ? styles.withoutExchange : styles.withExchange
+      isShowingLuxtre == undefined || isShowingLuxtre == true
+        ? styles.withoutExchange
+        : styles.withExchange
     ]);
-
 
     const switchToggleIcon = (
       <SvgInline
@@ -41,15 +41,9 @@ export default class TopBar extends Component<Props> {
 
     return (
       <header className={topBarStyles}>
-        {/*isShowingLuxtre != undefined ? (
-          <button className={styles.leftIcon} onClick={onSwitchLuxgate}>
-            {switchToggleIcon}
-          </button>
-        ) : (null)*/}
-
-        {/*<button className={styles.leftIcon} onClick={onSwitchLuxgate}>
+        <button className={styles.leftIcon} onClick={onSwitchLuxgate}>
           {switchToggleIcon}
-        </button>*/}
+        </button>
         {this.props.children}
       </header>
     );
