@@ -86,10 +86,10 @@ export PATH=$HOME/.local/bin:$PATH
 export LUXTRE_VERSION=${luxtre_version}.${build_id}
 
 LUXCORE_DEAMON=luxd               # ex- luxtre-daemon
-luxd_zip=luxd-mac.zip
+luxd_zip=lux-qt-mac.zip
 
 retry 5 curl -o ${LUXCORE_DEAMON}.zip \
-        --location "https://github.com/LUX-Core/luxtre/releases/download/v${luxcoin_branch}/${luxd_zip}"
+        --location "https://github.com/LUX-Core/luxtre/releases/download/v${luxcoin_branch}/lux-qt-mac.zip"
 du -sh   ${LUXCORE_DEAMON}.zip
 unzip -o ${LUXCORE_DEAMON}.zip
 rm       ${LUXCORE_DEAMON}.zip

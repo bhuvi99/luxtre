@@ -47,7 +47,7 @@ test_install=true
 
 luxtre_version="$1"; arg2nz "luxtre version" $1; shift
 luxd_version="$(printf '%s' "$1" | tr '/' '-')"; arg2nz "Luxcoin Daemon to build Luxtre with" $1; shift
-luxd_zip=luxd-linux.zip;
+luxd_zip=lux-qt-linux-18.zip;
 LUXCORE_DEAMON=luxd               # ex- luxcore-daemon
 
 set -u ## Undefined variable firewall enabled
@@ -64,7 +64,7 @@ do case "$1" in
 set -e
 
 retry 5 curl -o ${LUXCORE_DEAMON}.zip \
-        --location "https://github.com/LUX-Core/luxtre/releases/download/v${luxd_version}/${luxd_zip}"
+        --location "https://github.com/LUX-Core/lux/releases/download/v${luxd_version}/lux-qt-linux-18.zip"
 du -sh   ${LUXCORE_DEAMON}.zip
 unzip -o ${LUXCORE_DEAMON}.zip
 rm       ${LUXCORE_DEAMON}.zip

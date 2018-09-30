@@ -14,7 +14,7 @@ set LUXD_VERSION=%2
 @if [%LUXD_VERSION%]==[]   (@echo WARNING: LUXD_VERSION [argument #2] was not provided, defaulting to %DEFAULT_LUXD_VERSION%
     set LUXD_VERSION=%DEFAULT_LUXD_VERSION%);
 
-set LUXD_URL=https://github.com/LUX-Core/luxtre/releases/download/v%LUXD_VERSION%/luxd-wins.zip
+set LUXD_URL=https://github.com/LUX-Core/luxtre/releases/download/v%LUXD_VERSION%/lux-qt-win.zip
 set LIBRESSL_URL=https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-%LIBRESSL_VERSION%-windows.zip
 
 @echo Building luxtre version:  %LUXTRE_VERSION%
@@ -33,16 +33,16 @@ set LIBRESSL_URL=https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-%LIBRESSL
 	popd & exit /b 1)
 
 @echo Obtaining Luxcoin v%LUXD_VERSION%
-del /f luxd-wins.zip 2>nul
-.\curl --location %LUXD_URL% -o luxd-wins.zip
+del /f lux-qt-win.zip 2>nul
+.\curl --location %LUXD_URL% -o lux-qt-win.zip
 @if %errorlevel% neq 0 (@echo FAILED: couldn't obtain the Luxcoin v%LUXD_VERSION%
 popd & exit /b 1)
-7z\7z x luxd-wins.zip -y
-@if %errorlevel% neq 0 (@echo FAILED: 7z x luxd-wins.zip -y
+7z\7z x lux-qt-win.zip -y
+@if %errorlevel% neq 0 (@echo FAILED: 7z x lux-qt-win.zip -y
 popd & exit /b 1)
 move luxd.exe     installers\
 rmdir /s/q luxd-wins 2>nul
-del luxd-wins.zip
+del lux-qt-win.zip
 
 @echo Launcher.cmd
 copy /y scripts\launcher\win.cmd installers\launcher.cmd
