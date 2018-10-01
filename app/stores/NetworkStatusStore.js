@@ -139,10 +139,12 @@ export default class NetworkStatusStore extends Store {
             this.isConnected = false;
             this.networkDifficulty = 0;
             this.connectState = CON_STATE.CONNECTING;
-            this._checkLoadingBlock = true;
-          } else if(difficulty.errorMessage.indexOf("Loading block") == 0 && this._checkLoadingBlock)
-            this.connectState = CON_STATE.LOADINGBLOCK;
-          else if(difficulty.errorMessage.indexOf("Verifying blocks") == 0 || difficulty.errorMessage.indexOf("startingheight") >= 0)
+          } else if(difficulty.errorMessage.indexOf("Loading block") == 0) {
+            if(this._checkLoadingBlock)
+              this.connectState = CON_STATE.LOADINGBLOCK;
+            else
+              this._checkLoadingBlock = true;
+          } else if(difficulty.errorMessage.indexOf("Verifying blocks") == 0 || difficulty.errorMessage.indexOf("startingheight") >= 0)
             this.connectState = CON_STATE.VERIFYBLOCK;
           else 
             this.connectState = CON_STATE.NONE;
