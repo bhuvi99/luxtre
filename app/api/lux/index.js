@@ -320,6 +320,13 @@ export default class LuxApi {
         networkDifficulty: peerInfos ? totalBlocks : 100
       };
     } catch (error) {
+      const errStr = stringifyError(error);
+      const errObj = JSON.parse(errStr);
+      if(errObj.message) {
+        return {
+          errorMessage: errObj.message
+        }
+      }
       Logger.error('LuxApi::getSyncProgress error: ' + stringifyError(error));
       throw new GenericApiError();
     }

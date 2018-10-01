@@ -4,6 +4,7 @@ import Store from './lib/Store';
 import Request from './lib/LocalizedRequest';
 import { ROUTES } from '../routes-config';
 import { Logger } from '../utils/logging';
+import CON_STATE from '../utils/ConnectState';
 import type { GetSyncProgressResponse } from '../api/common';
 import environment from '../environment';
 
@@ -25,9 +26,11 @@ export default class NetworkStatusStore extends Store {
 
   _startTime = Date.now();
   _startupStage = STARTUP_STAGES.CONNECTING;
+  _checkLoadingBlock = false;
 
   @observable isConnected = false;
   @observable hasBeenConnected = false;
+  @observable connectState = 0;
   @observable localDifficulty = 0;
   @observable networkDifficulty = 0;
   @observable isLoadingWallets = true;
@@ -131,25 +134,40 @@ export default class NetworkStatusStore extends Store {
     try {
       const difficulty = await this.syncProgressRequest.execute().promise;
       runInAction('update difficulties', () => {
-        this.isConnected = true;
-        // We are connected, move on to syncing stage
-        if (this._startupStage === STARTUP_STAGES.CONNECTING) {
-          Logger.info(
-            `========== Connected after ${this._getStartupTimeDelta()} milliseconds ==========`
-          );
-          this._startupStage = STARTUP_STAGES.SYNCING;
+        if(difficulty.errorMessage) {
+          if(difficulty.errorMessage.indexOf("connect") == 0) {
+            this.isConnected = false;
+            this.networkDifficulty = 0;
+            this.connectState = CON_STATE.CONNECTING;
+            this._checkLoadingBlock = true;
+          } else if(difficulty.errorMessage.indexOf("Loading block") == 0 && this._checkLoadingBlock)
+            this.connectState = CON_STATE.LOADINGBLOCK;
+          else if(difficulty.errorMessage.indexOf("Verifying blocks") == 0 || difficulty.errorMessage.indexOf("startingheight") >= 0)
+            this.connectState = CON_STATE.VERIFYBLOCK;
+          else 
+            this.connectState = CON_STATE.NONE;
+        } else {
+          this.isConnected = true;
+          this.hasBeenConnected = true;
+          // We are connected, move on to syncing stage
+          if (this._startupStage === STARTUP_STAGES.CONNECTING) {
+            Logger.info(
+              `========== Connected after ${this._getStartupTimeDelta()} milliseconds ==========`
+            );
+            this._startupStage = STARTUP_STAGES.SYNCING;
+          }
+          // If we haven't set local difficulty before, mark the first
+          // result as 'start' difficulty for the sync progress
+          if (this._localDifficultyStartedWith === null) {
+            this._localDifficultyStartedWith = difficulty.localDifficulty;
+            Logger.debug('Initial difficulty: ' + JSON.stringify(difficulty));
+          }
+          // Update the local and network difficulties on each request
+          this.localDifficulty = difficulty.localDifficulty;
+          Logger.debug('Local difficulty changed: ' + this.localDifficulty);
+          this.networkDifficulty = difficulty.networkDifficulty;
+          Logger.debug('Network difficulty changed: ' + this.networkDifficulty);
         }
-        // If we haven't set local difficulty before, mark the first
-        // result as 'start' difficulty for the sync progress
-        if (this._localDifficultyStartedWith === null) {
-          this._localDifficultyStartedWith = difficulty.localDifficulty;
-          Logger.debug('Initial difficulty: ' + JSON.stringify(difficulty));
-        }
-        // Update the local and network difficulties on each request
-        this.localDifficulty = difficulty.localDifficulty;
-        Logger.debug('Local difficulty changed: ' + this.localDifficulty);
-        this.networkDifficulty = difficulty.networkDifficulty;
-        Logger.debug('Network difficulty changed: ' + this.networkDifficulty);
       });
     } catch (error) {
       // If the sync progress request fails, switch to disconnected state
