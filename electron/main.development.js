@@ -39,7 +39,7 @@ app.setPath('temp', appLogFolderPath);
 
 // TODO: Update when endpoint is ready (crash reports are only saved locally for now)
 crashReporter.start({
-  companyName: 'IOHK',
+  companyName: 'LUX',
   productName: APP_NAME,
   submitURL: '',
   uploadToServer: false
