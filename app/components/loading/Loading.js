@@ -42,6 +42,11 @@ const messages = defineMessages({
     defaultMessage: '!!!Verify blocks',
     description: 'Message "Verifying blocks" on the loading screen.'
   },
+  rescanning: {
+    id: 'loading.screen.rescanning',
+    defaultMessage: '!!!Rescanning',
+    description: 'Message "Rescanning" on the loading screen.'
+  },
 });
 
 type Props = {
@@ -109,6 +114,13 @@ export default class Loading extends Component<Props> {
               <div className={styles.connecting}>
                 <h1 className={styles.headline}>
                   {intl.formatMessage(messages.verifyingBlocks)}
+                </h1>
+              </div>
+            )}
+             {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.RESCANNING && (
+              <div className={styles.connecting}>
+                <h1 className={styles.headline}>
+                  {intl.formatMessage(messages.rescanning)}
                 </h1>
               </div>
             )}

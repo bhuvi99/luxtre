@@ -146,6 +146,8 @@ export default class NetworkStatusStore extends Store {
               this._checkLoadingBlock = true;
           } else if(difficulty.errorMessage.indexOf("Verifying blocks") == 0 || difficulty.errorMessage.indexOf("startingheight") >= 0)
             this.connectState = CON_STATE.VERIFYBLOCK;
+          else if(difficulty.errorMessage.indexOf("Rescanning") == 0 )
+            this.connectState = CON_STATE.RESCANNING;
           else 
             this.connectState = CON_STATE.NONE;
         } else {
