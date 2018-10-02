@@ -52,6 +52,7 @@
   "loading.screen.connectingToNetworkMessage": "!!!Connecting to network",
   "loading.screen.loadingBlockIndex": "!!!Loading block index",
   "loading.screen.verifyingBlock": "!!!Verifying blocks",
+  "loading.screen.rescanning": "Rescanning",
   "loading.screen.loadingWalletData": "!!!Loading wallet data",
   "loading.screen.reconnectingToNetworkMessage": "!!!Network connection lost - reconnecting",
   "loading.screen.syncingBlocksMessage": "!!!Syncing blocks",
