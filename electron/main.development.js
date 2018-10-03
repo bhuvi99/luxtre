@@ -186,8 +186,8 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1150,
-    height: 870
+    width: 1190,
+    height: 768
   });
 
   mainWindow.setMinimumSize(900, 600);
