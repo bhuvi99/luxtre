@@ -96,41 +96,34 @@ export default class Loading extends Component<Props> {
         { isConnecting ? (null) : ( <SvgInline svg={luxcoreLogo} className={luxcoreLogoStyles} /> )}
         {hasLoadedCurrentLocale && (
           <div>
-            {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.CONNECTING && (
-              <div className={styles.connecting}>
-                <h1 className={styles.headline}>
-                  {intl.formatMessage(connectingMessage)}
-                </h1>
-              </div>
-            )}
-            {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.LOADINGBLOCK && (
-              <div className={styles.connecting}>
+            <div className={styles.connecting}>
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.CONNECTING && (
+                  <h1 className={styles.headline}>
+                    {intl.formatMessage(connectingMessage)}
+                  </h1>
+              )}
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.LOADINGBLOCK && (
                 <h1 className={styles.headline}>
                   {intl.formatMessage(messages.loadingBlockIndex)}
                 </h1>
-              </div>
-            )}
-            {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.VERIFYBLOCK && (
-              <div className={styles.connecting}>
+              )}
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.VERIFYBLOCK && (
                 <h1 className={styles.headline}>
                   {intl.formatMessage(messages.verifyingBlocks)}
                 </h1>
-              </div>
-            )}
-             {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.RESCANNING && (
-              <div className={styles.connecting}>
+              )}
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.RESCANNING && (
                 <h1 className={styles.headline}>
                   {intl.formatMessage(messages.rescanning)}
                 </h1>
-              </div>
-            )}
-            {isConnecting && hasBlockSyncingStarted && (
-              <div className={styles.connecting}>
+              )}
+              {isConnecting && hasBlockSyncingStarted && (
                 <h1 className={styles.headline}>
                   {intl.formatMessage(messages.waitingForSyncToStart)}
                 </h1>
-              </div>
-            )}
+              )}
+            </div>
+
             {isSyncing && (
               <div className={styles.syncing}>
                 <h1 className={styles.headline}>
