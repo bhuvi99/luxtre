@@ -60,7 +60,8 @@ const messages = defineMessages({
 type Props = {
   isActiveNavItem: Function,
   onNavItemClick: Function,
-  amount: string
+  amount: string,
+  isShowingLuxtre: boolean
 };
 
 @observer
@@ -71,13 +72,14 @@ export default class WalletNavigation extends Component<Props> {
   };
 
   render() {
-    const { isActiveNavItem, onNavItemClick, amount} = this.props;
+    const { isActiveNavItem, onNavItemClick, amount, isShowingLuxtre} = this.props;
     const { intl } = this.context;
     return (
       <div className={styles.component}>
         <div>
           <WalletLogo 
- 	          amount={amount}
+             amount={amount}
+             isShowingLuxtre = {isShowingLuxtre}
  	        />
         </div>
         <div className={styles.navItem}>

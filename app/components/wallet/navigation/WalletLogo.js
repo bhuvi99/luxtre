@@ -1,32 +1,30 @@
 // @flow
 import React, { Component } from 'react';
 import SvgInline from 'react-svg-inline';
-import { observer } from 'mobx-react';
 import classnames from 'classnames';
 import styles from './WalletLogo.scss';
-import walletframe from '../../../assets/images/wallet-frame.inline.svg';
-import luxicon from '../../../assets/images/icon-white.inline.svg';
+import luxicon from '../../../assets/images/lux-symbol.inline.svg';
+import luxgateicon from '../../../assets/images/luxgate-logo.svg';
 
 type Props = {
-   amount: string
+   amount: string,
+   isShowingLuxtre: boolean,
 }
 
 export default class WalletLogo extends Component<Props> {
 
   render() {
-    const {amount} = this.props;
+    const {amount, isShowingLuxtre} = this.props;
     const bgClasses = classnames([
       styles.background,
       styles.normalIcon
     ]);
+    const logoIcon = isShowingLuxtre ? luxicon : luxgateicon;
+    const logo = isShowingLuxtre ? "LUXTRE" : "LUXGATE";
     return (
       <div className={styles.container}>
-        <SvgInline svg={walletframe} className={bgClasses} />
-        <div className={styles.logo} >
-          <div><SvgInline svg={luxicon} className={styles.icon} /> </div>
-          <div><span className={styles.balance_name} >Your balance </span></div>
-          <div><span className={styles.balance_amount} >{amount}</span></div>
-        </div>
+        <div><SvgInline svg={logoIcon} className={styles.icon} /> </div>
+        <div><span className={styles.lux_name}> {logo} </span></div>
       </div>
     );
   }
