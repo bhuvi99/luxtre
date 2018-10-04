@@ -6,9 +6,6 @@ import styles from './SidebarLayout.scss';
 
 type Props = {
   children: any | Node,
-  sidebar: Node,
-  topbar: Node,
-  notification?: ?Node,
   contentDialog?: ?Node,
 };
 
@@ -20,13 +17,9 @@ export default class SidebarLayout extends Component<Props> {
   };
 
   render() {
-    const { children, sidebar, topbar, notification, contentDialog } = this.props;
+    const { children, contentDialog } = this.props;
     return (
       <div className={styles.component}>
-          <div className={styles.topbar}>
-            {topbar}
-          </div>
-
         <div className={styles.main}>
           <div className={styles.contentWrapper}>
             <div className={styles.content}>

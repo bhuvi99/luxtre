@@ -9,13 +9,13 @@
   z-index: 100;
 
   &.withExchange {
-    background: var(--theme-topbar-background-color) url("../../assets/images/header-logo-exchange.svg") no-repeat center !important;
+  //  background: var(--theme-topbar-background-color) url("../../assets/images/header-logo-exchange.svg") no-repeat center !important;
     background-size: 240px !important;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25) !important;
   }
 
   &.withoutExchange {
-    background: var(--theme-topbar-background-color) url("../../assets/images/header-logo-wallet.svg") no-repeat center !important;
+  //  background: var(--theme-topbar-background-color) url("../../assets/images/header-logo-wallet.svg") no-repeat center !important;
     background-size: 240px !important;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25) !important;
   }
