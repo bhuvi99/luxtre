@@ -7,16 +7,18 @@ import styles from './WalletWithNavigation.scss';
 
 type Props = {
   children?: Node,
+  topbar: Node,
   isActiveScreen: Function,
   onWalletNavItemClick: Function,
-  amount: string
+  amount: string,
+  isShowingLuxtre: boolean
 };
 
 @observer
 export default class WalletWithNavigation extends Component<Props> {
 
   render() {
-    const { children, isActiveScreen, onWalletNavItemClick, amount} = this.props;
+    const { children, topbar, isActiveScreen, onWalletNavItemClick, amount, isShowingLuxtre} = this.props;
     return (
       <div className={styles.component}>
         <div className={styles.navigation}>
@@ -24,10 +26,16 @@ export default class WalletWithNavigation extends Component<Props> {
             isActiveNavItem={isActiveScreen}
             onNavItemClick={onWalletNavItemClick}
             amount={amount}
+            isShowingLuxtre={isShowingLuxtre}
           />
         </div>
-        <div className={styles.page}>
-          {children}
+        <div className={styles.content}>
+          <div className={styles.topbar}>
+            {topbar}
+          </div>
+          <div className={styles.page}>
+            {children}
+          </div>
         </div>
       </div>
     );
