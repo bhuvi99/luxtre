@@ -25,6 +25,7 @@ export default class TopBarContainer extends Component<Props> {
     const activeWallet = stores[environment.API].wallets.active;
     const {isShowingLuxtre} = sidebar;
     const { isLogined } = luxgate.loginInfo;
+    const pageTitle = stores[environment.API].wallets.pageTitle;
     const testnetLabel = (
       isLuxApi && !isMainnet ? <WalletTestEnvironmentLabel /> : null
     );
@@ -33,6 +34,7 @@ export default class TopBarContainer extends Component<Props> {
       <TopBar
         onSwitchLuxgate={actions.sidebar.switchLuxgate.trigger}
         isShowingLuxtre={isShowingLuxtre}
+        pageTitle={pageTitle}
       >
         {isShowingLuxtre && activeWallet && activeWallet.hasPassword == true ? 
           <WalletLockStatusIcon
