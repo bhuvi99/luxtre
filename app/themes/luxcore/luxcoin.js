@@ -66,6 +66,7 @@ export default {
   '--theme-button-flat-background-color-disabled': '#596179',
   '--theme-button-flat-text-color-disabled': '#DDD',
   '--theme-button-flat-text-color': '#FFF',
+  '--theme-tab-flat-text-color': '#596179',
 
   '--theme-checkbox-label-color': '#050b2d',
   '--theme-checkbox-border-color': '#061532',
@@ -181,8 +182,8 @@ export default {
   '--theme-test-environment-label-background-color': '#ab1700',
   '--theme-test-environment-label-text-color': '#fafbfc',
 
-  '--theme-topbar-background-color': '#061532',
-  '--theme-topbar-wallet-name-color': '#fafbfc',
+  '--theme-topbar-background-color': '#fafbfc',
+  '--theme-topbar-wallet-name-color': '#333333',
   '--theme-topbar-wallet-info-color': '#fafbfc',
   '--theme-topbar-layout-body-background-color': '#ebeff2',
 

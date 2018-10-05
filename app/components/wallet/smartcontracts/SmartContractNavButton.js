@@ -19,17 +19,14 @@ export default class SmartContractNavButton extends Component<Props> {
     const { isActive, onClick, className } = this.props;
     const componentClasses = classnames([
       className,
+      styles.btn,
+      styles.btnEffect,
       styles.component,
       isActive ? styles.active : styles.normal
     ]);
-    const iconClasses = classnames([
-      isActive ? styles.activeIcon : styles.normalIcon
-    ]);
     return (
-      <button className={componentClasses} onClick={onClick}>
-        <div className={styles.container}>
-          <span className={styles.label}>{this.props.label}</span>
-        </div>
+      <button className={componentClasses} onClick={onClick} autofocus>
+        {this.props.label}
       </button>
     );
   }
