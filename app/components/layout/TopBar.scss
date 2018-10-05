@@ -1,4 +1,17 @@
 .topBar {
+  background: var(--theme-topbar-background-color);
+  display: flex;
+  height: 64px;
+  padding: 20px 30px;
+}
+
+.pageTitle{
+  color: var(--theme-topbar-wallet-name-color);
+  font-size: 21px;
+  font-family: var(--font-semibold);
+}
+
+.topBar1 {
   align-items: center;
   background: var(--theme-topbar-background-color);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);

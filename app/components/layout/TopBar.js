@@ -18,13 +18,32 @@ type Props = {
   onSwitchLuxgate?: ?Function,
   children?: ?Node,
   isShowingLuxtre?: ?boolean,
+  pageTitle: string,
+};
+
+var pageNameList = {
+  "summary" : "SUMMARY",
+  "send" : "SEND",
+  "receive" : "RECEIVE", 
+  "transactions" : "TRANSACTIONS",
+  "settings" : "SETTINGS",
+  "utilities" : "UTILITIES",
+  "poscalculator" : "UTILITIES",
+  "masternodes" : "MASTERNODES",
+  "masternodesnet" : "MASTERNODES",
+  "mymasternode" : "MASTERNODES",
+  "smartcontracts" : "SMART CONTRACTS",
+  "createsmartcontract" : "SMART CONTRACTS",
+  "callsmartcontract" : "SMART CONTRACTS",
+  "sendtosmartcontract" : "SMART CONTRACTS",
+  "solcompiler" : "SMART CONTRACTS",
 };
 
 @observer
 export default class TopBar extends Component<Props> {
 
   render() {
-    const { onSwitchLuxgate, isShowingLuxtre } = this.props;
+    const { onSwitchLuxgate, isShowingLuxtre, pageTitle } = this.props;
 
     const topBarStyles = classNames([
       styles.topBar,
@@ -38,6 +57,8 @@ export default class TopBar extends Component<Props> {
         className={styles.sidebarIcon}
       />
     );
+    
+    const page = pageTitle ? pageTitle : "summary";
 
     return (
       <header className={topBarStyles}>
@@ -50,6 +71,9 @@ export default class TopBar extends Component<Props> {
         {/*<button className={styles.leftIcon} onClick={onSwitchLuxgate}>
           {switchToggleIcon}
         </button>*/}
+        <div className={styles.pageTitle}>
+          {pageNameList[page]}
+        </div>
         {this.props.children}
       </header>
     );
