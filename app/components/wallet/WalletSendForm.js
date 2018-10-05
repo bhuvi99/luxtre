@@ -215,11 +215,7 @@ export default class WalletSendForm extends Component<Props, State> {
 
     return (
       <div className={styles.component}>
-	      <div className={styles.categoryTitle}>
-          Send
-        </div>
         <BorderedBox>
-
           <div className={styles.receiverInput}>
             <Input
               className="receiver"
