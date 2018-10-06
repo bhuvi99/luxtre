@@ -22,7 +22,7 @@ type Props = {
 };
 
 var pageNameList = {
-  "summary" : "SUMMARY",
+  "summary" : "OVERVIEW",
   "send" : "SEND",
   "receive" : "RECEIVE", 
   "transactions" : "TRANSACTIONS",

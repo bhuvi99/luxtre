@@ -25,7 +25,7 @@ export default class SmartContractNavButton extends Component<Props> {
       isActive ? styles.active : styles.normal
     ]);
     return (
-      <button className={componentClasses} onClick={onClick} autofocus>
+      <button className={componentClasses} onClick={onClick}>
         {this.props.label}
       </button>
     );

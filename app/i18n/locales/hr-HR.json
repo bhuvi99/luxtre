@@ -163,7 +163,7 @@
   "wallet.navigation.receive": "primi",
   "wallet.navigation.send": "pošalji",
   "wallet.navigation.settings": "postavke",
-  "wallet.navigation.summary": "!!!Summary",
+  "wallet.navigation.summary": "!!!Overview",
   "wallet.navigation.transactions": "!!!Transactions",
   "wallet.receive.page.addressCopyNotificationMessage": "Adresa: <strong>{walletAddress}</strong> je pohranjena u međuspremnik",
   "wallet.receive.page.copyAddressLabel": "!!!Copy address",

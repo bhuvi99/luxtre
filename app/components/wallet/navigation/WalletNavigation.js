@@ -17,7 +17,7 @@ import smartcontractIcon from '../../../assets/images/wallet-nav/smartcontract-i
 const messages = defineMessages({
   summary: {
     id: 'wallet.navigation.summary',
-    defaultMessage: '!!!Summary',
+    defaultMessage: '!!!Overview',
     description: 'Label for the "Summary" nav button in the wallet navigation.'
   },
   send: {

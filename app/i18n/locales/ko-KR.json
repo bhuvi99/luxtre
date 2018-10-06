@@ -160,7 +160,7 @@
   "wallet.navigation.receive": "!!!Receive",
   "wallet.navigation.send": "!!!Send",
   "wallet.navigation.settings": "!!!Settings",
-  "wallet.navigation.summary": "!!!Summary",
+  "wallet.navigation.summary": "!!!Overview",
   "wallet.navigation.transactions": "!!!Transactions",
   "wallet.receive.page.addressCopyNotificationMessage": "!!!You have successfully copied wallet address",
   "wallet.receive.page.copyAddressLabel": "!!!Copy address",
