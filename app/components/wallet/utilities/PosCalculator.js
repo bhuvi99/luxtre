@@ -82,8 +82,8 @@ export default class PosCalculator extends Component<State> {
 
     return (
       <div className={styles.component}>
-        <div className={styles.categoryTitle}> Proof-Of-Stake (POS) Calculator </div>
         <div className={styles.description}>
+          <div className={styles.categoryTitle}> Proof-Of-Stake (POS) Calculator </div>
           <span><label className={styles.descriptMargin}>Currently it is very early days... so only basic functions but you can:</label></span>
           <li className={styles.intentliContent}><label>Enter the amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.</label></li>
           <li className={styles.intentliContent}><label>The probability of minting a block reaches its maximum after 90 days and doesn't increase after that.</label></li>

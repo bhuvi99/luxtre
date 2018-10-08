@@ -29,6 +29,7 @@ var pageNameList = {
   "settings" : "SETTINGS",
   "utilities" : "UTILITIES",
   "poscalculator" : "UTILITIES",
+  "stakingchart" : "UTILITIES",
   "masternodes" : "MASTERNODES",
   "masternodesnet" : "MASTERNODES",
   "mymasternode" : "MASTERNODES",
