@@ -177,6 +177,7 @@
   "wallet.navigation.solcompiler": "Solidity Compiler",
   "wallet.navigation.utilities": "Utilities",
   "wallet.navigation.utilityposcalc": "POS Calculator",
+  "wallet.navigation.utilitystakingchart": "Staking Chart",
   "wallet.receive.page.addressCopyNotificationMessage": "Address: <strong>{walletAddress}</strong> copied to clipboard",
   "wallet.receive.page.copyAddressLabel": "Copy address",
   "wallet.receive.page.generateNewAddressButtonLabel": "Generate new address",
