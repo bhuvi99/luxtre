@@ -1,14 +1,14 @@
 .component {
   overflow: visible;
   position: absolute;
-  right: 65px;
+  right: 30px;
   &:hover {
     .info {
       opacity: 1;
     }
   }
   &.mainnet {
-    right: 80px;
+    right: 50px;
     .icon {
       height: 31px;
       width: 31px;
@@ -18,7 +18,7 @@
 
 .icon {
   height: 22px;
-  width: 22px;
+  width: 27px;
 }
 
 .syncing {

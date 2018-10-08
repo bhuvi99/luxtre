@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { defineMessages, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import lockedIcon from '../../assets/images/top-bar/wallet-locked.png';
+import lockedIcon from '../../assets/images/top-bar/wallet-locked-bright.png';
 import styles from './WalletLockStatusIcon.scss';
 
 const messages = defineMessages({
