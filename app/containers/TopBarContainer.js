@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import TopBar from '../components/layout/TopBar';
+import ConsoleWindowIcon from '../components/widgets/ConsoleWindowIcon';
 import NodeSyncStatusIcon from '../components/widgets/NodeSyncStatusIcon';
 import WalletLockStatusIcon from '../components/widgets/WalletLockStatusIcon';
 import LuxgateToopbarIcons from '../components/widgets/LuxgateToopbarIcons';
@@ -50,6 +51,13 @@ export default class TopBarContainer extends Component<Props> {
         }
         {isShowingLuxtre ?
           <NodeSyncStatusIcon
+            networkStatus={networkStatus}
+            isMainnet={isMainnet}
+          />
+          :null
+        }
+        {isShowingLuxtre ?
+          <ConsoleWindowIcon
             networkStatus={networkStatus}
             isMainnet={isMainnet}
           />

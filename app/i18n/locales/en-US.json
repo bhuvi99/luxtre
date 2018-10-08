@@ -14,6 +14,7 @@
   "api.errors.WalletAlreadyRestoredError": "Wallet you are trying to restore already exists.",
   "api.errors.WalletFileImportError": "Wallet could not be imported, please make sure you are providing a correct file.",
   "luxcoin.node.sync.status.blocksSynced": "Blocks synced {percentage}%",
+  "luxcoin.node.sync.status.consoleWindow": "Debug Console Window",
   "luxcoin.node.update.notification.accept.button.label": "Update and restart",
   "luxcoin.node.update.notification.message": "Would you like to install the update? If you choose to postpone, the update will be installed automatically on the next Luxcore launch.",
   "luxcoin.node.update.notification.postpone.button.label": "Postpone until restart",
