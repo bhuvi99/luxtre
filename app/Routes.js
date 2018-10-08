@@ -36,6 +36,7 @@ const SendtoSmartContractPage = resolver('containers/wallet/SendtoSmartContractP
 const SolidityCompilerPage = resolver('containers/wallet/SolidityCompilerPage');
 const UtilityPage = resolver('containers/wallet/UtilityPage');
 const UtilityPosCalcPage = resolver('containers/wallet/UtilityPosCalcPage');
+const UtilityStakingChartPage = resolver('containers/wallet/UtilityStakingChartPage');
 
 export const Routes = (
   <div>
@@ -55,6 +56,7 @@ export const Routes = (
       <Route path={ROUTES.WALLETS.SETTINGS} component={WalletSettingsPage} />
       <Route path={ROUTES.WALLETS.UTILITIES.ROOT} component={UtilityPage}>
         <Route path={ROUTES.WALLETS.UTILITIES.POSCALCULATOR} component={UtilityPosCalcPage}/>
+        <Route path={ROUTES.WALLETS.UTILITIES.STAKINGCHART} component={UtilityStakingChartPage}/>
       </Route>
       <Route path={ROUTES.WALLETS.MASTERNODES.ROOT} component={MasternodesPage}>
         <Route path={ROUTES.WALLETS.MASTERNODES.MASTERNODESNET} component={MasternodesNetPage}/>
