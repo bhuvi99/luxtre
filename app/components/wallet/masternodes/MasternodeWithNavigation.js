@@ -17,14 +17,14 @@ export default class MasternodeWithNavigation extends Component<Props> {
   render() {
     const { children, isActiveScreen, onWalletNavItemClick} = this.props;
     return (
-      <div className={styles.component}>
+      <div >
         <div className={styles.navigation}>
           <MasternodeNavigation
             isActiveNavItem={isActiveScreen}
             onNavItemClick={onWalletNavItemClick}
           />
         </div>
-        <div className={styles.page}>
+        <div >
           {children}
         </div>
       </div>
