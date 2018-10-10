@@ -8,6 +8,7 @@ import Transaction from './Transaction';
 import WalletTransaction from '../../../domain/WalletTransaction';
 import LoadingSpinner from '../../widgets/LoadingSpinner';
 import type { AssuranceMode } from '../../../types/transactionAssuranceTypes';
+import classnames from 'classnames';
 
 const messages = defineMessages({
   today: {
@@ -30,7 +31,8 @@ type Props = {
   hasMoreToLoad: boolean,
   onLoadMore: Function,
   assuranceMode: AssuranceMode,
-  walletId: string
+  walletId: string,
+  isSummaryPage: boolean,
 };
 
 @observer
@@ -97,7 +99,8 @@ export default class WalletTransactionsList extends Component<Props> {
       isLoadingTransactions,
       hasMoreToLoad,
       assuranceMode,
-      walletId
+      walletId,
+      isSummaryPage
     } = this.props;
 
     const transactionsGroups = this.groupTransactionsByDay(transactions);
@@ -110,8 +113,13 @@ export default class WalletTransactionsList extends Component<Props> {
         />
     ) : null;
 
+    const componentStyle = classnames([
+      styles.component,
+      isSummaryPage ? styles.summaryPage : styles.transactionPage
+    ]);
+
     return (
-      <div className={styles.component}>
+      <div className={componentStyle}>
         {transactionsGroups.map((group, groupIndex) => (
           <div className={styles.group} key={walletId + '-' + groupIndex}>
             <div className={styles.groupDate}>{this.localizedDate(group.date)}</div>
