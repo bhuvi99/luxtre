@@ -54,6 +54,10 @@ export default {
   '--theme-bordered-box-border': '1px solid #c6cdd6',
   '--theme-bordered-box-text-color': '#050b2d',
 
+  '--theme-overview-background-color': '#c5c5c5',
+  '--theme-overview-border': '1px solid #c5c5c5',
+  '--theme-overview-text-color': '#5e5d5d',
+
   '--theme-button-primary-background-color': '#061532',
   '--theme-button-primary-background-color-hover': '#85e3f6',
   '--theme-button-primary-background-color-active': '#40c2dc',
