@@ -86,6 +86,7 @@ import type {
   LuxWallet,
   LuxWallets,
   LuxWalletRecoveryPhraseResponse,
+  LuxStakingStatus
 } from './types';
 
 import { 
@@ -374,7 +375,13 @@ export default class LuxApi {
         }
       }
       
-      const isStaking = await getLuxStakingStatus();
+      const stakingStatus: LuxStakingStatus = await getLuxStakingStatus();
+      
+      const isStaking = stakingStatus && stakingStatus.validtime == true && 
+        stakingStatus.haveconnections == true && 
+        stakingStatus.walletunlocked == true && 
+        stakingStatus.mintablecoins == true &&
+        stakingStatus.enoughcoins == 'yes';
 
       const id = 'Main';
       let Wallets = [];
