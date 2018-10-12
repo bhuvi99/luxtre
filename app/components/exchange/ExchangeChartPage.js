@@ -10,8 +10,6 @@ import Chart from './Chart';
 
 import type { LGPrice } from '../../domain/LGPriceArray';
 
-const ReactHighstock = require('react-highcharts/ReactHighstock');
-
 type Props = {
   data: Array<LGPrice>
 };
@@ -27,20 +25,28 @@ export default class ExchangeChartPage extends Component<Props> {
     // d.volume = +d.volume;
     const parseDate = timeParse('%Y-%m-%d');
     // this.props.data
+    // const chartData = data.map(priceArray => ({
+    //   timestamp: priceArray[0],
+    //   high: priceArray[1],
+    //   low: priceArray[2],
+    //   open: priceArray[3],
+    //   close: priceArray[4],
+    //   relvolume: priceArray[5],
+    //   basevolume: priceArray[6],
+    //   numtrades: priceArray[7]
+    // }));
     const chartData = data.map(priceArray => ({
       timestamp: priceArray[0],
-      high: priceArray[1],
-      low: priceArray[2],
-      open: priceArray[3],
+      high: priceArray[2],
+      low: priceArray[3],
+      open: priceArray[1],
       close: priceArray[4],
-      relvolume: priceArray[5],
-      basevolume: priceArray[6],
-      numtrades: priceArray[7]
+      basevolume: priceArray[5]
     }));
 
     const myData = chartData.map(lgPrice => {
       const myDate = new Date(lgPrice.timestamp);
-      const parsedTime = parseDate(myDate);
+      //const parsedTime = parseDate(myDate);
       return {
         date: myDate,
         open: lgPrice.open,
@@ -50,11 +56,6 @@ export default class ExchangeChartPage extends Component<Props> {
         volume: lgPrice.basevolume // I guess? or ( sum base rel / 2 )?
       };
     });
-
-    return <Chart type="hybrid" data={myData} />;
-
-    // {
-    //   /* return <ReactHighstock ref="chart" config={config} />; */
-    // }
+    return <Chart type="hybrid" data={ myData } />;
   }
 }
