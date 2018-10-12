@@ -823,9 +823,10 @@ export default class LuxApi {
     try {
       //const { blocks } = request;
       const blocks = 25;
-      const estimatedFee: LuxFee = await getLuxEstimatedFee({
-        blocks,
-      });
+      //const estimatedFee: LuxFee = await getLuxEstimatedFee({
+      //  blocks,
+      //});
+      const estimatedFee = 0.0001;
       Logger.debug('LuxApi::getEstimatedResponse success: ' + estimatedFee);
       return quantityToBigNumber(estimatedFee);
     } catch (error) {
@@ -1205,6 +1206,10 @@ const _createTransaction = async (senderAccount: LuxWalletId, txHash: LuxTxHash)
   const txData: LuxTransaction = await getLuxTransactionByHash({
     txHash
   });
+  if(txData.confirmations < 0) //Negative confirmations indicate the transaction conflicts with the block chain
+  {
+    return null;
+  } 
   const type = senderAccount === txData.from ? transactionTypes.EXPEND : transactionTypes.INCOME;
   return _createWalletTransactionFromServerData(type, txData);
 };
