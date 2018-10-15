@@ -118,12 +118,19 @@ export default class ConsoleWindowDialog extends Component<Props, State> {
                 <div className={styles.consoleWindow}>
                     <div>Welcome to the <span className={styles.luxcore}>LUX Core RPC </span> console</div>
                     <div>Type help for an overview of available commands.</div>
-                    {consoleHistory.map((value, index) => (
-                        <div key={index}>
-                            {value}
-                        </div>
-                    ))}
-
+                    {consoleHistory.map((element, ei) => {
+                        return (
+                            <div key={`element-${ei}`}>
+                                {element.map((cell, ci) => {
+                                    return (
+                                        <div key={`cell-${ci}`}>
+                                            {cell}
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )
+                    })}
                 </div>
                 <div className={styles.commandInput}>
                     <input 

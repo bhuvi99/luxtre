@@ -28,7 +28,7 @@ export default class LuxDebugConsoleStore extends Store {
 
 
   @action saveConsoleHistory = (result: any) => {
-    this.consoleHistory.push(result);
+    this.consoleHistory.push(result.split(/\n/));
   };
 
 
