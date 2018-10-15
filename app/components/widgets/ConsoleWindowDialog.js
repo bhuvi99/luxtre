@@ -137,7 +137,6 @@ export default class ConsoleWindowDialog extends Component<Props, State> {
                             </div>
                         )
                     })}
-
                 </div>
                 <div className={styles.commandInput}>
                     <input 

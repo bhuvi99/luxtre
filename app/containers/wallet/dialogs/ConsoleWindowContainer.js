@@ -29,6 +29,7 @@ export default class ConsoleWindowContainer extends Component<Props> {
   render() {
     const { actions, error } = this.props;
     const dconsole = this.props.stores.lux.dconsole;
+
     const { consoleHistory, commandHistory } = dconsole;
 
     return (
