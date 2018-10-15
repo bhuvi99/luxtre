@@ -1,7 +1,7 @@
 .dialog {
   font-family: var(--font-light);
   text-align: center;
-  width: 560px;
+  width: 90vh;
   :global .Dialog_actions{
     padding-left: 20px;
     padding-right: 20px;
@@ -11,90 +11,50 @@
   }
 }
 
-.copyIconBig,
-.copyIcon {
-  margin-left: 5px;
-  cursor: pointer;
-  object-fit: contain;
-}
-
-.copyIconBigger {
-  margin-left: 6px;
-  cursor: pointer;
-  & > svg {
-    height: 27px;
-    width: 22px;
-    path {
-      fill: var(--theme-icon-copy-address-color);
-    }
-  }
-}
-
-.copyIconBig {
-  margin-left: 6px;
-  & > svg {
-    height: 14.5px;
-    width: 11.5px;
-    path {
-      fill: var(--theme-icon-copy-address-color);
-    }
-  }
-}
-
-.copyIcon {
-  margin-left: 4px;
-  & > svg {
-    height: 12px;
-    width: 10px;
-    path {
-      fill: var(--theme-icon-copy-address-color);
-    }
-  }
-}
-
-
-.icon {
-  margin-bottom: 20px;
-  width: 62px;
-  height: 64px;
+.consoleWindow {
+  width: 100%;
+  height: 500px;
+  border: 1px solid var(--theme-dialog-border-color);
+  //color: var(--theme-dialog-text-color);
+  display: block;
+  overflow: auto;
+  padding: 20px 40px;
+  text-align: left;
+  font-size: 13px;
+  line-height: 130%;
 }
 
 .title {
-  font-family: var(--font-semibold);
-  font-size: 20px;
+  font-display: var(--font-bold);
+  font-size: 18px;
+  line-height: 1.0;
+  margin: 30px 10px 10px 0px;
+  color: var(--theme-dialog-title-color);
 }
 
-.password {
-  margin-top: 50px;
-  margin-bottom: 20px;
+.luxcore {
+  font-family: var(--font-bold);
 }
 
-.zeroMargin {
-  margin: 0px;
+.consoleInput {
+  width: 100%;
 }
 
-.instruction {
-  margin-top: 40px;
-}
+.commandInput {
+  //font-size: 12px;
+  input {
+    width: 100%;
+	  height: 30px;
+	  font-size: 14px;
+    outline: 0;
+  //  border: var(--theme-bordered-box-border) !important;
+    padding-left: 10px !important;
+    padding-right: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	}
 
-.phrase {
-  margin:20px 20px;
-  padding: 14px;
-  border-radius: 2px;
-  text-align: center;
-  background-color: var(--theme-backup-mnemonic-background-color);
-  font-family: var(--font-medium);
-  font-size: 16px;
-  line-height: 1.38;
-  color: var(--theme-instructions-text-color);
-  min-height: 50px;
-//  -webkit-user-select: none;
+	input[type=number]:hover::-webkit-inner-spin-button {  
+	  height: 30px;
+	}
 }
-
-.login {
-  float: right;
-  :global .SimpleButton_root {
-    background: #f5954a;
-  }
-}
-
