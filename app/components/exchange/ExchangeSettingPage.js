@@ -357,7 +357,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       },
       {
         Header: 'TYPE',
-        width: 50,
+        width: 60,
         accessor: 'type' // String-based value accessors!
       },
       {
