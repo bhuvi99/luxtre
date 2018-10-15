@@ -97,6 +97,8 @@ export default {
   '--theme-dialog-big-button-label-color': '#050b2d',
   '--theme-dialog-big-button-description-color': '#050b2d',
   '--theme-dialog-title-color': '#050b2d',
+  '--theme-dialog-text-color': '#5e5d5d',
+  '--theme-dialog-border-color': '#c1c1c1',
 
   '--theme-input-border-color': '#c6cdd6',
   '--theme-input-label-color': '#050b2d',
