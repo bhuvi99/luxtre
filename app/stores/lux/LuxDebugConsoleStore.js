@@ -10,6 +10,9 @@ export default class LuxDebugConsoleStore extends Store {
   @observable debugConsoleRequest: Request<DebugConsoleResponse> = new Request(this.api.lux.sendToConsoleCommand);
 
   @observable consoleHistory: Array<any> = [];
+  @observable commandHistory: Array<any> = [];
+
+  consoleCommand: string = ''; 
 
   setup() {
     super.setup();
@@ -20,17 +23,21 @@ export default class LuxDebugConsoleStore extends Store {
   }
 
   _debugConsole = async ( params: {command: string, param:string }) => {
+    this.consoleCommand = params.command + ' ' + params.param;
     const response = await this.debugConsoleRequest.execute(params).promise;
+
     if(response != null)
       this.saveConsoleHistory(response);
-
   };
 
 
   @action saveConsoleHistory = (result: any) => {
-    this.consoleHistory.push(result);
+    this.commandHistory.push(this.consoleCommand);
+    if(typeof result === 'object') {
+      var jsonResult = JSON.stringify(result, null, '&emsp;');
+      this.consoleHistory.push(jsonResult.split(/\n/g));
+    } else {
+      this.consoleHistory.push(result.split(/\n/g));
+    }
   };
-
-
-
 }
