@@ -28,13 +28,19 @@ export default class ConsoleWindowContainer extends Component<Props> {
 
   render() {
     const { actions, error } = this.props;
-    
+    const dconsole = this.props.stores.lux.dconsole;
+    const { consoleHistory } = dconsole;
+
     return (
       <ConsoleWindowDialog
+        onRequestConsoleCommand={(command, param) => {
+          actions.lux.dconsole.debugConsole.trigger({command: command, param: param});
+        }}
         error = {error}
         onCancel={() => {
           actions.dialogs.closeActiveDialog.trigger();
         }}
+        consoleHistory={consoleHistory}
       >
       </ConsoleWindowDialog>
     );
