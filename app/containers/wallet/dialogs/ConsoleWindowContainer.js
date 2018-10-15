@@ -29,7 +29,7 @@ export default class ConsoleWindowContainer extends Component<Props> {
   render() {
     const { actions, error } = this.props;
     const dconsole = this.props.stores.lux.dconsole;
-    const { consoleHistory } = dconsole;
+    const { consoleHistory, commandHistory } = dconsole;
 
     return (
       <ConsoleWindowDialog
@@ -41,6 +41,7 @@ export default class ConsoleWindowContainer extends Component<Props> {
           actions.dialogs.closeActiveDialog.trigger();
         }}
         consoleHistory={consoleHistory}
+        commandHistory={commandHistory}
       >
       </ConsoleWindowDialog>
     );
