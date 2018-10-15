@@ -30,6 +30,7 @@ type Props = {
     onCancel: Function,
     children: Node,
     consoleHistory: Array<any>,
+    commandHistory: Array<any>
 };
 
 type State = {
@@ -43,6 +44,7 @@ export default class ConsoleWindowDialog extends Component<Props, State> {
 
     static defaultProps = {
         consoleHistory: [],
+        commandHistory: [],
         error: null,
         children: null
     };
@@ -95,6 +97,7 @@ export default class ConsoleWindowDialog extends Component<Props, State> {
         const { intl } = this.context;
         const {
             consoleHistory,
+            commandHistory,
             error,
             onCancel,
             children
@@ -120,17 +123,21 @@ export default class ConsoleWindowDialog extends Component<Props, State> {
                     <div>Type help for an overview of available commands.</div>
                     {consoleHistory.map((element, ei) => {
                         return (
-                            <div key={`element-${ei}`}>
+                            <div key={`element-${ei}`} className={styles.consoleElement}>
+                                <span className={styles.commandTitle}>
+                                    {commandHistory[ei]}
+                                </span>
+                                <hr/>
                                 {element.map((cell, ci) => {
                                     return (
-                                        <div key={`cell-${ci}`}>
-                                            {cell}
+                                        <div key={`cell-${ci}`} dangerouslySetInnerHTML={{__html: cell}} >
                                         </div>
                                     )
                                 })}
                             </div>
                         )
                     })}
+
                 </div>
                 <div className={styles.commandInput}>
                     <input 
