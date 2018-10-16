@@ -76,8 +76,8 @@ export default class WalletNavigation extends Component<Props> {
     const { isActiveNavItem, onNavItemClick, amount, isShowingLuxtre} = this.props;
     const { intl } = this.context;
     const socialIconStyle = {
-      fontSize:24, 
-      color:'#315486',
+      fontSize:18, 
+      color:'rgb(86, 115, 156)',
       marginRight: 8
     };
     return (
