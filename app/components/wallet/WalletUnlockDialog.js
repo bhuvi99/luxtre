@@ -11,6 +11,7 @@ import DialogCloseButton from '../widgets/DialogCloseButton';
 import globalMessages from '../../i18n/global-messages';
 import LocalizableError from '../../i18n/LocalizableError';
 import styles from './WalletUnlockDialog.scss';
+import { isValidWalletPassword } from '../../utils/validations';
 
 export const messages = defineMessages({
   dialogTitle: {
@@ -46,7 +47,7 @@ type Props = {
   onSubmit: Function,
   onCancel: Function,
   //isSubmitting: boolean,
-  //error: ?LocalizableError,
+  error: ?LocalizableError,
 };
 
 @observer
@@ -67,7 +68,10 @@ export default class WalletUnlockDialog extends Component<Props> {
           if (field.value === '') {
             return [false, this.context.intl.formatMessage(messages.fieldIsRequired)];
           }
-          return [true];
+          return [
+            isValidWalletPassword(field.value),
+            this.context.intl.formatMessage(globalMessages.invalidWalletPassword)
+          ];
         }],
       },
     }
@@ -94,6 +98,7 @@ export default class WalletUnlockDialog extends Component<Props> {
     const walletPasswordField = form.$('walletPassword');
     const {
       onCancel,
+      error,
     } = this.props;
 
     const confirmButtonClasses = classnames([
@@ -122,16 +127,16 @@ export default class WalletUnlockDialog extends Component<Props> {
         className={styles.dialog}
         closeButton={<DialogCloseButton />}
       >
-        <div className={styles.walletPasswordFields}>
+        <div className={styles.walletPassword}>
           <Input
             type="password"
-            className={styles.walletPassword}
+            className="walletPassword"
             {...walletPasswordField.bind()}
             error={walletPasswordField.error}
             skin={<SimpleInputSkin />}
             />
         </div>
-        {/*error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null*/}
+        {error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null}
       </Dialog>
     );
   }

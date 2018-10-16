@@ -196,8 +196,6 @@ export default class WalletSettings extends Component<Props> {
             </div>
           */}
 
-          {error && <p className={styles.error}>{intl.formatMessage(error)}</p>}
-
           {isWalletPasswordSet ? 
               <Button
                 className={buttonClasses}
@@ -223,9 +221,6 @@ export default class WalletSettings extends Component<Props> {
           <div className={styles.export}>
             <h2>Export / Import Private Key</h2>
           </div>
-
-          {error && <p className={styles.error}>{intl.formatMessage(error)}</p>}
-
           
           <div className={styles.actionButtons}>
             <Button
@@ -265,9 +260,6 @@ export default class WalletSettings extends Component<Props> {
           <div className={styles.export}>
             <h2>Backup / Restore Wallet</h2>
           </div>
-
-          {error && <p className={styles.error}>{intl.formatMessage(error)}</p>}
-
           
           <div className={styles.actionButtons}>
             <Button
@@ -303,6 +295,7 @@ export default class WalletSettings extends Component<Props> {
         {isDialogOpen(WalletUnlockDialog) ? (
           <WalletUnlockDialogContainer
             actionType = {this.state.actionType}
+            error = {error}
             unlockWallet = {(password) => (
               onUnlockWallet(password)
             )}

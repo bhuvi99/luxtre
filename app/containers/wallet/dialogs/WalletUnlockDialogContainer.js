@@ -5,6 +5,7 @@ import type { StoresMap } from '../../../stores/index';
 import type { ActionsMap } from '../../../actions/index';
 import environment from '../../../environment';
 import resolver from '../../../utils/imports';
+import LocalizableError from '../../../i18n/LocalizableError';
 
 const WalletUnlockDialog = resolver('components/wallet/WalletUnlockDialog');
 
@@ -15,6 +16,7 @@ type Props = {
   stores: any | StoresMap,
   actions: any | ActionsMap,
   actionType: string,
+  error: ?LocalizableError,
 };
 
 @inject('actions', 'stores') @observer
@@ -80,7 +82,7 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
   }
 
   render() {
-    const { actions } = this.props;
+    const { actions, error } = this.props;
     const { wallets } = this.props.stores[environment.API];
     const activeWallet = wallets.active;
 
@@ -88,6 +90,7 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
 
     return (
       <WalletUnlockDialog
+        error = {error}
         onSubmit={this.handleUnlockWalletSubmit}
         onCancel={() => {
           actions.dialogs.closeActiveDialog.trigger();
