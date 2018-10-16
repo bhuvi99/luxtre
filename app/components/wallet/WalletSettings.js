@@ -266,6 +266,7 @@ export default class WalletSettings extends Component<Props> {
               className={exportButtonClasses}
               label='Backup'
               onMouseUp={() => {
+                openDialogAction({dialog: WalletExportDialog});
               }}
               skin={<SimpleButtonSkin />}
             />

@@ -950,22 +950,31 @@ export default class LuxApi {
     let nextUpdate = null;
     return nextUpdate;
   }
-/*
+
   async exportWalletToFile(
     request: ExportWalletToFileRequest
   ): Promise<ExportWalletToFileResponse> {
-    const { walletId, filePath } = request;
-    Logger.debug('LuxApi::exportWalletToFile called');
-    try {
-      const response: Promise<[]> = await exportLuxBackupJSON({ ca, walletId, filePath });
-      Logger.debug('LuxApi::exportWalletToFile success: ' + stringifyData(response));
-      return response;
-    } catch (error) {
-      Logger.error('LuxApi::exportWalletToFile error: ' + stringifyError(error));
-      throw new GenericApiError();
-    }
+    // const { walletId, filePath } = request;
+    // Logger.debug('LuxApi::exportWalletToFile called');
+    // try {
+    //   const response: Promise<[]> = await exportLuxBackupJSON({ ca, walletId, filePath });
+    //   Logger.debug('LuxApi::exportWalletToFile success: ' + stringifyData(response));
+    //   return response;
+    // } catch (error) {
+    //   Logger.error('LuxApi::exportWalletToFile error: ' + stringifyError(error));
+    //   throw new GenericApiError();
+    // }
+    const { walletId, filePath, password } = request;
+    Logger.debug('LuxApi::backupWallet called');
+      try {
+        await backupLuxWallet({filePath});
+        Logger.debug('LuxApi::backupWallet success');
+      } catch (error) {
+        Logger.error('LuxApi::backupWallet error: ' + stringifyError(error));
+        throw new GenericApiError();
+      }
   }
-
+/*
   async testReset(): Promise<void> {
     Logger.debug('LuxApi::testReset called');
     try {
