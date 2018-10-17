@@ -22,7 +22,7 @@ export default class MasternodeNavButton extends Component<Props> {
       styles.component,
       styles.btn,
       styles.btnEffect,
-      isActive ? styles.active : styles.normal
+      isActive ? styles.active : null
     ]);
     const iconClasses = classnames([
       isActive ? styles.activeIcon : styles.normalIcon

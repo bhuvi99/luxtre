@@ -68,14 +68,15 @@
 }
 
 .active {
-  .container {
+  border-bottom: 3px solid var(--theme-button-flat-background-color-hover);
+  /*.container {
     background-color: var(--theme-nav-item-background-color-active);
     color: var(--theme-nav-item-text-color-active);
   }
 
   &:hover {
     cursor: default;
-  }
+  }*/
 }
 
 .btnEffect {
