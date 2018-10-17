@@ -1170,11 +1170,12 @@ export default class LuxApi {
   async sendToConsoleCommand(request: SendCommandToConsoleRequest): Promise<SendCommandToConsoleResponse> {
     Logger.debug('LuxApi::sendToConsoleCommand called');
     try {
-      const {command, param} = request;
+      const command = request.command;
+      const param = request.param ? request.param.split(' ') : [];
       const result = await sendCommandToConsole({command, param});
       return result;
     } catch (error) {
-      Logger.error('LuxApi::sendToContract error: ' + stringifyError(error));
+      Logger.error('LuxApi::sendCommandToConsole error: ' + stringifyError(error));
       throw new GenericApiError();
     }
   }
