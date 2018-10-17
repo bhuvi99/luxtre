@@ -68,13 +68,15 @@
 .balanceLabel {
   //width: 350px;
   width: calc(100% / 3);
-  padding: 30px 30px;
+  padding: 0px 24px;
   display: inline-block;
-  border: var(--theme-overview-border);
-  //border-right: var(--theme-overview-border);
+  //border: var(--theme-overview-border);
+  border-right: var(--theme-overview-border);
   color: var(--theme-overview-text-color);
 }
 
 .balance {
   margin-bottom: 50px;
+  padding: 30px 0px;
+  border: var(--theme-overview-border);
 }
