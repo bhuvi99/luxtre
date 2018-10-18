@@ -113,7 +113,7 @@ export default class WalletSendConfirmationDialog extends Component<Props> {
         const { walletPassword } = form.values();
         const transactionData = {
           receiver,
-          amount: formattedAmountToFloat(totalAmount),
+          amount: formattedAmountToFloat(amount),
           password: isWalletPasswordSet ? walletPassword : null,
         };
         this.props.onSubmit(transactionData);

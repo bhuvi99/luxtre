@@ -148,3 +148,27 @@ export type SendToLuxContractOutput = {
   hash160: string
 };
 
+export type LuxStakingWeight = {
+  min: number,
+  max: number,
+  combined: number,
+  valuesum: number,
+  legacy: number
+};
+
+export type LuxStakingStatus = {
+  validtime: boolean,
+  haveconnections: boolean,
+  walletunlocked: boolean,
+  mintablecoins: boolean,
+  enoughcoins: string,
+  stakeweight: LuxStakingWeight,
+  stakeblockscreated: number,
+  stakeblocksaccepted: number,
+  foundstake: number,
+  beststakediff: number,
+  posdiff: number,
+  netstakeweight: number,
+  expectedtime: number
+};
+
