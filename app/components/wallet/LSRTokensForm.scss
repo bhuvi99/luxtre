@@ -1,5 +1,4 @@
 .component {
-  height: 90%;
   align-items: center;
   justify-content: center;
   color: var(--theme-main-body-messages-color);
@@ -9,6 +8,7 @@
     font-size: 14px;
   }
 }
+
 
 .categoryTitle {
   font-size: 26px;
@@ -200,7 +200,9 @@
 .tokenTable {
   margin-top: 50px;
   border: 1px solid #878b98;
-  
+  height: calc(100vh - 500px);
+  overflow: auto;
+
   :global .ReactTable{
     .rt-table {
       .rt-thead{

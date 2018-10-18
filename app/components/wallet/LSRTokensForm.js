@@ -157,9 +157,6 @@ export default class LSRTokensForm extends Component<Props, State> {
 
     return (
       <div className={styles.component}>
-        <div className={styles.categoryTitle}>
-          LSR Token
-        </div>
         <div className={styles.tokenContrainer}>
           <div className={styles.tokenPage}/>
           <div>
