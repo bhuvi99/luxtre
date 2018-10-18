@@ -62,7 +62,8 @@ type Props = {
   isActiveNavItem: Function,
   onNavItemClick: Function,
   amount: string,
-  isShowingLuxtre: boolean
+  isShowingLuxtre: boolean,
+  onSwitchLuxgate: Function
 };
 
 @observer
@@ -73,7 +74,7 @@ export default class WalletNavigation extends Component<Props> {
   };
 
   render() {
-    const { isActiveNavItem, onNavItemClick, amount, isShowingLuxtre} = this.props;
+    const { isActiveNavItem, onNavItemClick, amount, isShowingLuxtre, onSwitchLuxgate} = this.props;
     const { intl } = this.context;
     const socialIconStyle = {
       fontSize:18, 
@@ -86,6 +87,7 @@ export default class WalletNavigation extends Component<Props> {
           <WalletLogo 
              amount={amount}
              isShowingLuxtre = {isShowingLuxtre}
+             onSwitchLuxgate = {onSwitchLuxgate}
  	        />
         </div>
         <div className={styles.navItem}>
