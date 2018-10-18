@@ -12,6 +12,7 @@ import transactionsIcon from '../../../assets/images/wallet-nav/transactions-ic.
 import settingsIcon from '../../../assets/images/wallet-nav/wallet-settings-2-ic.inline.svg';
 import utillityIcon from '../../../assets/images/wallet-nav/utility-ic.inline.svg';
 import masternodeIcon from '../../../assets/images/wallet-nav/masternode-ic.inline.svg';
+import lsrtokensIcon from '../../../assets/images/wallet-nav/lsrtokens-ic.inline.svg';
 import smartcontractIcon from '../../../assets/images/wallet-nav/smartcontract-ic.inline.svg';
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -50,6 +51,11 @@ const messages = defineMessages({
     id: 'wallet.navigation.masternodes',
     defaultMessage: '!!!Masternodes',
     description: 'Label for the "Masternodes" nav button in the wallet navigation.'
+  },
+  lsrtokens: {
+    id: 'wallet.navigation.lsrtokens',
+    defaultMessage: '!!!LSR Tokens',
+    description: 'Label for the "LSR Tokens" nav button in the wallet navigation.'
   },
   smartcontracts: {
     id: 'wallet.navigation.smartcontracts',
@@ -153,6 +159,14 @@ export default class WalletNavigation extends Component<Props> {
             icon={masternodeIcon}
             isActive={isActiveNavItem('masternodes')}
             onClick={() => onNavItemClick('masternodes')}
+          />
+        </div>
+        <div className={styles.navItem}>
+          <WalletNavButton
+            label={intl.formatMessage(messages.lsrtokens)}
+            icon={lsrtokensIcon}
+            isActive={isActiveNavItem('lsrtokens')}
+            onClick={() => onNavItemClick('lsrtokens')}
           />
         </div>
         <div className={styles.navItem}>

@@ -30,6 +30,7 @@ export const ROUTES = {
       MASTERNODESNET: '/wallets/:id/masternodes/masternodesnet',
       MYMASTERNODE: '/wallets/:id/masternodes/mymasternode',
     },
+    LSRTOKENS: '/wallets/:id/lsrtokens',
     SMARTCONTRACTS: {
       ROOT: '/wallets/:id/smartcontracts',
       PAGE: '/wallets/:id/smartcontracts/:page',
