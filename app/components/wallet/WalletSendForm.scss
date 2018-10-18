@@ -30,3 +30,53 @@
   display: block !important;
   margin: 30px auto 0;
 }
+
+.totalBalance {
+  color: #000000;
+}
+
+.outgoingLux {
+  color: #ba3112;
+}
+
+.remainLux {
+  color: #135a23;
+}
+
+.totalBalance,
+.outgoingLux,
+.remainLux {
+  font-family: var(--font-semibold);
+  font-size: 24px;
+  //line-height: 1.0;
+  margin-bottom: 10px;
+  word-break: break-all;
+  display: flex;
+  & > .currencySymbolBig {
+    display: inline-block;
+    margin-left: 8px;
+    & > svg {
+      width: 27px;
+      height: 25px;
+      & > g > g {
+        stroke: var(--theme-icon-lux-summary-wallet-amount-symbol-color);
+      }
+    }
+  }
+}
+
+.balanceLabel {
+  //width: 350px;
+  width: calc(100% / 3);
+  padding: 0px 24px;
+  display: inline-block;
+  //border: var(--theme-overview-border);
+  border-right: var(--theme-overview-border);
+  color: var(--theme-overview-text-color);
+}
+
+.balance {
+  margin-bottom: 50px;
+  padding: 30px 0px;
+  border: var(--theme-overview-border);
+}

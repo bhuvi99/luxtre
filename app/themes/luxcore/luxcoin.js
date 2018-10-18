@@ -15,7 +15,8 @@ export default {
 
   '--theme-input-hint-font': 'SFUIDisplay-Regular',
 
-  '--theme-scrollbar-thumb-background': '#c8ccce',
+  '--theme-scrollbar-background': '#5fa2dc',
+  '--theme-scrollbar-thumb-background': '#1e6c28',
 
   '--theme-lux-redemption-headline-color': '#050b2d',
   '--theme-lux-redemption-instructions-color': '#050b2d',
@@ -52,6 +53,10 @@ export default {
   '--theme-bordered-box-background-color': '#fafbfc',
   '--theme-bordered-box-border': '1px solid #c6cdd6',
   '--theme-bordered-box-text-color': '#050b2d',
+
+  '--theme-overview-background-color': '#c5c5c5',
+  '--theme-overview-border': '1px solid #c5c5c5',
+  '--theme-overview-text-color': '#241f1d',
 
   '--theme-button-primary-background-color': '#061532',
   '--theme-button-primary-background-color-hover': '#85e3f6',
@@ -92,6 +97,8 @@ export default {
   '--theme-dialog-big-button-label-color': '#050b2d',
   '--theme-dialog-big-button-description-color': '#050b2d',
   '--theme-dialog-title-color': '#050b2d',
+  '--theme-dialog-text-color': '#5e5d5d',
+  '--theme-dialog-border-color': '#c1c1c1',
 
   '--theme-input-border-color': '#c6cdd6',
   '--theme-input-label-color': '#050b2d',

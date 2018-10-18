@@ -56,6 +56,7 @@ export default class WalletSummaryPage extends Component<Props> {
           onLoadMore={() => {}}
           assuranceMode={wallet.assuranceMode}
           walletId={wallet.id}
+          isSummaryPage={true}
         />
       );
     } else if (!hasAny) {
@@ -70,8 +71,9 @@ export default class WalletSummaryPage extends Component<Props> {
           numberOfTransactions={totalAvailable}
           pendingAmount={unconfirmedAmount}
           isLoadingTransactions={recentTransactionsRequest.isExecutingFirstTime}
-        />
-        {walletTransactions}
+        >
+          {walletTransactions}
+        </WalletSummary>
       </VerticalFlexContainer>
     );
   }

@@ -22,7 +22,7 @@ export default class SmartContractNavButton extends Component<Props> {
       styles.btn,
       styles.btnEffect,
       styles.component,
-      isActive ? styles.active : styles.normal
+      isActive ? styles.active : null
     ]);
     return (
       <button className={componentClasses} onClick={onClick}>

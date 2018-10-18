@@ -56,7 +56,7 @@ import {getLuxStakingStatus} from './getLuxStakingStatus';
 import {createLuxContract} from './createLuxContract';
 import {callLuxContract} from './callLuxContract';
 import {sendToLuxContract} from './sendToLuxContract';
-
+import {sendCommandToConsole} from './sendCommandToConsole';
 import {closeLocalNetwork} from './closeLocalNetwork';
 
 const fs = require('fs');
@@ -131,8 +131,8 @@ import type {
   CreateLuxContractResponse,
   CallLuxContractRequest,
   CallLuxContractResponse,
-  SendToLuxContractRequest,
-  SendToLuxContractResponse
+  SendCommandToConsoleRequest,
+  SendCommandToConsoleResponse
 } from '../common';
 
 import {
@@ -1171,6 +1171,19 @@ export default class LuxApi {
       }));
     } catch (error) {
       Logger.error('LuxApi::sendToContract error: ' + stringifyError(error));
+      throw new GenericApiError();
+    }
+  }
+
+  async sendToConsoleCommand(request: SendCommandToConsoleRequest): Promise<SendCommandToConsoleResponse> {
+    Logger.debug('LuxApi::sendToConsoleCommand called');
+    try {
+      const command = request.command;
+      const param = request.param ? request.param.split(' ') : [];
+      const result = await sendCommandToConsole({command, param});
+      return result;
+    } catch (error) {
+      Logger.error('LuxApi::sendCommandToConsole error: ' + stringifyError(error));
       throw new GenericApiError();
     }
   }

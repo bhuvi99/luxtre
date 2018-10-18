@@ -42,6 +42,7 @@ export default class WalletSendPage extends Component<Props> {
         addressValidator={isValidAddress}
         isDialogOpen={uiDialogs.isOpen}
         openDialogAction={actions.dialogs.open.trigger}
+        balance={activeWallet.amount.toFormat(DECIMAL_PLACES_IN_LUX)}
       />
     );
   }

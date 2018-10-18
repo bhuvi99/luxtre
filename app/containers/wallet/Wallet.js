@@ -59,6 +59,7 @@ export default class Wallet extends Component<Props> {
             onWalletNavItemClick={this.handleWalletNavItemClick}
             amount={wallets.active.amount.toFormat(DECIMAL_SPLACES_IN_LUX)}
             isShowingLuxtre={isShowingLuxtre}
+            onSwitchLuxgate={actions.sidebar.switchLuxgate.trigger}
           >
             {this.props.children}
           </WalletWithNavigation>
