@@ -1,13 +1,8 @@
 .component {
-  height: 90%;
+  height: calc(100vh - 100px);
   align-items: center;
   justify-content: center;
   color: var(--theme-main-body-messages-color);
-
-  :global .SimpleFormField_root > .SimpleFormField_inputWrapper > .SimpleTextArea_textarea{
-    max-height: 480px;
-    font-size: 14px;
-  }
 }
 
 .subTitle {
@@ -19,16 +14,25 @@
 }
 
 .borderedBox {
-  background: var(--theme-bordered-box-background-color);
-  border: var(--theme-bordered-box-border);
-  border-radius: 4px;
+  //background: var(--theme-bordered-box-background-color);
+  //border: var(--theme-bordered-box-border);
+  //border-radius: 4px;
+  color: var(--theme-main-body-messages-color);
+
   width: 100%;
-  height: auto;
-  padding: 20px 20px;
+  display:block;
+  overflow:auto;
+  height: calc(100vh - 150px);
+  padding-right: 10px;
+
   :global .SimpleButton_root {
     width: 10%;
     height: 30px;
     padding: 2px;
+  }
+  :global .SimpleFormField_root > .SimpleFormField_inputWrapper > .SimpleTextArea_textarea{
+    max-height: 480px;
+    font-size: 14px;
   }
 }
 
@@ -37,7 +41,7 @@
 }
 
 .setting {
-  padding: 10px 0px;
+  padding-bottom: 10px;
 }
 
 .selector {

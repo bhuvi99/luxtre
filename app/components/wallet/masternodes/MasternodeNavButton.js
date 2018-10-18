@@ -20,16 +20,16 @@ export default class MasternodeNavButton extends Component<Props> {
     const componentClasses = classnames([
       className,
       styles.component,
-      isActive ? styles.active : styles.normal
+      styles.btn,
+      styles.btnEffect,
+      isActive ? styles.active : null
     ]);
     const iconClasses = classnames([
       isActive ? styles.activeIcon : styles.normalIcon
     ]);
     return (
       <button className={componentClasses} onClick={onClick}>
-        <div className={styles.container}>
-          <span className={styles.label}>{this.props.label}</span>
-        </div>
+        {this.props.label}
       </button>
     );
   }

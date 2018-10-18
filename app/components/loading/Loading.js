@@ -5,11 +5,11 @@ import { observer } from 'mobx-react';
 import { defineMessages, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import LoadingSpinner from '../widgets/LoadingSpinner';
-import luxcoreLogoWhite from '../../assets/images/luxcore-logo-loading.inline.svg';
 import luxcoreLogo from '../../assets/images/luxcore-logo-loading-grey.inline.svg';
 import styles from './Loading.scss';
 import type { ReactIntlMessage } from '../../types/i18nTypes';
 import environment from '../../environment';
+import CON_STATE from "../../utils/ConnectState"
 
 const messages = defineMessages({
   connecting: {
@@ -32,6 +32,21 @@ const messages = defineMessages({
     defaultMessage: '!!!Syncing blocks',
     description: 'Message "Syncing blocks" on the loading screen.'
   },
+  loadingBlockIndex: {
+    id: 'loading.screen.loadingBlockIndex',
+    defaultMessage: '!!!Loading block index',
+    description: 'Message "Loading block index" on the loading screen.'
+  },
+  verifyingBlocks: {
+    id: 'loading.screen.verifyingBlock',
+    defaultMessage: '!!!Verify blocks',
+    description: 'Message "Verifying blocks" on the loading screen.'
+  },
+  rescanning: {
+    id: 'loading.screen.rescanning',
+    defaultMessage: '!!!Rescanning',
+    description: 'Message "Rescanning" on the loading screen.'
+  },
 });
 
 type Props = {
@@ -46,6 +61,7 @@ type Props = {
   loadingDataForNextScreenMessage: ReactIntlMessage,
   hasLoadedCurrentLocale: boolean,
   hasLoadedCurrentTheme: boolean,
+  connectState: number
 };
 
 @observer
@@ -58,7 +74,7 @@ export default class Loading extends Component<Props> {
   render() {
     const { intl } = this.context;
     const {
-      isConnecting, isSyncing, syncPercentage,
+      isConnecting, isSyncing, syncPercentage, connectState,
       isLoadingDataForNextScreen, loadingDataForNextScreenMessage, hasBeenConnected,
       hasBlockSyncingStarted, hasLoadedCurrentLocale, hasLoadedCurrentTheme,
     } = this.props;
@@ -80,20 +96,34 @@ export default class Loading extends Component<Props> {
         { isConnecting ? (null) : ( <SvgInline svg={luxcoreLogo} className={luxcoreLogoStyles} /> )}
         {hasLoadedCurrentLocale && (
           <div>
-            {isConnecting && !hasBlockSyncingStarted && (
-              <div className={styles.connecting}>
+            <div className={styles.connecting}>
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.CONNECTING && (
+                  <h1 className={styles.headline}>
+                    {intl.formatMessage(connectingMessage)}
+                  </h1>
+              )}
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.LOADINGBLOCK && (
                 <h1 className={styles.headline}>
-                  {intl.formatMessage(connectingMessage)}
+                  {intl.formatMessage(messages.loadingBlockIndex)}
                 </h1>
-              </div>
-            )}
-            {isConnecting && hasBlockSyncingStarted && (
-              <div className={styles.connecting}>
+              )}
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.VERIFYBLOCK && (
+                <h1 className={styles.headline}>
+                  {intl.formatMessage(messages.verifyingBlocks)}
+                </h1>
+              )}
+              {isConnecting && !hasBlockSyncingStarted && connectState == CON_STATE.RESCANNING && (
+                <h1 className={styles.headline}>
+                  {intl.formatMessage(messages.rescanning)}
+                </h1>
+              )}
+              {isConnecting && hasBlockSyncingStarted && (
                 <h1 className={styles.headline}>
                   {intl.formatMessage(messages.waitingForSyncToStart)}
                 </h1>
-              </div>
-            )}
+              )}
+            </div>
+
             {isSyncing && (
               <div className={styles.syncing}>
                 <h1 className={styles.headline}>

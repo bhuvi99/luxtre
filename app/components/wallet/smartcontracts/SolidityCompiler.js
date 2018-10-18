@@ -164,47 +164,44 @@ export default class SolidityCompiler extends Component<Props, State> {
     ]);
 
     return (
-      <div className={styles.component}>
-        <div className={styles.subTitle}> {intl.formatMessage(messages.title)} </div>
-        <div className={styles.borderedBox}>
-          <div className={styles.setting}>
-            <label>Solidity version</label>
-            <select className={styles.selector} onChange={this.onChangeSolidityVersions.bind(this)} value={selVersion}>
-            {
-              this.props.soljsonSources.map((source, index) => {
-                return (
-                  <option key={`tr-${index}`} value={source}> {source} </option>
-                )
-              })
-            }
-            </select>
-            <Button 
-              className={buttonClasses}
-              label="Compile"
-              onClick={this.onClickCompile.bind(this)}
-              skin={<SimpleButtonSkin/>}
-              />
-            <div className={styles.loader}></div>
-            <div className={styles.status}>{status}</div>
-          </div>
-          <div>
-            <TextArea
-              className={styles.solEditor}
-              skin={<TextAreaSkin />}
-              rows={30}
-              value={source}
-              onChange={this.onChangeSource.bind(this)}
-              onKeyDown={this.onKeydownSourceEditor.bind(this)}
+      <div className={styles.borderedBox}>
+        <div className={styles.setting}>
+          <label>Solidity version</label>
+          <select className={styles.selector} onChange={this.onChangeSolidityVersions.bind(this)} value={selVersion}>
+          {
+            this.props.soljsonSources.map((source, index) => {
+              return (
+                <option key={`tr-${index}`} value={source}> {source} </option>
+              )
+            })
+          }
+          </select>
+          <Button 
+            className={buttonClasses}
+            label="Compile"
+            onClick={this.onClickCompile.bind(this)}
+            skin={<SimpleButtonSkin/>}
             />
-          </div>
-          <div className={styles.bytecode}>
-            <div>Bytecode: </div>
-            <textarea className={styles.output} value={bytecode} />
-          </div>
-          <div className={styles.abi}>
-            <div>ABI: </div>
-            <textarea className={styles.output} value={abi} />
-          </div>
+          <div className={styles.loader}></div>
+          <div className={styles.status}>{status}</div>
+        </div>
+        <div>
+          <TextArea
+            className={styles.solEditor}
+            skin={<TextAreaSkin />}
+            rows={30}
+            value={source}
+            onChange={this.onChangeSource.bind(this)}
+            onKeyDown={this.onKeydownSourceEditor.bind(this)}
+          />
+        </div>
+        <div className={styles.bytecode}>
+          <div>Bytecode: </div>
+          <textarea className={styles.output} value={bytecode} />
+        </div>
+        <div className={styles.abi}>
+          <div>ABI: </div>
+          <textarea className={styles.output} value={abi} />
         </div>
       </div>
     );

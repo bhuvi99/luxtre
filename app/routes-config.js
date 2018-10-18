@@ -22,6 +22,7 @@ export const ROUTES = {
       ROOT: '/wallets/:id/utilities',
       PAGE: '/wallets/:id/utilities/:page',
       POSCALCULATOR: '/wallets/:id/utilities/poscalculator',
+      STAKINGCHART: '/wallets/:id/utilities/stakingchart',
     },
     MASTERNODES: {
       ROOT: '/wallets/:id/masternodes',

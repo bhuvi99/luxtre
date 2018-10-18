@@ -1671,7 +1671,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "!!!Summary",
+        "defaultMessage": "!!!Overview",
         "description": "Label for the \"Summary\" nav button in the wallet navigation.",
         "end": {
           "column": 3,

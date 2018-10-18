@@ -9,6 +9,7 @@ import AddressesStore from './AddressesStore';
 import MasternodesStore from './LuxMasternodesStore';
 import LsrtokensStore from './LuxLSRTokensStore';
 import ContractsStore from './LuxContractsStore';
+import DebugConsoleStore from './LuxDebugConsoleStore';
 
 export const luxStoreClasses = {
   wallets: LuxWalletsStore,
@@ -19,7 +20,8 @@ export const luxStoreClasses = {
   addresses: AddressesStore,
   masternodes: MasternodesStore,
   lsrtokens: LsrtokensStore,
-  contracts: ContractsStore
+  contracts: ContractsStore,
+  dconsole: DebugConsoleStore
 };
 
 export type LuxStoresMap = {
@@ -31,7 +33,8 @@ export type LuxStoresMap = {
   addresses: AddressesStore,
   masternodes: MasternodesStore,
   lsrtokens: LsrtokensStore,
-  contracts: ContractsStore
+  contracts: ContractsStore,
+  dconsole: DebugConsoleStore
 };
 
 const luxStores = observable({
@@ -43,7 +46,8 @@ const luxStores = observable({
   addresses: null,
   masternodes: null,
   lsrtokens: null,
-  contracts: null
+  contracts: null,
+  dconsole: null
 });
 
 // Set up and return the stores and reset all stores to defaults

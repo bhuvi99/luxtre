@@ -74,6 +74,7 @@ export default class WalletTransactionsPage extends Component<Props> {
           onLoadMore={actions.lux.transactions.loadMoreTransactions.trigger}
           assuranceMode={activeWallet.assuranceMode}
           walletId={activeWallet.id}
+          isSummaryPage={false}
         />
       );
     } else if (wasSearched && !hasAny) {

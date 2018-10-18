@@ -14,11 +14,12 @@ import utillityIcon from '../../../assets/images/wallet-nav/utility-ic.inline.sv
 import masternodeIcon from '../../../assets/images/wallet-nav/masternode-ic.inline.svg';
 import lsrtokensIcon from '../../../assets/images/wallet-nav/lsrtokens-ic.inline.svg';
 import smartcontractIcon from '../../../assets/images/wallet-nav/smartcontract-ic.inline.svg';
+import 'font-awesome/css/font-awesome.min.css'
 
 const messages = defineMessages({
   summary: {
     id: 'wallet.navigation.summary',
-    defaultMessage: '!!!Summary',
+    defaultMessage: '!!!Overview',
     description: 'Label for the "Summary" nav button in the wallet navigation.'
   },
   send: {
@@ -66,7 +67,9 @@ const messages = defineMessages({
 type Props = {
   isActiveNavItem: Function,
   onNavItemClick: Function,
-  amount: string
+  amount: string,
+  isShowingLuxtre: boolean,
+  onSwitchLuxgate: Function
 };
 
 @observer
@@ -77,13 +80,20 @@ export default class WalletNavigation extends Component<Props> {
   };
 
   render() {
-    const { isActiveNavItem, onNavItemClick, amount} = this.props;
+    const { isActiveNavItem, onNavItemClick, amount, isShowingLuxtre, onSwitchLuxgate} = this.props;
     const { intl } = this.context;
+    const socialIconStyle = {
+      fontSize:18, 
+      color:'rgb(86, 115, 156)',
+      marginRight: 8
+    };
     return (
       <div className={styles.component}>
         <div>
           <WalletLogo 
- 	          amount={amount}
+             amount={amount}
+             isShowingLuxtre = {isShowingLuxtre}
+             onSwitchLuxgate = {onSwitchLuxgate}
  	        />
         </div>
         <div className={styles.navItem}>
@@ -167,6 +177,14 @@ export default class WalletNavigation extends Component<Props> {
             onClick={() => onNavItemClick('smartcontracts')}
           />
         </div>
+        <div className={styles.social}>
+            <a href="https://discord.gg/27xFP5Y" target="_blank"><i className="fa fa-comments" style={socialIconStyle}/></a>
+            <a href="https://t.me/LUXcoreOfficial" target="_blank"><i className="fa fa-telegram" style={socialIconStyle}/></a>
+            <a href="https://twitter.com/LUX_Coin" target="_blank"><i className="fa fa-twitter" style={socialIconStyle}/></a>
+            <a href="https://www.reddit.com/r/LUXCoin/" target="_blank"><i className="fa fa-reddit" style={socialIconStyle}/></a>
+            <a href="https://bitcointalk.org/index.php?topic=2422372" target="_blank"><i className="fa fa-bitcoin" style={socialIconStyle}/></a>
+            <a href="https://www.youtube.com/channel/UCzaqwEZCAQ2zUwbD6syuvgw" target="_blank"><i className="fa fa-youtube" style={socialIconStyle}/></a>
+          </div>
       </div>
     );
   }

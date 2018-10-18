@@ -22,7 +22,7 @@ export default class LoadingPage extends Component<Props> {
   render() {
     const { stores } = this.props;
     const {
-      isConnecting, isSyncing, syncPercentage, isLoadingWallets,
+      isConnecting, isSyncing, syncPercentage, isLoadingWallets, connectState,
       hasBeenConnected, hasBlockSyncingStarted,
     } = stores.networkStatus;
     const { hasLoadedCurrentLocale, hasLoadedCurrentTheme } = stores.profile;
@@ -31,6 +31,7 @@ export default class LoadingPage extends Component<Props> {
         <Loading
           isSyncing={isSyncing}
           isConnecting={isConnecting}
+          connectState={connectState}
           syncPercentage={syncPercentage}
           isLoadingDataForNextScreen={isLoadingWallets}
           loadingDataForNextScreenMessage={messages.loadingWalletData}

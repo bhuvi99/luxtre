@@ -5,12 +5,11 @@
 }
 
 .navigation {
-  height: 50px;
   flex-shrink: 0;
 }
 
 .page {
   height: calc(100% - 50px);
   overflow: auto;
-  padding: 0px 20px;
+  padding: 20px 20px;
 }
