@@ -87,7 +87,7 @@ export default class ConsoleWindowDialog extends Component<Props, State> {
                 this.setState({commandArray: [...this.state.commandArray, cmd]});
             }
             this.setState({consoleCommand: ''});
-            
+
         } else if(event.keyCode === 38) {
             if(this.state.selectedCmdIndex > 0) {
                 this.setState({consoleCommand: this.state.commandArray[this.state.selectedCmdIndex - 1]});
@@ -140,6 +140,7 @@ export default class ConsoleWindowDialog extends Component<Props, State> {
                 <div className={styles.title}>
                     Debug Console
                 </div>   
+
                 <div className={styles.consoleWindow} ref={(div) => {this.consoleWindow = div;}}>
                     <div>Welcome to the <span className={styles.luxcore}>LUX Core RPC </span> console</div>
                     <div>Type help for an overview of available commands.</div>
