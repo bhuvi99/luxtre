@@ -31,6 +31,7 @@ export default class LuxWalletsStore extends WalletStore {
 
   @observable walletExportType: walletExportTypeChoices = 'paperWallet';
   @observable walletExportMnemonic = 'buble air rabbit marble hobby mass sound guita soup';
+  @observable pageTitle = "Summary";
 
   setup() {
     super.setup();
@@ -177,6 +178,9 @@ export default class LuxWalletsStore extends WalletStore {
 
   @action _onRouteChange = (options: { route: string, params: ?Object }) => {
     // Reset the send request anytime we visit the send page (e.g: to remove any previous errors)
+    
+    if(typeof (options.params) != "undefined")
+      this.pageTitle = options.params.page;
     if (matchRoute(ROUTES.WALLETS.SEND, buildRoute(options.route, options.params))) {
       this.sendMoneyRequest.reset();
     }

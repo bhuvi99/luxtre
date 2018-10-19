@@ -35,7 +35,7 @@ call npm install --global --production windows-build-tools
     exit /b 1)
 	
 :clone_luxtre
-@set URL=https://github.com/216k155/luxtre.git
+@set URL=https://github.com/LUX-Core/luxtre.git
 
 move luxtre luxtre.old 2>nul
 

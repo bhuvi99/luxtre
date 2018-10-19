@@ -13,14 +13,14 @@
   text-align: left;
   display: flex;
   flex-direction: row;
-  padding: 25px 20px;
-  margin: 30px 20px 30px 5%;
+//  padding: 25px 20px;
+//  margin: 30px 20px 30px 5%;
   align-items: center;
   width: 90%;
-  height: 200px;
+  height: 140px;
   border-radius: 10px;
 //  background: linear-gradient(120deg, #35465f, #4a7498);
-  background: linear-gradient(120deg, #101d2f, #4a7498);
+//  background: linear-gradient(120deg, #101d2f, #4a7498);
 }
 
 .label {
@@ -53,10 +53,12 @@
   font-family: var(--font-semibold);
 }
 
-.lux-name{
+.lux_name{
   color: white;
-  font-size: 22px;
-  font-family: var(--font-semibold);
+  font-size: 26px;
+  font-family: var(--font-bold);
+  line-height: 1.36;
+  letter-spacing: 0.5px;
 }
 
 .balance_name{
@@ -75,10 +77,12 @@
 }
 
 .icon {
-  margin-right: 12px;
+  margin-right: 15px;
   & > svg {
     max-height: 70px;
     max-width: 100px;
+    width: 48px;
+    height: 48px;
   }
 
   @media (max-width: 950px) {
@@ -123,4 +127,53 @@
   &:hover {
     cursor: default;
   }
+}
+
+.rotateButton {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  perspective: 1800px;
+  
+  &:hover {
+    .rotateFlipper {
+      transform: rotateX(0deg);
+    }
+  }
+  &:active {
+    .rotateFlipper {
+      transform: rotateX(0deg) scale(0.95);
+      transition: transform 0.05s ease;
+    }
+  }
+  
+}
+
+.rotateFlipper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(-90deg);
+  transition: transform 0.3s ease;
+}
+
+.rotateFront,
+.rotateBack {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backface-visibility: hidden;
+  svg {
+      display: block;
+  }
+}
+
+.buttonText {
+  letter-spacing: 0.01em;
+  font-family: Futura, "Helvetica Neue", Helvetica, sans-serif;
 }

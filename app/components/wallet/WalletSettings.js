@@ -168,13 +168,7 @@ export default class WalletSettings extends Component<Props> {
 
     return (
       <div className={styles.component}>
-	      <div className={styles.categoryTitle}>
-          Settings
-        </div>
         <BorderedBox>
-
-
-
           <ReadOnlyInput
             label={intl.formatMessage(messages.passwordLabel)}
             value={passwordMessage}

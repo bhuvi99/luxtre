@@ -102,7 +102,7 @@ LUXCOIN_BUILD_UID="${OS_NAME}-${luxcoin_branch//\//-}"
 LUXCORE_DEAMON=luxd               # ex- luxtre-daemon
 
 retry 5 curl -o ${LUXCORE_DEAMON}.zip \
-        --location "https://github.com/216k155/luxtre/releases/download/v${luxcoin_branch}/${luxd_zip}"
+        --location "https://github.com/LUX-Core/luxtre/releases/download/v${luxcoin_branch}/${luxd_zip}"
 du -sh   ${LUXCORE_DEAMON}.zip
 unzip -o ${LUXCORE_DEAMON}.zip
 rm       ${LUXCORE_DEAMON}.zip

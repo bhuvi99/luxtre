@@ -11,19 +11,43 @@ import styles from './TopBar.scss';
 import resolver from '../../utils/imports';
 import { matchRoute } from '../../utils/routing';
 import { ROUTES } from '../../routes-config';
+import ConsoleWindowDialog from "../widgets/ConsoleWindowDialog";
+import ConsoleWindowContainer from '../../containers/wallet/dialogs/ConsoleWindowContainer';
 
 const { formattedWalletAmount } = resolver('utils/formatters');
 
 type Props = {
   onSwitchLuxgate?: ?Function,
+  isDialogOpen: Function,
   children?: ?Node,
-  isShowingLuxtre?: ?boolean
+  isShowingLuxtre?: ?boolean,
+  pageTitle: string,
+};
+
+var pageNameList = {
+  "summary" : "OVERVIEW",
+  "send" : "SEND",
+  "receive" : "RECEIVE", 
+  "transactions" : "TRANSACTIONS",
+  "settings" : "SETTINGS",
+  "utilities" : "UTILITIES",
+  "poscalculator" : "UTILITIES",
+  "stakingchart" : "UTILITIES",
+  "masternodes" : "MASTERNODES",
+  "masternodesnet" : "MASTERNODES",
+  "mymasternode" : "MASTERNODES",
+  "lsrtokens": "LSR TOKEN",
+  "smartcontracts" : "SMART CONTRACTS",
+  "createsmartcontract" : "SMART CONTRACTS",
+  "callsmartcontract" : "SMART CONTRACTS",
+  "sendtosmartcontract" : "SMART CONTRACTS",
+  "solcompiler" : "SMART CONTRACTS",
 };
 
 @observer
 export default class TopBar extends Component<Props> {
   render() {
-    const { onSwitchLuxgate, isShowingLuxtre } = this.props;
+    const { onSwitchLuxgate, isShowingLuxtre, pageTitle, isDialogOpen } = this.props;
 
     const topBarStyles = classNames([
       styles.topBar,
@@ -38,13 +62,27 @@ export default class TopBar extends Component<Props> {
         className={styles.sidebarIcon}
       />
     );
+    
+    const page = pageTitle ? pageTitle : "summary";
 
     return (
       <header className={topBarStyles}>
-        <button className={styles.leftIcon} onClick={onSwitchLuxgate}>
+        {/*isShowingLuxtre != undefined ? (
+          <button className={styles.leftIcon} onClick={onSwitchLuxgate}>
+            {switchToggleIcon}
+          </button>
+        ) : (null)*/}
+
+        {/*<button className={styles.leftIcon} onClick={onSwitchLuxgate}>
           {switchToggleIcon}
-        </button>
+        </button>*/}
+        <div className={styles.pageTitle}>
+          {pageNameList[page]}
+        </div>
         {this.props.children}
+        {isDialogOpen(ConsoleWindowDialog) ? (
+          <ConsoleWindowContainer/>
+        ) : null}
       </header>
     );
   }

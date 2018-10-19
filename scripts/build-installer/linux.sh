@@ -64,7 +64,7 @@ do case "$1" in
 set -e
 
 retry 5 curl -o ${LUXCORE_DEAMON}.zip \
-        --location "https://github.com/216k155/luxcore/releases/download/v${luxd_version}/${luxd_zip}"
+        --location "https://github.com/LUX-Core/luxtre/releases/download/v${luxd_version}/${luxd_zip}"
 du -sh   ${LUXCORE_DEAMON}.zip
 unzip -o ${LUXCORE_DEAMON}.zip
 rm       ${LUXCORE_DEAMON}.zip

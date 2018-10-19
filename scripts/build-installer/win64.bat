@@ -14,7 +14,7 @@ set LUXD_VERSION=%2
 @if [%LUXD_VERSION%]==[]   (@echo WARNING: LUXD_VERSION [argument #2] was not provided, defaulting to %DEFAULT_LUXD_VERSION%
     set LUXD_VERSION=%DEFAULT_LUXD_VERSION%);
 
-set LUXD_URL=https://github.com/216k155/luxtre/releases/download/v%LUXD_VERSION%/luxd-wins.zip
+set LUXD_URL=https://github.com/LUX-Core/luxtre/releases/download/v%LUXD_VERSION%/luxd-wins.zip
 set LIBRESSL_URL=https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-%LIBRESSL_VERSION%-windows.zip
 
 @echo Building luxtre version:  %LUXTRE_VERSION%

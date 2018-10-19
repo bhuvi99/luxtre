@@ -29,6 +29,7 @@ const WalletSettingsPage = resolver('containers/wallet/WalletSettingsPage');
 const MasternodesPage = resolver('containers/wallet/MasternodesPage');
 const MasternodesNetPage = resolver('containers/wallet/MasternodesNetPage');
 const MyMasternodePage = resolver('containers/wallet/MyMasternodePage');
+const LSRTokensPage = resolver('containers/wallet/LSRTokensPage');
 const SmartContractsPage = resolver('containers/wallet/SmartContractsPage');
 const CreateSmartContractPage = resolver('containers/wallet/CreateSmartContractPage');
 const CallSmartContractPage = resolver('containers/wallet/CallSmartContractPage');
@@ -36,6 +37,7 @@ const SendtoSmartContractPage = resolver('containers/wallet/SendtoSmartContractP
 const SolidityCompilerPage = resolver('containers/wallet/SolidityCompilerPage');
 const UtilityPage = resolver('containers/wallet/UtilityPage');
 const UtilityPosCalcPage = resolver('containers/wallet/UtilityPosCalcPage');
+const UtilityStakingChartPage = resolver('containers/wallet/UtilityStakingChartPage');
 
 export const Routes = (
   <div>
@@ -55,11 +57,13 @@ export const Routes = (
       <Route path={ROUTES.WALLETS.SETTINGS} component={WalletSettingsPage} />
       <Route path={ROUTES.WALLETS.UTILITIES.ROOT} component={UtilityPage}>
         <Route path={ROUTES.WALLETS.UTILITIES.POSCALCULATOR} component={UtilityPosCalcPage}/>
+        <Route path={ROUTES.WALLETS.UTILITIES.STAKINGCHART} component={UtilityStakingChartPage}/>
       </Route>
       <Route path={ROUTES.WALLETS.MASTERNODES.ROOT} component={MasternodesPage}>
         <Route path={ROUTES.WALLETS.MASTERNODES.MASTERNODESNET} component={MasternodesNetPage}/>
         <Route path={ROUTES.WALLETS.MASTERNODES.MYMASTERNODE} component={MyMasternodePage}/>
       </Route>
+      <Route path={ROUTES.WALLETS.LSRTOKENS} component={LSRTokensPage} />
       <Route path={ROUTES.WALLETS.SMARTCONTRACTS.ROOT} component={SmartContractsPage}>
         <Route path={ROUTES.WALLETS.SMARTCONTRACTS.CREATESMARTCONTRACT} component={CreateSmartContractPage}/>
         <Route path={ROUTES.WALLETS.SMARTCONTRACTS.CALLMARTCONTRACT} component={CallSmartContractPage}/>

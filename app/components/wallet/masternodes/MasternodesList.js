@@ -39,17 +39,18 @@ export default class MasternodesList extends Component<Props> {
         <div className={styles.categoryTitle}>
           Lux Masternodes Activated: {totalActivated}
         </div>
-
-        {masternodes.map((masternode, index) => (
-          <div key={index} className={styles.list}>
-            <div className={styles.Address}> {masternode.address} </div>
-            <div className={styles.Rank}> {masternode.rank} </div>
-            <div className={styles.Activate}> {masternode.active} </div>
-            <div className={styles.ActiveTime}> {this.formatTime(masternode.activeSeconds)} </div>
-            <div className={styles.LastSeen}> {moment(masternode.lastSeen * 1000).format(dateFormat)} </div>
-            <div className={styles.Pubkey}> {masternode.pubKey} </div>
-          </div>
-        ))}
+        <div className={styles.scrollableDiv}>
+          {masternodes.map((masternode, index) => (
+            <div key={index} className={styles.list}>
+              <div className={styles.Address}> {masternode.address} </div>
+              <div className={styles.Rank}> {masternode.rank} </div>
+              <div className={styles.Activate}> {masternode.active} </div>
+              <div className={styles.ActiveTime}> {this.formatTime(masternode.activeSeconds)} </div>
+              <div className={styles.LastSeen}> {moment(masternode.lastSeen * 1000).format(dateFormat)} </div>
+              <div className={styles.Pubkey}> {masternode.pubKey} </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

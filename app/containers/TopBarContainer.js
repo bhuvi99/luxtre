@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import TopBar from '../components/layout/TopBar';
+import ConsoleWindowIcon from '../components/widgets/ConsoleWindowIcon';
 import NodeSyncStatusIcon from '../components/widgets/NodeSyncStatusIcon';
 import WalletLockStatusIcon from '../components/widgets/WalletLockStatusIcon';
 import LuxgateToopbarIcons from '../components/widgets/LuxgateToopbarIcons';
@@ -20,11 +21,13 @@ export default class TopBarContainer extends Component<Props> {
   render() {
     const { actions, stores } = this.props;
     const { sidebar, app, networkStatus, luxgate } = stores;
+    const { uiDialogs, uiNotifications } = stores;
     const isMainnet = environment.isMainnet();
     const isLuxApi = environment.isLuxApi();
     const activeWallet = stores[environment.API].wallets.active;
     const { isShowingLuxtre } = sidebar;
     const { isLogined } = luxgate.loginInfo;
+    const pageTitle = stores[environment.API].wallets.pageTitle;
     const testnetLabel = (
       isLuxApi && !isMainnet ? <WalletTestEnvironmentLabel /> : null
     );
@@ -33,6 +36,8 @@ export default class TopBarContainer extends Component<Props> {
       <TopBar
         onSwitchLuxgate={actions.sidebar.switchLuxgate.trigger}
         isShowingLuxtre={isShowingLuxtre}
+        pageTitle={pageTitle}
+        isDialogOpen={uiDialogs.isOpen}
       >
         {isShowingLuxtre && activeWallet && activeWallet.hasPassword == true ?
           <WalletLockStatusIcon
@@ -53,7 +58,13 @@ export default class TopBarContainer extends Component<Props> {
           />
           : null
         }
-        {/* {!isShowingLuxtre ?
+        {isShowingLuxtre ?
+          <ConsoleWindowIcon
+            openDialogAction={actions.dialogs.open.trigger}
+          />
+          :null
+        }
+        {!isShowingLuxtre ?
           <LuxgateToopbarIcons
             isLogined={isLogined}
             addLog={(content:string, type:string) =>{

@@ -1,14 +1,14 @@
 .component {
   overflow: visible;
   position: absolute;
-  right: 12px;
+  right: 65px;
   &:hover {
     .info {
       opacity: 1;
     }
   }
   &.mainnet {
-    right: 40px;
+    right: 80px;
     .icon {
       height: 31px;
       width: 31px;
@@ -45,4 +45,5 @@
   border-radius: 4px;
   color: var(--theme-node-sync-info-message-text-color);
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+  z-index: 10;
 }

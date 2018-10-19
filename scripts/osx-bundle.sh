@@ -5,13 +5,13 @@
 #   3. 'stack'
 
 DEFAULT_LUXTRE_BRANCH=master
-DEFAULT_LUXD_VERSION=1.0.0
+DEFAULT_LUXD_VERSION=2.0.0
 
 LUXTRE_BRANCH=${1:-${DEFAULT_LUXTRE_BRANCH}}
 LUXD_VERSION=${2:-${DEFAULT_LUXD_VERSION}}
 shift 2
 
-URL=https://github.com/216k155/luxtre.git
+URL=https://github.com/LUX-Core/luxtre.git
 
 test ! -e luxtre.old ||
         rm -rf luxtre.old

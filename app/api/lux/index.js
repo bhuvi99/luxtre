@@ -56,7 +56,7 @@ import {getLuxStakingStatus} from './getLuxStakingStatus';
 import {createLuxContract} from './createLuxContract';
 import {callLuxContract} from './callLuxContract';
 import {sendToLuxContract} from './sendToLuxContract';
-
+import {sendCommandToConsole} from './sendCommandToConsole';
 import {closeLocalNetwork} from './closeLocalNetwork';
 
 const fs = require('fs');
@@ -86,6 +86,7 @@ import type {
   LuxWallet,
   LuxWallets,
   LuxWalletRecoveryPhraseResponse,
+  LuxStakingStatus
 } from './types';
 
 import { 
@@ -130,8 +131,8 @@ import type {
   CreateLuxContractResponse,
   CallLuxContractRequest,
   CallLuxContractResponse,
-  SendToLuxContractRequest,
-  SendToLuxContractResponse
+  SendCommandToConsoleRequest,
+  SendCommandToConsoleResponse
 } from '../common';
 
 import {
@@ -320,6 +321,13 @@ export default class LuxApi {
         networkDifficulty: peerInfos ? totalBlocks : 100
       };
     } catch (error) {
+      const errStr = stringifyError(error);
+      const errObj = JSON.parse(errStr);
+      if(errObj.message) {
+        return {
+          errorMessage: errObj.message
+        }
+      }
       Logger.error('LuxApi::getSyncProgress error: ' + stringifyError(error));
       throw new GenericApiError();
     }
@@ -367,7 +375,13 @@ export default class LuxApi {
         }
       }
       
-      const isStaking = await getLuxStakingStatus();
+      const stakingStatus: LuxStakingStatus = await getLuxStakingStatus();
+      
+      const isStaking = stakingStatus && stakingStatus.validtime == true && 
+        stakingStatus.haveconnections == true && 
+        stakingStatus.walletunlocked == true && 
+        stakingStatus.mintablecoins == true &&
+        stakingStatus.enoughcoins == 'yes';
 
       const id = 'Main';
       let Wallets = [];
@@ -809,9 +823,10 @@ export default class LuxApi {
     try {
       //const { blocks } = request;
       const blocks = 25;
-      const estimatedFee: LuxFee = await getLuxEstimatedFee({
-        blocks,
-      });
+      //const estimatedFee: LuxFee = await getLuxEstimatedFee({
+      //  blocks,
+      //});
+      const estimatedFee = 0.0001;
       Logger.debug('LuxApi::getEstimatedResponse success: ' + estimatedFee);
       return quantityToBigNumber(estimatedFee);
     } catch (error) {
@@ -1159,6 +1174,19 @@ export default class LuxApi {
       throw new GenericApiError();
     }
   }
+
+  async sendToConsoleCommand(request: SendCommandToConsoleRequest): Promise<SendCommandToConsoleResponse> {
+    Logger.debug('LuxApi::sendToConsoleCommand called');
+    try {
+      const command = request.command;
+      const param = request.param ? request.param.split(' ') : [];
+      const result = await sendCommandToConsole({command, param});
+      return result;
+    } catch (error) {
+      Logger.error('LuxApi::sendCommandToConsole error: ' + stringifyError(error));
+      throw new GenericApiError();
+    }
+  }
 }
 // ========== TRANSFORM SERVER DATA INTO FRONTEND MODELS =========
 
@@ -1191,6 +1219,10 @@ const _createTransaction = async (senderAccount: LuxWalletId, txHash: LuxTxHash)
   const txData: LuxTransaction = await getLuxTransactionByHash({
     txHash
   });
+  if(txData.confirmations < 0) //Negative confirmations indicate the transaction conflicts with the block chain
+  {
+    return null;
+  } 
   const type = senderAccount === txData.from ? transactionTypes.EXPEND : transactionTypes.INCOME;
   return _createWalletTransactionFromServerData(type, txData);
 };

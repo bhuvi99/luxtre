@@ -11,6 +11,11 @@ const messages = defineMessages({
     defaultMessage: '!!!Utility POSCalculator',
     description: 'Label for the "Utility PosCalculator" nav button in the utility poscalculator.'
   },
+  utilitystakingchart: {
+    id: 'wallet.navigation.utilitystakingchart',
+    defaultMessage: '!!!Utility StakingChart',
+    description: 'Label for the "Utility StakingChart" nav button in the utility StakingChart.'
+  },
 });
 
 type Props = {
@@ -35,6 +40,13 @@ export default class UtilityNavigation extends Component<Props> {
             label={intl.formatMessage(messages.utilityposcalc)}
             isActive={isActiveNavItem('poscalculator')}
             onClick={() => onNavItemClick('poscalculator')}
+          />
+        </div>
+        <div className={styles.navItem}>
+          <WalletNavButton
+            label={intl.formatMessage(messages.utilitystakingchart)}
+            isActive={isActiveNavItem('stakingchart')}
+            onClick={() => onNavItemClick('stakingchart')}
           />
         </div>
       </div>

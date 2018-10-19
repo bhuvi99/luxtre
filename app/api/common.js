@@ -183,8 +183,19 @@ export type StopMasternodeResponse = {
 
 export type StopManyMasternodeResponse = Array<StopMasternodeResponse>;
 
-// ////////////////////////////////////////////////////////////////////////////
-// Luxgate type
+export type SendCommandToConsoleRequest = {
+  command: string,
+  param: string,
+};
+
+export type SendCommandToConsoleResponse = {
+  txid: string,
+  sender: string,
+  hash160: string
+};
+
+//////////////////////////////////////////////////////////////////////////////
+//Luxgate type
 
 export type GetCoinInfoResponse = CoinInfo;
 export type GetCoinBalanceResponse = number;

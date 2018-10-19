@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import MainLayout from '../MainLayout';
+import TopBarContainer from '../TopBarContainer';
 import WalletWithNavigation from '../../components/wallet/layouts/WalletWithNavigation';
 import ExchangePage from '../../components/exchange/ExchangePage';
 import LoadingSpinner from '../../components/widgets/LoadingSpinner';
@@ -60,8 +61,11 @@ export default class Wallet extends Component<Props> {
         {isShowingLuxtre ? (
           <WalletWithNavigation
             isActiveScreen={this.isActiveScreen}
+            topbar={<TopBarContainer />}
             onWalletNavItemClick={this.handleWalletNavItemClick}
             amount={wallets.active.amount.toFormat(DECIMAL_SPLACES_IN_LUX)}
+            isShowingLuxtre={isShowingLuxtre}
+            onSwitchLuxgate={actions.sidebar.switchLuxgate.trigger}
           >
             {this.props.children}
           </WalletWithNavigation>

@@ -13,29 +13,28 @@
   text-align: left;
   display: flex;
   flex-direction: row;
-  padding: 25px 0px;
-  margin-left: 10px;
+  padding: 25px 25px;
   align-items: center;
   width: 100%;
   height: 30px;
-  border-top: solid 1px #677575;
-  border-radius: 0;
+  //border-top: solid 1px #677575;
+  //border-radius: 0;
 }
 
 .label {
   font-size: 14px;
-  font-family: var(--font-regular);
+  font-family: 'Montserrat-Medium';
   display: block;
   overflow: visible;
+  //letter-spacing: 1px;
   color: var(--theme-nav-item-text-color);
 }
 
 .icon {
-  margin-left: 10px;
-  margin-right: 12px;
+  margin-right: 16px;
   & > svg {
-    max-height: 23px;
-    max-width: 23px;
+    max-height: 22px;
+    max-width: 22px;
   }
 
   @media (max-width: 950px) {
@@ -64,7 +63,7 @@
 
   &:hover {
     .container {
-      background-color: var(--theme-nav-item-background-color-hover);
+      background-color: #0c2149;
     }
     cursor: pointer;
   }
@@ -72,7 +71,8 @@
 
 .active {
   .container {
-    background: linear-gradient(90deg, var(--theme-nav-item-text-gradient-1), var(--theme-nav-item-text-gradient-2));
+    //background: linear-gradient(90deg, var(--theme-nav-item-text-gradient-1), var(--theme-nav-item-text-gradient-2));
+    background-color: var(--theme-nav-item-background-color-hover);
     color: var(--theme-nav-item-text-color-active);
   }
 

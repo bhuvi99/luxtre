@@ -2,6 +2,14 @@
   padding: 20px 20px 0;
 }
 
+.transactionPage {
+  height: calc(100vh - 100px);
+}
+
+.summaryPage {
+  height: calc(100vh - 200px);
+}
+
 .categoryTitle {
   font-size: 26px;
   letter-spacing: 0.5px;

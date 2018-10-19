@@ -35,7 +35,7 @@ const messages = defineMessages({
   },
   aboutCopyright: {
     id: 'static.about.copyright',
-    defaultMessage: '!!!Luxcore Limited. Licensed under',
+    defaultMessage: '!!!Luxcore Limited. Licensed under. All rights reserved.',
     description: 'About "copyright"',
   },
   licenseLink: {
@@ -91,7 +91,7 @@ export default class About extends Component<any> {
           <a href="https://luxcore.io">https://luxcore.io</a>
           <div className={styles.copyright}>
             {intl.formatMessage(messages.aboutCopyright)}&nbsp;
-            <a href="https://github.com/216k155/luxcore/blob/master/LICENSE">
+            <a href="https://github.com/LUX-Core/luxtre/blob/master/LICENSE">
               {intl.formatMessage(messages.licenseLink)}
             </a>
           </div>
