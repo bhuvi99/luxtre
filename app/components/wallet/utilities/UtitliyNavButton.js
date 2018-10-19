@@ -22,7 +22,7 @@ export default class UtitliyNavButton extends Component<Props> {
       styles.component,
       styles.btn,
       styles.btnEffect,
-      isActive ? styles.active : null
+      isActive ? styles.active : styles.normal
     ]);
     const iconClasses = classnames([
       isActive ? styles.activeIcon : styles.normalIcon
