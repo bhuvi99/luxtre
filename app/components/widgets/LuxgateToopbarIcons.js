@@ -26,20 +26,19 @@ const messages = defineMessages({
     id: 'luxgate.Toopbar.Settings.Tooltip',
     defaultMessage: '!!!Settings',
     description: 'Tooltip for Settings Icon on Luxgate Toopbar.'
-  },
+  }
 });
 
 type Props = {
   isLogined: boolean,
   addLog: Function,
   onLogout: Function,
-  openDialogAction: Function,
+  openDialogAction: Function
 };
 
 export default class LuxgateToopbarIcons extends Component<Props> {
-
   static defaultProps = {
-    isLogined: false,
+    isLogined: false
   };
 
   static contextTypes = {
@@ -47,42 +46,42 @@ export default class LuxgateToopbarIcons extends Component<Props> {
   };
 
   onClickLoginIcon() {
-    if (this.props.isLogined)
-      this.props.onLogout();
-    else
-      this.props.openDialogAction({dialog: LuxgateLoginDialog});
+    if (this.props.isLogined) this.props.onLogout();
+    else this.props.openDialogAction({ dialog: LuxgateLoginDialog });
   }
 
   onClickSettingsIcon() {
-    if (this.props.isLogined)
-      this.props.openDialogAction({dialog: LuxgateSettingsDialog});
-    else
-      this.props.addLog("Need to Login, Please Login", "info");
+    if (this.props.isLogined) this.props.openDialogAction({ dialog: LuxgateSettingsDialog });
+    else this.props.addLog('Need to Login, Please Login', 'info');
   }
-
 
   render() {
     const { isLogined } = this.props;
     const { intl } = this.context;
-    const componentClasses = classNames([
-      styles.component,
-    ]);
-
+    const componentClasses = classNames([styles.component]);
     return (
       <div className={componentClasses}>
-        <button 
-          className={styles.loginIcon} 
-          title={intl.formatMessage(messages.LuxgateTopbarSettingsTooltip)}  
+        <button
+          className={styles.loginIcon}
+          title={intl.formatMessage(messages.LuxgateTopbarSettingsTooltip)}
           onClick={() => this.onClickSettingsIcon()}
-          > 
-            <img className={styles.icon} src={settingsIcon } role="presentation" />   
+        >
+          <img className={styles.icon} src={settingsIcon} role="presentation" />
         </button>
-        <button 
-          className={styles.loginIcon} 
-          title={!isLogined? intl.formatMessage(messages.LuxgateTopbarLoginTooltip) : intl.formatMessage(messages.LuxgateTopbarLogoutTooltip)}  
+        <button
+          className={styles.loginIcon}
+          title={
+            !isLogined
+              ? intl.formatMessage(messages.LuxgateTopbarLoginTooltip)
+              : intl.formatMessage(messages.LuxgateTopbarLogoutTooltip)
+          }
           onClick={() => this.onClickLoginIcon()}
-          > 
-            <img className={styles.icon} src={!isLogined? loginIcon : logoutIcon } role="presentation" />   
+        >
+          <img
+            className={styles.icon}
+            src={!isLogined ? loginIcon : logoutIcon}
+            role="presentation"
+          />
         </button>
       </div>
     );

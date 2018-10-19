@@ -25,7 +25,7 @@ export default class TopBarContainer extends Component<Props> {
     const isMainnet = environment.isMainnet();
     const isLuxApi = environment.isLuxApi();
     const activeWallet = stores[environment.API].wallets.active;
-    const {isShowingLuxtre} = sidebar;
+    const { isShowingLuxtre } = sidebar;
     const { isLogined } = luxgate.loginInfo;
     const pageTitle = stores[environment.API].wallets.pageTitle;
     const testnetLabel = (
@@ -39,13 +39,13 @@ export default class TopBarContainer extends Component<Props> {
         pageTitle={pageTitle}
         isDialogOpen={uiDialogs.isOpen}
       >
-        {isShowingLuxtre && activeWallet && activeWallet.hasPassword == true ? 
+        {isShowingLuxtre && activeWallet && activeWallet.hasPassword == true ?
           <WalletLockStatusIcon
             isLocked={activeWallet.isLocked}
           />
           : null
         }
-        {isShowingLuxtre ? 
+        {isShowingLuxtre ?
           <WalletStakingStatusIcon
             isStaking={activeWallet.isStaking}
           />
@@ -56,7 +56,7 @@ export default class TopBarContainer extends Component<Props> {
             networkStatus={networkStatus}
             isMainnet={isMainnet}
           />
-          :null
+          : null
         }
         {isShowingLuxtre ?
           <ConsoleWindowIcon
@@ -77,10 +77,10 @@ export default class TopBarContainer extends Component<Props> {
             onLogout={() => {
               actions.luxgate.loginInfo.logoutAccount.trigger();
             }}
-            openDialogAction={actions.dialogs.open.trigger}  
+            openDialogAction={actions.dialogs.open.trigger}
           />
           : null
-        }
+        } */}
       </TopBar>
     );
   }

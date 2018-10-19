@@ -1,0 +1,42 @@
+{
+  "fonts": [
+    "Roboto, Montserrat"
+  ],
+  "space": [
+    0,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256
+  ],
+  "fontSizes": [
+    12,
+    14,
+    16,
+    20,
+    24,
+    32,
+    48,
+    64,
+    72,
+    96
+  ],
+  "colors": {
+    "turquoise": "#41C3DC",
+    "badgeblue": "#34A9FF",
+    "darkblue": "#061532",
+    "confirmationgreen": "#00bd9a",
+    "green": "#b5e642",
+    "red": "#F04F3B",
+    "black": "#000000",
+    "darkgray": "#191919",
+    "gray": "#4d4d4d",
+    "mediumgray": "#777776",
+    "lightgray": "#9f9f9e",
+    "white": "#ffffff"
+  },
+  "textColor": "black"
+}

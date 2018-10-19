@@ -14,9 +14,9 @@ import { DECIMAL_SPLACES_IN_LUX } from '../../config/numbersConfig';
 
 type Props = InjectedContainerProps;
 
-@inject('stores', 'actions') @observer
+@inject('stores', 'actions')
+@observer
 export default class Wallet extends Component<Props> {
-
   static defaultProps = { actions: null, stores: null };
 
   isActiveScreen = (page: string) => {
@@ -24,7 +24,7 @@ export default class Wallet extends Component<Props> {
     const { wallets } = this.props.stores.lux;
     if (!wallets.active) return false;
     const screenRoute = buildRoute(ROUTES.WALLETS.PAGE, { id: wallets.active.id, page });
-    return app.currentRoute.indexOf(screenRoute) > -1 ? true : false;
+    return app.currentRoute.indexOf(screenRoute) > -1;
   };
 
   handleWalletNavItemClick = (page: string) => {
@@ -32,7 +32,7 @@ export default class Wallet extends Component<Props> {
     if (!wallets.active) return;
     this.props.actions.router.goToRoute.trigger({
       route: ROUTES.WALLETS.PAGE,
-      params: { id: wallets.active.id, page },
+      params: { id: wallets.active.id, page }
     });
   };
 
@@ -42,17 +42,23 @@ export default class Wallet extends Component<Props> {
     const luxgate = this.props.stores.luxgate;
     const { coinInfo, marketInfo, loggerInfo } = luxgate;
     const { coinInfoList } = coinInfo;
-    const { coinPrice, ordersData } = marketInfo;
+    const { coinPrice, ordersData, lgPriceArrayList } = marketInfo;
     const { logbuff } = loggerInfo;
     const { uiDialogs, uiNotifications } = this.props.stores;
     const { actions } = this.props;
     const { showLuxRedemptionSuccessMessage, amountRedeemed } = luxRedemption;
-    const {isShowingLuxtre} = sidebar;
-    if (!wallets.active) return <MainLayout><LoadingSpinner /></MainLayout>;
+    const { isShowingLuxtre } = sidebar;
+    if (!wallets.active) {
+      return (
+        <MainLayout>
+          <LoadingSpinner />
+        </MainLayout>
+      );
+    }
 
     return (
       <MainLayout>
-        {isShowingLuxtre ?
+        {isShowingLuxtre ? (
           <WalletWithNavigation
             isActiveScreen={this.isActiveScreen}
             topbar={<TopBarContainer />}
@@ -63,35 +69,35 @@ export default class Wallet extends Component<Props> {
           >
             {this.props.children}
           </WalletWithNavigation>
-          :
-          <ExchangePage 
+        ) : (
+          <ExchangePage
             coinPrice={coinPrice}
             ordersData={ordersData}
+            lgPriceArrayList={lgPriceArrayList}
             coinInfoList={coinInfoList}
             logbuff={logbuff}
-            openDialogAction={actions.dialogs.open.trigger}  
+            openDialogAction={actions.dialogs.open.trigger}
             isDialogOpen={uiDialogs.isOpen}
             onChangeCoin={(coin: string, coin_num: number) => {
               const coinData = {
-                coin: coin,
-                coin_num: coin_num,
+                coin,
+                coin_num
               };
               actions.luxgate.coinInfo.getCoinInfo.trigger(coinData);
             }}
             onSwapCoin={(buy_coin: string, sell_coin: string, amount: number, value: number) => {
               const swapData = {
-                buy_coin: buy_coin,
-                sell_coin: sell_coin,
-                amount: amount,
-                value: value,
+                buy_coin,
+                sell_coin,
+                amount,
+                value
               };
               actions.luxgate.coinInfo.swapCoin.trigger(swapData);
             }}
-            >
-
-            {/*code Exchange UI here */}
-          </ExchangePage>  
-        }
+          >
+            {/* code Exchange UI here */}
+          </ExchangePage>
+        )}
       </MainLayout>
     );
   }
