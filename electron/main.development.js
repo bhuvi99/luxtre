@@ -39,7 +39,7 @@ app.setPath('temp', appLogFolderPath);
 
 // TODO: Update when endpoint is ready (crash reports are only saved locally for now)
 crashReporter.start({
-  companyName: 'IOHK',
+  companyName: 'LUX',
   productName: APP_NAME,
   submitURL: '',
   uploadToServer: false
@@ -186,8 +186,8 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1150,
-    height: 870
+    width: 1190,
+    height: 768
   });
 
   mainWindow.setMinimumSize(900, 600);

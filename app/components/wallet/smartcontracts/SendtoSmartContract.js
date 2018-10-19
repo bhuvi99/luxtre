@@ -249,7 +249,6 @@ export default class SendtoSmartContract extends Component<Props, State> {
 
     return (
       <div className={styles.component}>
-        <div className={styles.subTitle}> {intl.formatMessage(messages.title)} </div>
         <div className={styles.borderedBox}>
           <div className={styles.contractAddress}>{intl.formatMessage(messages.inputContractAddress)}</div>
           <Input

@@ -35,7 +35,7 @@ const messages = defineMessages({
   },
   aboutCopyright: {
     id: 'static.about.copyright',
-    defaultMessage: '!!!Luxcore Limited. Licensed under',
+    defaultMessage: '!!!Luxcore Limited. Licensed under. All rights reserved.',
     description: 'About "copyright"',
   },
   licenseLink: {

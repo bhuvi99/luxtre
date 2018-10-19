@@ -22,6 +22,7 @@ export const ROUTES = {
       ROOT: '/wallets/:id/utilities',
       PAGE: '/wallets/:id/utilities/:page',
       POSCALCULATOR: '/wallets/:id/utilities/poscalculator',
+      STAKINGCHART: '/wallets/:id/utilities/stakingchart',
     },
     MASTERNODES: {
       ROOT: '/wallets/:id/masternodes',
@@ -29,6 +30,7 @@ export const ROUTES = {
       MASTERNODESNET: '/wallets/:id/masternodes/masternodesnet',
       MYMASTERNODE: '/wallets/:id/masternodes/mymasternode',
     },
+    LSRTOKENS: '/wallets/:id/lsrtokens',
     SMARTCONTRACTS: {
       ROOT: '/wallets/:id/smartcontracts',
       PAGE: '/wallets/:id/smartcontracts/:page',

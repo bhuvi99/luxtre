@@ -9,7 +9,7 @@ nodeArgs:
 - --wallet-db-path
 - ! '%APPDATA%\Luxcore\Wallet-1.0'
 - --update-server
-- https://update-luxcoin-mainnet.iohk.io
+- https://update-luxcoin-mainnet.io
 - --update-with-package
 - --no-ntp
 - --tlscert
@@ -33,7 +33,7 @@ updateArchive: null
 updateWindowsRunner: ! '%APPDATA%\Luxcore\Installer.bat'
 
 nodeTimeoutSec: 30
-reportServer: http://report-server.luxcoin-mainnet.iohk.io:8080
+reportServer: http://report-server.luxcoin-mainnet.io:8080
 launcherLogsPrefix: ! '%APPDATA%\Luxcore\Logs\pub'
 
 configuration:

@@ -1,12 +1,13 @@
 .component {
-  padding: 20px 20px 0;
+  padding: 20px 20px 20px 20px;
   color: var(--theme-bordered-box-text-color);
+  overflow:auto;
 }
 
 .categoryTitle {
   font-size: 14px;
   letter-spacing: 0.5px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .list {
   border-radius: 4px;
@@ -169,4 +170,11 @@
       fill: var(--theme-icon-copy-address-color);
     }
   }
+}
+
+.scrollableDiv {
+  display:block;
+  width:100%;
+  height: calc(100vh - 200px);
+  overflow:auto;
 }

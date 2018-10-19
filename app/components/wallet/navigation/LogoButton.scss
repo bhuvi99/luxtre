@@ -1,0 +1,78 @@
+.rotateButton {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  perspective: 1800px;
+  
+  &:hover {
+    .rotateFlipper {
+      transform: rotateX(0deg);
+    }
+  }
+  &:active {
+    .rotateFlipper {
+      transform: rotateX(0deg) scale(0.95);
+      transition: transform 0.05s ease;
+    }
+  }
+}
+
+.rotateFlipper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(-90deg);
+  transition: transform 0.3s ease;
+}
+
+.rotateFront,
+.rotateBack {
+  padding-left: 20px;
+  margin: 30px 20px 30px 5%;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backface-visibility: hidden;
+  svg {
+      display: block;
+  }
+  user-select: none;
+}
+
+.buttonText {
+  letter-spacing: 0.01em;
+  font-family: Futura, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.icon {
+  margin-right: 15px;
+  & > svg {
+    max-height: 70px;
+    max-width: 100px;
+    width: 48px;
+    height: 48px;
+  }
+
+  @media (max-width: 950px) {
+    display: none;
+  }
+}
+
+.logo_name{
+  color: white;
+  font-size: 26px;
+  font-family: var(--font-bold);
+  line-height: 1.36;
+  letter-spacing: 0.5px;
+  &:active {
+    color: babbbd;
+  }
+}

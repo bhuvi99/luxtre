@@ -1,10 +1,12 @@
 .component {
   width: 100%;
   justify-content: space-between;
+  background: var(--theme-button-flat-text-color-disabled);
+  border-bottom: 3px solid var(--theme-button-flat-background-color-hover);
 }
 
 .navItem {
   height: 100%;
-  width: percentage(1/6); // Update when adding new nav items!
+  width: percentage(1/5); // Update when adding new nav items!
   display: inline-block;
 }

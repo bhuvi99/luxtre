@@ -112,6 +112,11 @@ button {
   src: url("../assets/fonts/Montserrat-Medium.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url("../assets/fonts/Montserrat-Regular.otf") format("opentype");
+}
+
 // ============ BASE ===========
 
 html, body, #root, #root > [data-reactroot] {
@@ -132,11 +137,12 @@ html, body, #root, #root > [data-reactroot] {
 
 * {
   &::-webkit-scrollbar {
-    width: 20px;
+    width: 10px;
+    margin-left: 3px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: var(--theme-scrollbar-background);
   }
 
   &::-webkit-scrollbar-thumb {

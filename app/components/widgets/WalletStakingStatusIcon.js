@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { defineMessages, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import stakingIcon from '../../assets/images/top-bar/wallet-staking.png';
+import stakingIcon from '../../assets/images/top-bar/wallet-staking-bright.png';
 import styles from './WalletStakingStatusIcon.scss';
 
 const messages = defineMessages({

@@ -186,11 +186,7 @@ export default class WalletReceive extends Component<Props, State> {
 
     return (
       <div className={styles.component}>
-	      <div className={styles.categoryTitle}>
-          Receive
-        </div>
         <BorderedBox>
-
           <div className={styles.qrCodeAndInstructions}>
             <div className={styles.qrCode}>
               <QRCode
