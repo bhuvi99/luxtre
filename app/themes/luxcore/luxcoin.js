@@ -56,7 +56,7 @@ export default {
 
   '--theme-overview-background-color': '#c5c5c5',
   '--theme-overview-border': '1px solid #c5c5c5',
-  '--theme-overview-text-color': '#5e5d5d',
+  '--theme-overview-text-color': '#241f1d',
 
   '--theme-button-primary-background-color': '#061532',
   '--theme-button-primary-background-color-hover': '#85e3f6',

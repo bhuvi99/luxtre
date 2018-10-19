@@ -12,6 +12,7 @@
   border: var(--theme-bordered-box-border);
   border-radius: 4px;
   padding: 30px 0px;
+  margin: 20px;
 }
 
 .categoryTitle {
@@ -29,6 +30,10 @@
   margin-bottom: 11px;
 }
 
+.overviewGap {
+  padding: 20px;
+}
+
 .numberLabel {
   width: calc((100% - 350px)/3);
 }
@@ -39,7 +44,7 @@
 
 .numberLabel,
 .balanceLabel {
-  padding: 0 30px;
+  padding: 0 22px;
   display: inline-block;
   border-right: var(--theme-overview-border);
   color: var(--theme-overview-text-color);

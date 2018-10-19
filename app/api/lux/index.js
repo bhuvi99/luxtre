@@ -86,6 +86,7 @@ import type {
   LuxWallet,
   LuxWallets,
   LuxWalletRecoveryPhraseResponse,
+  LuxStakingStatus
 } from './types';
 
 import { 
@@ -374,7 +375,13 @@ export default class LuxApi {
         }
       }
       
-      const isStaking = await getLuxStakingStatus();
+      const stakingStatus: LuxStakingStatus = await getLuxStakingStatus();
+      
+      const isStaking = stakingStatus && stakingStatus.validtime == true && 
+        stakingStatus.haveconnections == true && 
+        stakingStatus.walletunlocked == true && 
+        stakingStatus.mintablecoins == true &&
+        stakingStatus.enoughcoins == 'yes';
 
       const id = 'Main';
       let Wallets = [];
@@ -816,9 +823,10 @@ export default class LuxApi {
     try {
       //const { blocks } = request;
       const blocks = 25;
-      const estimatedFee: LuxFee = await getLuxEstimatedFee({
-        blocks,
-      });
+      //const estimatedFee: LuxFee = await getLuxEstimatedFee({
+      //  blocks,
+      //});
+      const estimatedFee = 0.0001;
       Logger.debug('LuxApi::getEstimatedResponse success: ' + estimatedFee);
       return quantityToBigNumber(estimatedFee);
     } catch (error) {
@@ -1170,11 +1178,12 @@ export default class LuxApi {
   async sendToConsoleCommand(request: SendCommandToConsoleRequest): Promise<SendCommandToConsoleResponse> {
     Logger.debug('LuxApi::sendToConsoleCommand called');
     try {
-      const {command, param} = request;
+      const command = request.command;
+      const param = request.param ? request.param.split(' ') : [];
       const result = await sendCommandToConsole({command, param});
       return result;
     } catch (error) {
-      Logger.error('LuxApi::sendToContract error: ' + stringifyError(error));
+      Logger.error('LuxApi::sendCommandToConsole error: ' + stringifyError(error));
       throw new GenericApiError();
     }
   }
@@ -1210,6 +1219,10 @@ const _createTransaction = async (senderAccount: LuxWalletId, txHash: LuxTxHash)
   const txData: LuxTransaction = await getLuxTransactionByHash({
     txHash
   });
+  if(txData.confirmations < 0) //Negative confirmations indicate the transaction conflicts with the block chain
+  {
+    return null;
+  } 
   const type = senderAccount === txData.from ? transactionTypes.EXPEND : transactionTypes.INCOME;
   return _createWalletTransactionFromServerData(type, txData);
 };

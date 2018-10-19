@@ -37,6 +37,10 @@ export default class LuxDebugConsoleStore extends Store {
       var jsonResult = JSON.stringify(result, null, '&emsp;');
       this.consoleHistory.push(jsonResult.split(/\n/g));
     } else {
+      if(typeof result !== 'string')
+      {
+        result = result.toString();
+      }  
       this.consoleHistory.push(result.split(/\n/g));
     }
   };

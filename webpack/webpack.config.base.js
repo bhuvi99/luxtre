@@ -25,7 +25,7 @@ module.exports = validate({
       loader: 'html!markdown?gfm=false',
     },
     {
-      test: /\.(?:png|jpg|svg|otf|ttf)$/,
+      test: /\.(?:png|jpg|svg|otf|ttf|woff|woff2|eot)(\?.*$|$)/,
       loader: 'url-loader',
       exclude: /\.inline\.svg$/,
     },

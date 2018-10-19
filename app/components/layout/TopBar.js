@@ -36,6 +36,7 @@ var pageNameList = {
   "masternodes" : "MASTERNODES",
   "masternodesnet" : "MASTERNODES",
   "mymasternode" : "MASTERNODES",
+  "lsrtokens": "LSR TOKEN",
   "smartcontracts" : "SMART CONTRACTS",
   "createsmartcontract" : "SMART CONTRACTS",
   "callsmartcontract" : "SMART CONTRACTS",
