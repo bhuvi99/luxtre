@@ -16,6 +16,7 @@ type Props = {
   isDialogOpen: Function,
   onChangeCoin: Function,
   onSwapCoin: Function,
+  onSwitchLuxgate: Function,
   lgPriceArrayList: Array<LGPrice>
 };
 
@@ -31,6 +32,7 @@ export default class ExchangePage extends Component<Props> {
       isDialogOpen,
       onChangeCoin,
       onSwapCoin,
+      onSwitchLuxgate,
       lgPriceArrayList
     } = this.props;
 
@@ -46,6 +48,7 @@ export default class ExchangePage extends Component<Props> {
           isDialogOpen={isDialogOpen}
           onChangeCoin={onChangeCoin}
           onSwapCoin={onSwapCoin}
+          onSwitchLuxgate={onSwitchLuxgate}
         />
       </div>
     );

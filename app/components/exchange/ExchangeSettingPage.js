@@ -45,6 +45,7 @@ import styles from './ExchangeSettingPage.scss';
 import type { LGPrice } from '../../domain/LGPriceArray';
 import type { LGOrdersData } from '../../domain/LGOrders';
 import type { InjectedContainerProps } from '../../types/injectedPropsType';
+import LuxLogo from '../Logo/LuxLogo';
 
 type Props = {
   coinPrice: number,
@@ -55,6 +56,7 @@ type Props = {
   isDialogOpen: Function,
   onChangeCoin: Function,
   onSwapCoin: Function,
+  onSwitchLuxgate: Function,
   lgPriceArrayList: Array<LGPrice>
 } & InjectedContainerProps;
 
@@ -293,6 +295,7 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       isDialogOpen,
       onChangeCoin,
       lgPriceArrayList,
+      onSwitchLuxgate,
       stores
     } = this.props;
     const isLogined = this.props.stores.luxgate.loginInfo.isLogined;
@@ -412,7 +415,73 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     return (
       <div className={styles.pageContainer}>
         <div className={styles.content}>
-          {this.orderBook()}
+          <div className={styles.assistContainer}>
+            <LuxLogo 
+              isShowingLuxtre = {false}
+              onSwitchLuxgate = {onSwitchLuxgate}
+            />
+            <div className={styles.setting}>
+              <div className={styles.card}>
+                <div className={styles.cardTitle}><ModalTitle color="white">COUPLED ASSET SWAP</ModalTitle></div>
+              </div>
+              <div className={styles.component}>
+                <Select {...selectProps} value={Coin1} onChange={this.changeCoin1.bind(this)} />
+                {Coin1 === '' ? null : (
+                  <img
+                    src={require('../../assets/crypto/' + Coin1 + '.png')}
+                    style={coinImageStyle}
+                  />
+                )}
+                {/* <div className={styles.span}> Amount </div>*/}
+                <NumericInput
+                  {...inputProps}
+                  placeholder={'0.000000 ' + Coin1}
+                  value={AmountInput}
+                  onChange={this.changeAmountInput.bind(this)}
+                />
+              </div>
+              <div className={styles.switch}>
+                <img
+                  src={switchCoinImage}
+                  className={styles.switchButton}
+                  onClick={this.handleSwitchCoin.bind(this)}
+                />
+              </div>
+              <div className={styles.component}>
+                <Select {...selectProps} value={Coin2} onChange={this.changeCoin2.bind(this)} />
+                {Coin2 === '' ? null : (
+                  <img
+                    src={require('../../assets/crypto/' + Coin2 + '.png')}
+                    style={coinImageStyle}
+                  />
+                )}
+                {/* <span className={styles.span}> Value </span>*/}
+                <NumericInput
+                  {...inputProps}
+                  placeholder={'0.000000 ' + Coin2}
+                  value={ValueInput}
+                  onChange={this.changeValueInput.bind(this)}
+                />
+              </div>
+              <div className={styles.divTotal}>
+                <Total fontSize={2}>Total: {' '}</Total>
+                <MiniBalance color="white">
+                  {this.calculateTotal(AmountInput, ValueInput)} {Coin2}{' '}
+                </MiniBalance>
+              </div>
+              <div className={styles.swapbutton}>
+                <Button
+                  className={swapButtonClasses}
+                  label="Swap"
+                  onClick={this.swapCoin.bind(this)}
+                  skin={<ButtonSkin />}
+                />
+              </div>
+            </div>
+
+            {this.sendReceivePanel()}
+          </div>
+          
           <div className={styles.graph}>
             <Tabs>
               <TabList>
@@ -474,78 +543,8 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               </TabPanel>
             </Tabs>
           </div>
-          <div className={styles.assistContainer}>
-            <div className={styles.setting}>
-              <div className={styles.card}>
-                <div className={styles.cardTitle}><ModalTitle color="white">COUPLED ASSET SWAP</ModalTitle></div>
-              </div>
-              <div className={styles.component}>
-                {!isBuy ? (
-                  <img src={sendImage} className={styles.imageStyle} />
-                ) : (
-                  <img src={recvImage} className={styles.imageStyle} />
-                )}
-                <Select {...selectProps} value={Coin1} onChange={this.changeCoin1.bind(this)} />
-                {Coin1 === '' ? null : (
-                  <img
-                    src={require('../../assets/crypto/' + Coin1 + '.png')}
-                    style={coinImageStyle}
-                  />
-                )}
-                {/* <div className={styles.span}> Amount </div>*/}
-                <NumericInput
-                  {...inputProps}
-                  placeholder={'0.000000 ' + Coin1}
-                  value={AmountInput}
-                  onChange={this.changeAmountInput.bind(this)}
-                />
-              </div>
-              <div className={styles.switch}>
-                <img
-                  src={switchCoinImage}
-                  className={styles.switchButton}
-                  onClick={this.handleSwitchCoin.bind(this)}
-                />
-              </div>
-              <div className={styles.component}>
-                {!isBuy ? (
-                  <img src={recvImage} className={styles.imageStyle} />
-                ) : (
-                  <img src={sendImage} className={styles.imageStyle} />
-                )}
-                <Select {...selectProps} value={Coin2} onChange={this.changeCoin2.bind(this)} />
-                {Coin2 === '' ? null : (
-                  <img
-                    src={require('../../assets/crypto/' + Coin2 + '.png')}
-                    style={coinImageStyle}
-                  />
-                )}
-                {/* <span className={styles.span}> Value </span>*/}
-                <NumericInput
-                  {...inputProps}
-                  placeholder={'0.000000 ' + Coin2}
-                  value={ValueInput}
-                  onChange={this.changeValueInput.bind(this)}
-                />
-              </div>
-              <div className={styles.divTotal}>
-                <Total fontSize={2}>Total: {' '}</Total>
-                <MiniBalance color="white">
-                  {this.calculateTotal(AmountInput, ValueInput)} {Coin2}{' '}
-                </MiniBalance>
-              </div>
-              <div className={styles.swapbutton}>
-                <Button
-                  className={swapButtonClasses}
-                  label="Swap"
-                  onClick={this.swapCoin.bind(this)}
-                  skin={<ButtonSkin />}
-                />
-              </div>
-            </div>
-
-            {this.sendReceivePanel()}
-
+          <div>
+            {this.orderBook()}
             <div className={styles.statusTable}>
               <div className={styles.LogListCaptionBar}>
                 <BoldText>STATUS</BoldText>
