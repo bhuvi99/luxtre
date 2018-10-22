@@ -53,7 +53,7 @@ export default class TopBarContainer extends Component<Props> {
           />
           : null
         }
-        {/* {!isShowingLuxtre ?
+        {!isShowingLuxtre ?
           <LuxgateToopbarIcons
             isLogined={isLogined}
             addLog={(content:string, type:string) =>{
@@ -69,7 +69,7 @@ export default class TopBarContainer extends Component<Props> {
             openDialogAction={actions.dialogs.open.trigger}
           />
           : null
-        } */}
+        }
       </TopBar>
     );
   }
