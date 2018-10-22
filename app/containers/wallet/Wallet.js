@@ -78,6 +78,7 @@ export default class Wallet extends Component<Props> {
             logbuff={logbuff}
             openDialogAction={actions.dialogs.open.trigger}
             isDialogOpen={uiDialogs.isOpen}
+            onSwitchLuxgate={actions.sidebar.switchLuxgate.trigger}
             onChangeCoin={(coin: string, coin_num: number) => {
               const coinData = {
                 coin,

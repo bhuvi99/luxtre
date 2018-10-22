@@ -286,6 +286,8 @@ export default {
   '--theme-luxgate-tablecell-fontcolor': '#ffffff',
   '--theme-luxgate-checkbox-checked-color': '#0097e0',
   '--theme-luxgate-checkbox-unchecked-color': '#756767',
-
+  '--theme-luxgate-primary-background-color': '#85e3f6',
+  '--theme-luxgate-primary-background-color-hover': '#061532',
+  '--theme-luxgate-assist-background-color': '#061532',
 
 };

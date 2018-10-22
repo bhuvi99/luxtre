@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
 .pageContainer {
   position: relative;
   overflow: hidden;
@@ -13,7 +12,6 @@
 }
 .component {
   display: flex;
-  padding: 0px 8px;
   :global .SimpleFormField_root {
     .SimpleFormField_error {
       display: none;
@@ -287,14 +285,14 @@
   background-color: var(--theme-button-primary-text-color);
   border-radius: 4px;
   :global .react-tabs__tab-list {
-    background-color: var(--theme-button-primary-background-color-hover);
+    background-color: var(--theme-luxgate-primary-background-color-hover);
   }
   :global .react-tabs__tab {
     color: white !important;
   }
 
   :global .react-tabs__tab--selected {
-    background-color: var(--theme-button-primary-background-color);
+    background-color: var(--theme-luxgate-primary-background-color);
   }
 }
 
@@ -347,7 +345,7 @@
   justify-content: center;
   height: 310px;
   width: 100%;
-  background-color: var(--theme-button-primary-background-color-hover);
+  background-color: var(--theme-luxgate-primary-background-color-hover);
   border: var(--theme-bordered-box-border);
   border-radius: 4px;
   vertical-align: top;
