@@ -182,9 +182,15 @@ export default class ExchangeSettingPage extends Component<Props, State> {
 
   sendReceivePanel = () => {
     const { Coin1, Coin2 } = this.state;
+    const { coinPrice } = this.props;
 
     return (
       <div className={styles.sendReceivePanel}>
+        <li className={styles.divStatusTab}>
+          <MiniBalance color="white">
+            {Coin1}/{Coin2} : {coinPrice}
+          </MiniBalance>
+        </li>
         <div className={styles.coinbalance}>
           <div className={styles.coin}><BoldText>{Coin1}</BoldText></div>
           <div className={styles.balance}>{this.getCoinBalance(Coin1)}</div>
@@ -224,8 +230,8 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     };
 
     const coinImageStyle = {
-      width: 25,
-      height: 25,
+      width: 30,
+      height: 30,
       position: 'absolute',
       marginTop: 5,
       marginLeft: 8,
@@ -383,8 +389,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
   render() {
     const {
       isBuy,
-      Coin1,
-      Coin2,
       recvCoin,
       sendCoin,
       recvAddress,
@@ -393,7 +397,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     } = this.state;
 
     const {
-      coinPrice,
       ordersData,
       coinInfoList,
       logbuff,
@@ -484,11 +487,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               onSwitchLuxgate = {onSwitchLuxgate}
             />
             {this.sendReceivePanel()}
-            <li className={`${styles.divStatusTab}`}>
-              <MiniBalance color="white">
-                {Coin1}/{Coin2} BALANCE: <TransactionHigh>{coinPrice}</TransactionHigh>
-              </MiniBalance>
-            </li>
             {this.swapPanel()}
           </div>
           

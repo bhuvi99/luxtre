@@ -31,7 +31,7 @@ var TransactionHigh = (0, _styledComponents2.default)('div')([], function (props
 }, _styledSystem.space, _styledSystem.fontSize, _styledSystem.width, _styledSystem.color);
 
 TransactionHigh.defaultProps = {
-  bg: 'green',
+  bg: '#4ba257',
   fontSize: 12
 };
 

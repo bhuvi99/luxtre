@@ -50,7 +50,7 @@
 //Exchange Setting
 
 .selectWidth {
-  width: 40%;
+  width: 110px;
 }
 
 .span {
@@ -61,7 +61,7 @@
 
 .numericInput {
   margin-left: 5px;
-  width: 45%;
+  width: 123px;
 }
 
 .divTotal {
@@ -256,7 +256,7 @@
 
 .divStatusTab {
   display: inline-block;
-  margin-left: 5px;
+  margin: 10px 5px;
   > :first-child {
     display: flex;
   }
@@ -307,7 +307,7 @@
   display: inline-block;
   height: 70px;
   font: bold 14px/30px var(--font-semibold);
-  padding: 4px 20px;
+  padding: 4px 5px;
   background-color: #061532; //var(--theme-luxgate-statusbar-background-color);
   color: #fff;
   border-radius: 4px;
@@ -325,7 +325,7 @@
 .sendReceivePanel {
   @extend .divBalance;
   width: 100%;
-  height: 80px;
+  height: 140px;
   margin-bottom: 8px;
 }
 
@@ -350,7 +350,7 @@
   border-radius: 4px;
   vertical-align: top;
   margin-bottom: 8px;
-  padding: 0px 8px;
+  padding: 0px;
 }
 
 .card {
