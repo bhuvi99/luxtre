@@ -50,7 +50,7 @@ export default {
   '--theme-autocomplete-suggestions-list-item-font-color': '#050b2d',
   '--theme-autocomplete-suggestions-list-item-highlight-color': '#edeeef',
 
-  '--theme-bordered-box-background-color': '#85e3f6',
+  '--theme-bordered-box-background-color': '#fafbfc',
   '--theme-bordered-box-border': '1px solid #c6cdd6',
   '--theme-bordered-box-text-color': '#050b2d',
 

@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import SvgInline from 'react-svg-inline';
 import classnames from 'classnames';
-import styles from './WalletLogo.scss';
-import luxicon from '../../../assets/images/lux-symbol.inline.svg';
-import luxgateicon from '../../../assets/images/luxgate-logo.inline.svg';
+import styles from './LuxLogo.scss';
+import luxicon from '../../assets/images/lux-symbol.inline.svg';
+import luxgateicon from '../../assets/images/luxgate-logo.inline.svg';
 import LogoButton from './LogoButton';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
    onSwitchLuxgate: Function
 }
 
-export default class WalletLogo extends Component<Props> {
+export default class LuxLogo extends Component<Props> {
 
   render() {
     const {amount, isShowingLuxtre, onSwitchLuxgate} = this.props;

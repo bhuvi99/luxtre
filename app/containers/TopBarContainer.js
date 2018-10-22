@@ -80,7 +80,7 @@ export default class TopBarContainer extends Component<Props> {
             openDialogAction={actions.dialogs.open.trigger}
           />
           : null
-        } */}
+        }
       </TopBar>
     );
   }
