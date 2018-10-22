@@ -209,6 +209,114 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     );
   };
 
+  swapPanel = () => {
+    const { Coin1, Coin2, AmountInput, ValueInput } = this.state;
+    
+    const coinStyle = {
+      width: 20,
+      height: 20,
+      borderRadius: 3,
+      display: 'inline-block',
+      marginRight: 10,
+      position: 'relative',
+      top: -2,
+      verticalAlign: 'middle'
+    };
+
+    const coinImageStyle = {
+      width: 25,
+      height: 25,
+      position: 'absolute',
+      marginTop: 5,
+      marginLeft: 8,
+      verticalAlign: 'middle'
+    };
+
+    const swapButtonClasses = classnames(['primary']);
+
+    const inputProps = {
+      skin: <InputSkin />,
+      className: styles.numericInput,
+      maxBeforeDot: 5,
+      maxAfterDot: 6,
+      maxValue: 100000,
+      minValue: 0.000001
+    };
+
+    const selectProps = {
+      skin: <SelectSkin />,
+      className: styles.selectWidth,
+      options: COINS,
+      optionRenderer: option => (
+        <div>
+          <img src={option.image} style={coinStyle} />
+          <span>{option.label}</span>
+        </div>
+      )
+    };
+
+    return (
+      <div className={styles.setting}>
+        <div className={styles.card}>
+          <div className={styles.cardTitle}><ModalTitle color="white">COUPLED ASSET SWAP</ModalTitle></div>
+        </div>
+        <div className={styles.component}>
+          <Select {...selectProps} value={Coin1} onChange={this.changeCoin1.bind(this)} />
+          {Coin1 === '' ? null : (
+            <img
+              src={require('../../assets/crypto/' + Coin1 + '.png')}
+              style={coinImageStyle}
+            />
+          )}
+          {/* <div className={styles.span}> Amount </div>*/}
+          <NumericInput
+            {...inputProps}
+            placeholder={'0.000000 ' + Coin1}
+            value={AmountInput}
+            onChange={this.changeAmountInput.bind(this)}
+          />
+        </div>
+        <div className={styles.switch}>
+          <img
+            src={switchCoinImage}
+            className={styles.switchButton}
+            onClick={this.handleSwitchCoin.bind(this)}
+          />
+        </div>
+        <div className={styles.component}>
+          <Select {...selectProps} value={Coin2} onChange={this.changeCoin2.bind(this)} />
+          {Coin2 === '' ? null : (
+            <img
+              src={require('../../assets/crypto/' + Coin2 + '.png')}
+              style={coinImageStyle}
+            />
+          )}
+          {/* <span className={styles.span}> Value </span>*/}
+          <NumericInput
+            {...inputProps}
+            placeholder={'0.000000 ' + Coin2}
+            value={ValueInput}
+            onChange={this.changeValueInput.bind(this)}
+          />
+        </div>
+        <div className={styles.divTotal}>
+          <Total fontSize={2}>Total: {' '}</Total>
+          <MiniBalance color="white">
+            {this.calculateTotal(AmountInput, ValueInput)} {Coin2}{' '}
+          </MiniBalance>
+        </div>
+        <div className={styles.swapbutton}>
+          <Button
+            className={swapButtonClasses}
+            label="Swap"
+            onClick={this.swapCoin.bind(this)}
+            skin={<ButtonSkin />}
+          />
+        </div>
+      </div>
+    );
+  }
+
   orderBook = () => {
     const orderColumns = [
       {
@@ -275,8 +383,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
   render() {
     const {
       isBuy,
-      AmountInput,
-      ValueInput,
       Coin1,
       Coin2,
       recvCoin,
@@ -369,49 +475,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       }
     ];
 
-    const coinStyle = {
-      width: 20,
-      height: 20,
-      borderRadius: 3,
-      display: 'inline-block',
-      marginRight: 10,
-      position: 'relative',
-      top: -2,
-      verticalAlign: 'middle'
-    };
-
-    const coinImageStyle = {
-      width: 30,
-      height: 30,
-      position: 'absolute',
-      marginTop: 5,
-      marginLeft: 38,
-      verticalAlign: 'middle'
-    };
-
-    const swapButtonClasses = classnames(['primary']);
-
-    const inputProps = {
-      skin: <InputSkin />,
-      className: styles.numericInput,
-      maxBeforeDot: 5,
-      maxAfterDot: 6,
-      maxValue: 100000,
-      minValue: 0.000001
-    };
-
-    const selectProps = {
-      skin: <SelectSkin />,
-      className: styles.selectWidth,
-      options: COINS,
-      optionRenderer: option => (
-        <div>
-          <img src={option.image} style={coinStyle} />
-          <span>{option.label}</span>
-        </div>
-      )
-    };
-
     return (
       <div className={styles.pageContainer}>
         <div className={styles.content}>
@@ -420,66 +483,13 @@ export default class ExchangeSettingPage extends Component<Props, State> {
               isShowingLuxtre = {false}
               onSwitchLuxgate = {onSwitchLuxgate}
             />
-            <div className={styles.setting}>
-              <div className={styles.card}>
-                <div className={styles.cardTitle}><ModalTitle color="white">COUPLED ASSET SWAP</ModalTitle></div>
-              </div>
-              <div className={styles.component}>
-                <Select {...selectProps} value={Coin1} onChange={this.changeCoin1.bind(this)} />
-                {Coin1 === '' ? null : (
-                  <img
-                    src={require('../../assets/crypto/' + Coin1 + '.png')}
-                    style={coinImageStyle}
-                  />
-                )}
-                {/* <div className={styles.span}> Amount </div>*/}
-                <NumericInput
-                  {...inputProps}
-                  placeholder={'0.000000 ' + Coin1}
-                  value={AmountInput}
-                  onChange={this.changeAmountInput.bind(this)}
-                />
-              </div>
-              <div className={styles.switch}>
-                <img
-                  src={switchCoinImage}
-                  className={styles.switchButton}
-                  onClick={this.handleSwitchCoin.bind(this)}
-                />
-              </div>
-              <div className={styles.component}>
-                <Select {...selectProps} value={Coin2} onChange={this.changeCoin2.bind(this)} />
-                {Coin2 === '' ? null : (
-                  <img
-                    src={require('../../assets/crypto/' + Coin2 + '.png')}
-                    style={coinImageStyle}
-                  />
-                )}
-                {/* <span className={styles.span}> Value </span>*/}
-                <NumericInput
-                  {...inputProps}
-                  placeholder={'0.000000 ' + Coin2}
-                  value={ValueInput}
-                  onChange={this.changeValueInput.bind(this)}
-                />
-              </div>
-              <div className={styles.divTotal}>
-                <Total fontSize={2}>Total: {' '}</Total>
-                <MiniBalance color="white">
-                  {this.calculateTotal(AmountInput, ValueInput)} {Coin2}{' '}
-                </MiniBalance>
-              </div>
-              <div className={styles.swapbutton}>
-                <Button
-                  className={swapButtonClasses}
-                  label="Swap"
-                  onClick={this.swapCoin.bind(this)}
-                  skin={<ButtonSkin />}
-                />
-              </div>
-            </div>
-
             {this.sendReceivePanel()}
+            <li className={`${styles.divStatusTab}`}>
+              <MiniBalance color="white">
+                {Coin1}/{Coin2} BALANCE: <TransactionHigh>{coinPrice}</TransactionHigh>
+              </MiniBalance>
+            </li>
+            {this.swapPanel()}
           </div>
           
           <div className={styles.graph}>
@@ -489,11 +499,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
                 <Tab><BoldText>ORDER BOOK</BoldText></Tab>
                 <Tab><BoldText>OPEN ORDERS</BoldText></Tab>
                 <Tab><BoldText>BALANCES</BoldText></Tab>
-                <li className={`${styles.divStatusTab}`}>
-                  <MiniBalance color="white">
-                    {Coin1}/{Coin2} BALANCE: <TransactionHigh>{coinPrice}</TransactionHigh>
-                  </MiniBalance>
-                </li>
               </TabList>
 
               <TabPanel>
