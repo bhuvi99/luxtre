@@ -21,6 +21,8 @@ import WalletUnlockDialog from '../../components/wallet/WalletUnlockDialog';
 import WalletUnlockDialogContainer from '../../containers/wallet/dialogs/WalletUnlockDialogContainer';
 import ImportPrivateKeyDialog from '../../components/wallet/ImportPrivateKeyDialog';
 import ImportPrivateKeyDialogContainer from '../../containers/wallet/dialogs/ImportPrivateKeyDialogContainer';
+import ExportPrivateKeyDialog from '../../components/wallet/ExportPrivateKeyDialog';
+import ExportPrivateKeyDialogContainer from '../../containers/wallet/dialogs/ExportPrivateKeyDialogContainer';
 /* eslint-disable max-len */
 // import ExportPaperWalletPrinterCopyDialog from './settings/paper-wallet-export-dialogs/ExportPaperWalletPrinterCopyDialog';
 // import ExportPaperWalletPrinterCopyDialogContainer from '../../containers/wallet/dialogs/paper-wallet-export/ExportPaperWalletPrinterCopyDialogContainer';
@@ -232,7 +234,7 @@ export default class WalletSettings extends Component<Props> {
                   openDialogAction({dialog: WalletUnlockDialog});
                 }
                 else{
-                  //onExportPrivateKey(address, '');
+                  openDialogAction({dialog: ExportPrivateKeyDialog});
                 }
                   
               }}
@@ -248,7 +250,7 @@ export default class WalletSettings extends Component<Props> {
                   openDialogAction({dialog: WalletUnlockDialog});
                 }
                 else{
-                  //onImportPrivateKey(privkey, '');
+                  openDialogAction({dialog: ImportPrivateKeyDialog});
                 }
               }}
               skin={<SimpleButtonSkin />}
@@ -302,16 +304,30 @@ export default class WalletSettings extends Component<Props> {
             )}
 
             exportPrivateKey = {(password) => (
-              onExportPrivateKey(password)
+              onUnlockWallet(password),
+              openDialogAction({dialog: ExportPrivateKeyDialog})
+            )}
+
+            importPrivateKey = {(password) => (
+              onUnlockWallet(password),
+              openDialogAction({dialog: ImportPrivateKeyDialog})
             )}
           />
         ) : null}
 
         {isDialogOpen(ImportPrivateKeyDialog) ? (
           <ImportPrivateKeyDialogContainer
-            importPrivateKey = {(privateKey) => (
-              onImportPrivateKey(privateKey)
-            )}
+            // importPrivateKey = {(privateKey) => (
+            //   onImportPrivateKey(privateKey)
+            // )}
+          />
+        ) : null}
+
+        {isDialogOpen(ExportPrivateKeyDialog) ? (
+          <ExportPrivateKeyDialogContainer
+            // exportPrivateKey = {(privateKey) => (
+            //   onImportPrivateKey(privateKey)
+            // )}
           />
         ) : null}
 
