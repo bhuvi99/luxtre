@@ -26,6 +26,7 @@ export default class ExportPrivateKeyDialogContainer extends Component<Props> {
   render() {
     const { actions } = this.props;
     const { wallets } = this.props.stores[environment.API];
+    const { isValidAddress } = wallets;
     const activeWallet = wallets.active;
 
     if (!activeWallet) throw new Error('Active wallet required for WalletSendPage.');
@@ -33,6 +34,7 @@ export default class ExportPrivateKeyDialogContainer extends Component<Props> {
     return (
       <ExportPrivateKeyDialog
         onSubmit={this.handleExportPrivateKeySubmit}
+        addressValidator={isValidAddress}
         onCancel={() => {
           actions.dialogs.closeActiveDialog.trigger();
         }}

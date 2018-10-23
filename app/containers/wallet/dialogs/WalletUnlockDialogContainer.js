@@ -43,7 +43,7 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
         this.props.unlockWallet(password);
         break;
       case 'exportPrivateKey':
-        this.props.exportPrivateKey(password);
+        this.props.exportPrivateKey();
         break;
     }
   };

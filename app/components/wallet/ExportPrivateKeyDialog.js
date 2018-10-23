@@ -60,6 +60,7 @@ messages.fieldIsRequired = globalMessages.fieldIsRequired;
 type Props = {
   onSubmit: Function,
   onCancel: Function,
+  addressValidator: Function,
   //isSubmitting: boolean,
   error: ?LocalizableError,
 };
