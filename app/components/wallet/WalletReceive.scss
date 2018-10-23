@@ -182,6 +182,12 @@
         text-decoration: underline;
       }
     }
+
+    .hideUsed {
+      float: right;
+      height: 20px;
+      text-align: right;
+    }
   }
 
   .walletAddress {
@@ -238,4 +244,11 @@
   font-size: 16px;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+.scrollableDiv {
+  display:block;
+  width:100%;
+  height: calc(100vh - 540px);
+  overflow:auto;
 }

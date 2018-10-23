@@ -7,11 +7,12 @@ import classnames from 'classnames';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import QRCode from 'qrcode.react';
 import Button from 'react-polymorph/lib/components/Button';
-import SimpleButtonSkin from 'react-polymorph/lib/skins/simple/raw/ButtonSkin';
+import SimpleButtonSkin from 'react-polymorph/lib/skins/simple/ButtonSkin';
 import Input from 'react-polymorph/lib/components/Input';
 import SimpleInputSkin from 'react-polymorph/lib/skins/simple/raw/InputSkin';
 import ReactToolboxMobxForm from '../../utils/ReactToolboxMobxForm';
 import BorderedBox from '../widgets/BorderedBox';
+import TinySwitch from '../widgets/forms/TinySwitch';
 import iconCopy from '../../assets/images/clipboard-ic.inline.svg';
 import WalletAddress from '../../domain/WalletAddress';
 import globalMessages from '../../i18n/global-messages';
@@ -38,11 +39,6 @@ const messages = defineMessages({
     id: 'wallet.receive.page.generatedAddressesSectionTitle',
     defaultMessage: '!!!Generated addresses',
     description: '"Generated addresses" section title on the wallet "Receive page"',
-  },
-  hideUsedLabel: {
-    id: 'wallet.receive.page.hideUsedLabel',
-    defaultMessage: '!!!hide used',
-    description: 'Label for "hide used" wallet addresses link on the wallet "Receive page"',
   },
   showUsedLabel: {
     id: 'wallet.receive.page.showUsedLabel',
@@ -175,6 +171,12 @@ export default class WalletReceive extends Component<Props, State> {
           />
         }
 
+        <Button
+          className={generateAddressButtonClasses}
+          label={intl.formatMessage(messages.generateNewAddressButtonLabel)}
+          onMouseUp={this.submit.bind(this)}
+          skin={<SimpleButtonSkin />}
+        />
       </div>
     );
 
@@ -218,6 +220,46 @@ export default class WalletReceive extends Component<Props, State> {
 
               {error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null}
 
+              {generateAddressForm}
+
+            </div>
+          </div>
+        </BorderedBox>
+
+        <BorderedBox>
+          <div className={styles.generatedAddresses}>
+            <div className={styles.walletAddress}>
+              <div className={styles.addressId}>Address</div>
+              <div className={styles.addressActions}>Balance</div>
+            </div>
+            <hr/>
+            <div className={styles.scrollableDiv}>
+              {walletAddresses.map((address, index) => {
+                //const isAddressVisible = !address.isUsed || showUsed;
+                //if (!isAddressVisible) return null;
+
+                const addressClasses = classnames([
+                  'generatedAddress-' + (index + 1),
+                  styles.walletAddress
+                  //address.isUsed ? styles.usedWalletAddress : null,
+                ]);
+                return (
+                  <div key={index} className={addressClasses}>
+                    <div className={styles.addressId}>
+                      {address}
+                      <CopyToClipboard
+                        text={address}
+                        onCopy={onCopyAddress.bind(this, address)}
+                      >
+                        <SvgInline svg={iconCopy} className={styles.copyIconBig} />
+                      </CopyToClipboard>
+                    </div>
+                    <div className={styles.addressActions}>
+                      0.00000
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 

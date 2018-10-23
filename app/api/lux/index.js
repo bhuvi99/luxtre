@@ -791,31 +791,26 @@ export default class LuxApi {
     }
     return balance.reduce((a, b) => a + b, 0);
   }
-/*
+
   async getAddresses(request: GetAddressesRequest): Promise<GetAddressesResponse> {
     Logger.debug('LuxApi::getAddresses called: ' + stringifyData(request));
-    const { walletId } = request;
     try {
-      const response: LuxAccounts = await getLuxWalletAccounts({ ca, walletId });
-      Logger.debug('LuxApi::getAddresses success: ' + stringifyData(response));
-      if (!response.length) {
-        return new Promise((resolve) => resolve({ accountId: null, addresses: [] }));
+      const account = '';
+      const addresses: LuxAddresses = await getLuxAddressesByAccount({account});
+      Logger.debug('LuxApi::getAddresses success: ' + stringifyData(addresses));
+      if (!addresses.length) {
+        return new Promise((resolve) => resolve({ addresses: [] }));
       }
-      // For now only the first wallet account is used
-      const firstAccount = response[0];
-      const firstAccountId = firstAccount.caId;
-      const firstAccountAddresses = firstAccount.caAddresses;
 
       return new Promise((resolve) => resolve({
-        accountId: firstAccountId,
-        addresses: firstAccountAddresses.map(data => _createAddressFromServerData(data)),
+        addresses: addresses
       }));
     } catch (error) {
       Logger.error('LuxApi::getAddresses error: ' + stringifyError(error));
       throw new GenericApiError();
     }
   }
-*/
+
   async calculateTransactionFee(request: TransactionFeeRequest): Promise<TransactionFeeResponse> {
     Logger.debug('LuxApi::calculateTransactionFee called');
     const { sender, receiver, amount } = request;
