@@ -303,13 +303,12 @@ export default class WalletSettings extends Component<Props> {
               onUnlockWallet(password)
             )}
 
-            exportPrivateKey = {(password) => (
-              onUnlockWallet(password),
+            exportPrivateKey = {() => (
               openDialogAction({dialog: ExportPrivateKeyDialog})
+              
             )}
 
-            importPrivateKey = {(password) => (
-              onUnlockWallet(password),
+            importPrivateKey = {() => (
               openDialogAction({dialog: ImportPrivateKeyDialog})
             )}
           />
