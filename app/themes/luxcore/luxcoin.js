@@ -1,7 +1,7 @@
 //  ==== Theme: Luxcoin === //
 
 export default {
-  '--preferred-font': '"Roboto", Montserrat',
+  '--preferred-font': '"Times New Roman", serif',
 
   '--font-ultralight': 'SFUIDisplay-Ultralight',
   '--font-thin': 'SFUIDisplay-Thin',
@@ -289,5 +289,9 @@ export default {
   '--theme-luxgate-primary-background-color': '#85e3f6',
   '--theme-luxgate-primary-background-color-hover': '#061532',
   '--theme-luxgate-assist-background-color': '#061532',
-
+  '--theme-luxgate-swap-background-color': '#32a4bb',
+  '--theme-luxgate-swap-background-color-hover': '#85e3f6',
+  '--theme-luxgate-swap-background-color-active': '#40c2dc',
+  '--theme-luxgate-tab-color-active': '#32a4bb',
+  
 };

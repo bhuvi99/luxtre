@@ -313,7 +313,6 @@ export default class ExchangeSettingPage extends Component<Props, State> {
         </div>
         <div className={styles.swapbutton}>
           <Button
-            className={swapButtonClasses}
             label="Swap"
             onClick={this.swapCoin.bind(this)}
             skin={<ButtonSkin />}
