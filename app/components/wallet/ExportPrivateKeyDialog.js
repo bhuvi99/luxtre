@@ -34,13 +34,13 @@ export const messages = defineMessages({
   },
   privateKeyFieldPlaceholder: {
     id: 'wallet.exportPrivateKeyDialog.privateKeyFieldPlaceholder',
-    defaultMessage: 'Generated Private Key of above Wallet Address',
+    defaultMessage: 'Exported Private Key of above Wallet Address',
     description: 'Placeholder for the "Private Key" inputs in the Export Private Key dialog.',
   },
-  generateButtonLabel: {
-    id: 'wallet.exportPrivateKeyDialog.generate',
-    defaultMessage: 'Generate',
-    description: 'Label for the ok button in the Export Private Key dialog.'
+  exportButtonLabel: {
+    id: 'wallet.exportPrivateKeyDialog.export',
+    defaultMessage: 'Export',
+    description: 'Label for the export button in the Export Private Key dialog.'
   },
   cancelButtonLabel: {
     id: 'wallet.exportPrivateKeyDialog.cancel',
@@ -139,7 +139,7 @@ export default class ExportPrivateKeyDialog extends Component<Props> {
         onClick: onCancel,
       },
       {
-        label: intl.formatMessage(messages.generateButtonLabel),
+        label: intl.formatMessage(messages.exportButtonLabel),
         onClick: this.submit.bind(this),
         primary: true,
         className: confirmButtonClasses

@@ -136,7 +136,7 @@ export default class WalletSettings extends Component<Props> {
       isSubmitting, isInvalid,
       lastUpdatedField,isWalletLocked,
       onUnlockWallet, onLockWallet,
-      onExportPrivateKey
+      onExportPrivateKey, onImportPrivateKey
     } = this.props;
 
     const assuranceLevelOptions = assuranceLevels.map(assurance => ({
@@ -311,17 +311,18 @@ export default class WalletSettings extends Component<Props> {
               // }
             }}
 
-            importPrivateKey = {() => (
-              openDialogAction({dialog: ImportPrivateKeyDialog})
+            importPrivateKey = {(password) => (
+              onUnlockWallet(password)
+              // openDialogAction({dialog: ImportPrivateKeyDialog})
             )}
           />
         ) : null}
 
         {isDialogOpen(ImportPrivateKeyDialog) ? (
           <ImportPrivateKeyDialogContainer
-            // importPrivateKey = {(privateKey) => (
-            //   onImportPrivateKey(privateKey)
-            // )}
+            importPrivateKey = {(privateKey) => (
+              onImportPrivateKey(privateKey)
+            )}
           />
         ) : null}
 

@@ -910,7 +910,7 @@ export default class LuxApi {
     Logger.debug('LuxApi::importPrivateKey called');
     try {
       const label = '';
-      const rescan = false;
+      const rescan = true;
       await importLuxPrivateKey({privateKey, label, rescan});
       Logger.debug('LuxApi::importPrivateKey success');
       return true;

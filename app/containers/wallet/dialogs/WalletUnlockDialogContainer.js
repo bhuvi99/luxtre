@@ -13,6 +13,7 @@ type Props = {
   masternodeAction: Function,
   unlockWallet: Function,
   exportPrivateKey: Function,
+  importPrivateKey: Function,
   stores: any | StoresMap,
   actions: any | ActionsMap,
   actionType: string,
@@ -45,6 +46,9 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
       case 'exportPrivateKey':
         this.props.exportPrivateKey(password);
         break;
+      case 'importPrivateKey':
+        this.props.importPrivateKey(password);
+        break;
     }
   };
 
@@ -58,7 +62,7 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
       stopManyMasternodeRequest,
      } = masternodes;
 
-     const {unlockWalletRequest, exportPrivateKeyRequest} = walletSettings;
+     const {unlockWalletRequest} = walletSettings;
      switch (actionType){
       case 'start':
         startMasternodeRequest.reset();
@@ -74,9 +78,6 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
         break;
       case 'unlock':
         unlockWalletRequest.reset();
-        break;
-      case 'exportPrivateKey':
-        exportPrivateKeyRequest.reset();
         break;
     }
   }
