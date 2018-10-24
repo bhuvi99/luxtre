@@ -145,7 +145,8 @@ export default class ExchangeSettingPage extends Component<Props, State> {
     const a = formattedAmountToBigNumber(amount);
     const v = formattedAmountToBigNumber(value);
     if (a == 0 || v == 0) return 0;
-    return a * v;
+    const m = a * v;
+    return m.toFixed(8);
   }
 
   getCoinBalance(coin) {
@@ -223,18 +224,18 @@ export default class ExchangeSettingPage extends Component<Props, State> {
       height: 20,
       borderRadius: 3,
       display: 'inline-block',
-      marginRight: 10,
+      marginRight: 5,
       position: 'relative',
       top: -2,
       verticalAlign: 'middle'
     };
 
     const coinImageStyle = {
-      width: 30,
-      height: 30,
+      width: 24,
+      height: 24,
       position: 'absolute',
-      marginTop: 5,
-      marginLeft: 8,
+      marginTop: 6,
+      marginLeft: 10,
       verticalAlign: 'middle'
     };
 
@@ -275,12 +276,14 @@ export default class ExchangeSettingPage extends Component<Props, State> {
             />
           )}
           {/* <div className={styles.span}> Amount </div>*/}
-          <NumericInput
-            {...inputProps}
-            placeholder={'0.000000 ' + Coin1}
-            value={AmountInput}
-            onChange={this.changeAmountInput.bind(this)}
-          />
+          <div className={styles.sendInputBox}>
+            <NumericInput
+              {...inputProps}
+              placeholder={'0.000000 ' + Coin1}
+              value={AmountInput}
+              onChange={this.changeAmountInput.bind(this)}
+            />
+          </div>
         </div>
         <div className={styles.switch}>
           <img
@@ -298,12 +301,14 @@ export default class ExchangeSettingPage extends Component<Props, State> {
             />
           )}
           {/* <span className={styles.span}> Value </span>*/}
-          <NumericInput
-            {...inputProps}
-            placeholder={'0.000000 ' + Coin2}
-            value={ValueInput}
-            onChange={this.changeValueInput.bind(this)}
-          />
+          <div className={styles.recvInputBox}>
+            <NumericInput
+              {...inputProps}
+              placeholder={'0.000000 ' + Coin2}
+              value={ValueInput}
+              onChange={this.changeValueInput.bind(this)}
+            />
+          </div>
         </div>
         <div className={styles.divTotal}>
           <Total fontSize={2}>Total: {' '}</Total>

@@ -18,21 +18,22 @@
     }
     .SimpleFormField_inputWrapper {
       .SimpleInput_input {
-        padding: 10px;
+        padding: 10px 8px;
         margin-left: 5px;
-        font-weight: bold;
+        font-family: var(--font-regular);
+        height: 35px;
       }
     }
     &:after {
-      bottom: 12px;
-      left: calc(100% - 20px);
+      bottom: 13px;
+      left: calc(100% - 10px);
     }
   }
   :global .SimpleSelect_select {
     .SimpleFormField_root {
       .SimpleFormField_inputWrapper {
         .SimpleInput_input {
-          padding-left: 40px;
+          padding-left: 32px;
           //  background-color: transparent;
           //  border: 0px;
         }
@@ -42,6 +43,28 @@
             padding: 10px;
           }
         }
+      }
+    }
+  }
+}
+
+.sendInputBox {
+  :global .SimpleFormField_root {
+    .SimpleFormField_inputWrapper {
+      .SimpleInput_input {
+        color: var(--theme-send-text-color);
+        font-family: var(--font-semibold);
+      }
+    }
+  }
+}
+
+.recvInputBox {
+  :global .SimpleFormField_root {
+    .SimpleFormField_inputWrapper {
+      .SimpleInput_input {
+        color: var(--theme-recv-text-color);
+        font-family: var(--font-semibold);
       }
     }
   }
@@ -61,7 +84,8 @@
 
 .numericInput {
   margin-left: 5px;
-  width: 123px;
+  width: 127px;
+  color: red;
 }
 
 .divTotal {
