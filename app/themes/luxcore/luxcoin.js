@@ -258,7 +258,8 @@ export default {
   '--theme-connecting-background-color': '#061532',
   '--theme-connecting-text-color': '#fff',
   '--theme-syncing-text-color': '#050b2d',
-
+  '--theme-send-text-color': '#ba3112',
+  '--theme-recv-text-color': '#135a23',
   '--theme-error-color': '#ea4c5b',
 
   '--theme-instructions-text-color': '#050b2d',
