@@ -9,7 +9,6 @@ import ReactToolboxMobxForm from '../../utils/ReactToolboxMobxForm';
 import Dialog from '../widgets/Dialog';
 import DialogCloseButton from '../widgets/DialogCloseButton';
 import globalMessages from '../../i18n/global-messages';
-import LocalizableError from '../../i18n/LocalizableError';
 import styles from './ExportPrivateKeyDialog.scss';
 
 export const messages = defineMessages({
@@ -20,7 +19,7 @@ export const messages = defineMessages({
   },
   publicKeyLabel: {
     id: 'wallet.exportPrivateKeyDialog.publicKeyLabel',
-    defaultMessage: 'Public Key',
+    defaultMessage: 'Type your wallet address',
     description: 'Label for the "Public Key" input in the Export Private Key dialog.',
   },
   publicKeyFieldPlaceholder: {
@@ -71,6 +70,10 @@ export default class ExportPrivateKeyDialog extends Component<Props> {
     intl: intlShape.isRequired,
   };
 
+  state = {
+    actionType: ''
+  };
+
   form = new ReactToolboxMobxForm({
     fields: {
       publicKey: {
@@ -106,11 +109,12 @@ export default class ExportPrivateKeyDialog extends Component<Props> {
       onSuccess: async (form) => {
         form.$('privateKey').value = '';
         const { publicKey } = form.values();
-        const privateKey = await this.props.onSubmit(publicKey);
-        if (privateKey == "") {
-
+        try {
+          const privateKey = await this.props.onSubmit(publicKey);
+          form.$('privateKey').value = privateKey;
+        } catch(err) {
+          this.setState({ actionType: 'PrivateKeyError' });
         }
-        form.$('privateKey').value = privateKey;
       },
       onError: () => {}
     });
@@ -167,7 +171,7 @@ export default class ExportPrivateKeyDialog extends Component<Props> {
             skin={<SimpleInputSkin />}
             />
         </div>
-        {/* {error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null} */}
+        {this.state.actionType == 'PrivateKeyError' ? <p className={styles.error}>{'Private key for above address is not known'}</p> : null}
       </Dialog>
     );
   }
