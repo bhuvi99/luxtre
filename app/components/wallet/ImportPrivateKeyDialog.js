@@ -46,7 +46,7 @@ type Props = {
   onSubmit: Function,
   onCancel: Function,
   //isSubmitting: boolean,
-  //error: ?LocalizableError,
+  error: ?LocalizableError,
 };
 
 @observer
@@ -93,6 +93,7 @@ export default class ImportPrivateKeyDialog extends Component<Props> {
     const privateKeyField = form.$('privateKey');
     const {
       onCancel,
+      error
     } = this.props;
 
     const confirmButtonClasses = classnames([
@@ -129,7 +130,7 @@ export default class ImportPrivateKeyDialog extends Component<Props> {
             skin={<SimpleInputSkin />}
             />
         </div>
-        {/*error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null*/}
+        {error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null}
       </Dialog>
     );
   }

@@ -21,6 +21,8 @@ import WalletUnlockDialog from '../../components/wallet/WalletUnlockDialog';
 import WalletUnlockDialogContainer from '../../containers/wallet/dialogs/WalletUnlockDialogContainer';
 import ImportPrivateKeyDialog from '../../components/wallet/ImportPrivateKeyDialog';
 import ImportPrivateKeyDialogContainer from '../../containers/wallet/dialogs/ImportPrivateKeyDialogContainer';
+import ImportPrivateKeySuccessDialog from '../../components/wallet/ImportPrivateKeySuccessDialog';
+import ImportPrivateKeySuccessDialogContainer from '../../containers/wallet/dialogs/ImportPrivateKeySuccessDialogContainer';
 import ExportPrivateKeyDialog from '../../components/wallet/ExportPrivateKeyDialog';
 import ExportPrivateKeyDialogContainer from '../../containers/wallet/dialogs/ExportPrivateKeyDialogContainer';
 /* eslint-disable max-len */
@@ -320,9 +322,15 @@ export default class WalletSettings extends Component<Props> {
 
         {isDialogOpen(ImportPrivateKeyDialog) ? (
           <ImportPrivateKeyDialogContainer
+            error = {error}
             importPrivateKey = {(privateKey) => (
               onImportPrivateKey(privateKey)
             )}
+          />
+        ) : null}
+
+        {isDialogOpen(ImportPrivateKeySuccessDialog) ? (
+          <ImportPrivateKeySuccessDialogContainer
           />
         ) : null}
 

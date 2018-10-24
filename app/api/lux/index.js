@@ -140,6 +140,9 @@ import {
   GenericApiError,
   IncorrectWalletPasswordError,
   WalletAlreadyRestoredError,
+  InvalidPrivateKeyError,
+  OutsidePrivateKeyError,
+  ImportPrivateKeyRequest,
 } from '../common';
 
 import { 
@@ -906,8 +909,9 @@ export default class LuxApi {
     }
   }
 */
-  async importPrivateKey(privateKey: string): Promise<ImportPrivateKeyResponse> {
+  async importPrivateKey(request: ImportPrivateKeyRequest): Promise<ImportPrivateKeyResponse> {
     Logger.debug('LuxApi::importPrivateKey called');
+    const { privateKey } = request;
     try {
       const label = '';
       const rescan = true;
@@ -916,6 +920,12 @@ export default class LuxApi {
       return true;
     } catch (error) {
       Logger.error('LuxApi::importPrivateKey error: ' + stringifyError(error));
+      if (error.message.includes("encoding")) {
+        throw new InvalidPrivateKeyError();
+      }
+      if (error.message.includes("range")) {
+        throw new OutsidePrivateKeyError();
+      }
       throw new GenericApiError();
     }
     return false;

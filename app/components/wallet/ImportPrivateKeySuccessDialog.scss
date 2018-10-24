@@ -1,0 +1,22 @@
+@import '../../themes/mixins/loading-spinner';
+@import '../../themes/mixins/error-message';
+
+.dialog {
+  font-family: var(--font-medium);
+  width: 580px;
+
+  :global {
+    .Dialog_title {
+      margin-bottom: 25px;
+    }
+  }
+
+  .warning {
+    text-align: center;
+    height: 35px;
+  }
+}
+
+.submitButtonSpinning {
+  @include loading-spinner("../../assets/images/spinner-light.svg");
+}

@@ -21,6 +21,16 @@ const messages = defineMessages({
     defaultMessage: '!!!Wallet you are trying to restore already exists.',
     description: '"Wallet you are trying to restore already exists." error message.'
   },
+  InvalidPrivateKeyError: {
+    id: 'api.errors.InvalidPrivateKeyError',
+    defaultMessage: '!!!Invalid private key encoding',
+    description: '"Invalid private key encoding" error message.'
+  },
+  OutsidePrivateKeyError: {
+    id: 'api.errors.OutsidePrivateKeyError',
+    defaultMessage: '!!!Private key outside allowed range',
+    description: '"Private key outside allowed range" error message.'
+  },
 });
 
 export const ELECTRUM_PORT = 50001;
@@ -49,6 +59,24 @@ export class WalletAlreadyRestoredError extends LocalizableError {
     super({
       id: messages.walletAlreadyRestoredError.id,
       defaultMessage: messages.walletAlreadyRestoredError.defaultMessage,
+    });
+  }
+}
+
+export class InvalidPrivateKeyError extends LocalizableError {
+  constructor() {
+    super({
+      id: messages.InvalidPrivateKeyError.id,
+      defaultMessage: messages.InvalidPrivateKeyError.defaultMessage,
+    });
+  }
+}
+
+export class OutsidePrivateKeyError extends LocalizableError {
+  constructor() {
+    super({
+      id: messages.OutsidePrivateKeyError.id,
+      defaultMessage: messages.OutsidePrivateKeyError.defaultMessage,
     });
   }
 }
@@ -82,6 +110,10 @@ export type UpdateWalletPasswordRequest = {
   walletId: string,
   oldPassword: ?string,
   newPassword: ?string
+};
+
+export type ImportPrivateKeyRequest = {
+  privateKey: string
 };
 
 export type RenameWalletRequest = {

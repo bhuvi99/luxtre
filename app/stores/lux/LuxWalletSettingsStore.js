@@ -5,11 +5,13 @@ import WalletSettingsStore from '../WalletSettingsStore';
 import Request from '../lib/LocalizedRequest';
 import type { WalletExportToFileParams } from '../../actions/lux/wallet-settings-actions';
 import type { ExportWalletToFileResponse } from '../../api/lux/index';
-import type { 
+import ImportPrivateKeySuccessDialog from '../../components/wallet/ImportPrivateKeySuccessDialog';
+import { 
   UpdateWalletPasswordResponse, 
   UpdateWalletResponse,
   UnlockWalletResponse,
   LockWalletResponse,
+  ImportPrivateKeyResponse
  } from '../../api/common';
 
 export default class LuxWalletSettingsStore extends WalletSettingsStore {
@@ -20,6 +22,7 @@ export default class LuxWalletSettingsStore extends WalletSettingsStore {
   @observable exportWalletToFileRequest: Request<ExportWalletToFileResponse> = new Request(this.api.lux.exportWalletToFile);
   @observable unlockWalletRequest: Request<UnlockWalletResponse> = new Request(this.api.lux.unlockWallet);
   @observable lockWalletRequest: Request<LockWalletResponse> = new Request(this.api.lux.lockWallet);
+  @observable importPrivateKeyRequest: Request<ImportPrivateKeyResponse> = new Request(this.api.lux.importPrivateKey);
   /* eslint-enable max-len */
 
   setup() {
@@ -32,6 +35,7 @@ export default class LuxWalletSettingsStore extends WalletSettingsStore {
     a.exportToFile.listen(this._exportToFile);
     a.unlockWallet.listen(this._unlockWallet);
     a.lockWallet.listen(this._lockWallet);
+    a.importPrivateKey.listen(this._importPrivateKey);
   }
 
   @action _updateWalletPassword = async ({ walletId, oldPassword, newPassword }: {
@@ -77,6 +81,14 @@ export default class LuxWalletSettingsStore extends WalletSettingsStore {
     if (!result) throw new Error('Wallet was not locked correctly');
     this.lockWalletRequest.reset();
     this.stores.lux.wallets.refreshWalletsData();
+  }
+
+  @action _importPrivateKey = async ({ privateKey }: { privateKey: string }) => {
+    await this.importPrivateKeyRequest.execute({privateKey}).promise;
+    this.actions.dialogs.closeActiveDialog.trigger();
+    this.importPrivateKeyRequest.reset();
+    this.stores.lux.wallets.refreshWalletsData();
+    this.actions.dialogs.open.trigger({ dialog: ImportPrivateKeySuccessDialog });
   }
 
   exportPrivateKey = ( publicKey: string ) => {
