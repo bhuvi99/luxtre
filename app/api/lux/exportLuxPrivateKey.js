@@ -3,11 +3,11 @@ import { request } from './lib/request';
 import { LUX_API_HOST, LUX_API_PORT, LUX_API_USER, LUX_API_PWD } from './index';
 
 export type ExportLuxPrivateKeyParams = {
-  address: string
+  publicKey: string
 };
 
 export const exportLuxPrivateKey = (
-  { address }: ExportLuxPrivateKeyParams
+  { publicKey }: ExportLuxPrivateKeyParams
 ): Promise<string> => (
   request({
     hostname: LUX_API_HOST,
@@ -17,8 +17,6 @@ export const exportLuxPrivateKey = (
   }, {
     jsonrpc: '2.0',
     method: 'dumpprivkey',
-    params: [
-      address
-    ]
+    params: [publicKey]
   })
 );
