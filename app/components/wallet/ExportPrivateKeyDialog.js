@@ -62,7 +62,6 @@ type Props = {
   onCancel: Function,
   addressValidator: Function,
   //isSubmitting: boolean,
-  error: ?LocalizableError,
 };
 
 @observer
@@ -104,9 +103,14 @@ export default class ExportPrivateKeyDialog extends Component<Props> {
 
   submit() {
     this.form.submit({
-      onSuccess: (form) => {
+      onSuccess: async (form) => {
+        form.$('privateKey').value = '';
         const { publicKey } = form.values();
-        this.props.onSubmit(publicKey);
+        const privateKey = await this.props.onSubmit(publicKey);
+        if (privateKey == "") {
+
+        }
+        form.$('privateKey').value = privateKey;
       },
       onError: () => {}
     });

@@ -18,4 +18,5 @@ export default class WalletSettingsActions {
   exportToFile: Action<WalletExportToFileParams> = new Action();
   unlockWallet: Action<{ password: ?string }> = new Action();
   lockWallet: Action<any> = new Action();
+  exportPrivateKey: Action<{ publicKey: ?string }> = new Action();
 }

@@ -11,7 +11,7 @@ const ExportPrivateKeyDialog = resolver('components/wallet/ExportPrivateKeyDialo
 type Props = {
   exportPrivateKey: Function,
   stores: any | StoresMap,
-  actions: any | ActionsMap
+  actions: any | ActionsMap,
 };
 
 @inject('actions', 'stores') @observer
@@ -19,9 +19,9 @@ export default class ExportPrivateKeyDialogContainer extends Component<Props> {
 
   static defaultProps = { actions: null, stores: null };
 
-  handleExportPrivateKeySubmit = (privateKey: string) => {
-      this.props.exportPrivateKey(privateKey);
-  };
+  handleExportPrivateKeySubmit = (publicKey: string) => (
+      this.props.exportPrivateKey(publicKey)
+  );
 
   render() {
     const { actions } = this.props;

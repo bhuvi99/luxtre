@@ -135,7 +135,8 @@ export default class WalletSettings extends Component<Props> {
       nameValidator, activeField,
       isSubmitting, isInvalid,
       lastUpdatedField,isWalletLocked,
-      onUnlockWallet, onLockWallet
+      onUnlockWallet, onLockWallet,
+      onExportPrivateKey
     } = this.props;
 
     const assuranceLevelOptions = assuranceLevels.map(assurance => ({
@@ -324,9 +325,9 @@ export default class WalletSettings extends Component<Props> {
 
         {isDialogOpen(ExportPrivateKeyDialog) ? (
           <ExportPrivateKeyDialogContainer
-            // exportPrivateKey = {(privateKey) => (
-            //   onImportPrivateKey(privateKey)
-            // )}
+            exportPrivateKey = {(publicKey) => (
+              onExportPrivateKey(publicKey)
+            )}
           />
         ) : null}
 

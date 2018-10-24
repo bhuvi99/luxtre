@@ -105,6 +105,7 @@ import type {
   UnlockWalletResponse,
   LockWalletResponse,
   ImportPrivateKeyResponse,
+  ExportPrivateKeyRequest,
   ExportPrivateKeyResponse,
   BackupWalletResponse,
   GetSyncProgressResponse,
@@ -920,10 +921,10 @@ export default class LuxApi {
     return false;
   }
 
-  async exportPrivateKey(address: string): Promise<ExportPrivateKeyResponse> {
+  async exportPrivateKey(publicKey: string): Promise<ExportPrivateKeyResponse> {
     Logger.debug('LuxApi::exportPrivateKey called');
     try {
-      const privateKey = await exportLuxPrivateKey({address});
+      const privateKey = await exportLuxPrivateKey({publicKey});
       Logger.debug('LuxApi::exportPrivateKey success');
       return privateKey;
     } catch (error) {

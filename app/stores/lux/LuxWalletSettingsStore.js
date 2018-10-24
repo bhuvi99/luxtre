@@ -9,7 +9,7 @@ import type {
   UpdateWalletPasswordResponse, 
   UpdateWalletResponse,
   UnlockWalletResponse,
-  LockWalletResponse
+  LockWalletResponse,
  } from '../../api/common';
 
 export default class LuxWalletSettingsStore extends WalletSettingsStore {
@@ -77,5 +77,9 @@ export default class LuxWalletSettingsStore extends WalletSettingsStore {
     if (!result) throw new Error('Wallet was not locked correctly');
     this.lockWalletRequest.reset();
     this.stores.lux.wallets.refreshWalletsData();
+  }
+
+  exportPrivateKey = ( publicKey: string ) => {
+    return this.api.lux.exportPrivateKey(publicKey);
   }
 }
