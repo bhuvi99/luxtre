@@ -18,6 +18,7 @@ import WalletAddress from '../../domain/WalletAddress';
 import globalMessages from '../../i18n/global-messages';
 import LocalizableError from '../../i18n/LocalizableError';
 import styles from './WalletReceive.scss';
+import { DECIMAL_PLACES_IN_LUX } from '../../config/numbersConfig';
 
 const messages = defineMessages({
   walletAddressLabel: {
@@ -228,9 +229,9 @@ export default class WalletReceive extends Component<Props, State> {
 
         <BorderedBox>
           <div className={styles.generatedAddresses}>
-            <div className={styles.walletAddress}>
-              <div className={styles.addressId}>Address</div>
-              <div className={styles.addressActions}>Balance</div>
+            <div className={styles.header}>
+              <div className={styles.address}>Address</div>
+              <div className={styles.balance}>Balance</div>
             </div>
             <hr/>
             <div className={styles.scrollableDiv}>
@@ -245,17 +246,17 @@ export default class WalletReceive extends Component<Props, State> {
                 ]);
                 return (
                   <div key={index} className={addressClasses}>
-                    <div className={styles.addressId}>
-                      {address}
+                    <div className={styles.address}>
+                      {address.address}
                       <CopyToClipboard
-                        text={address}
-                        onCopy={onCopyAddress.bind(this, address)}
+                        text={address.address}
+                        onCopy={onCopyAddress.bind(this, address.address)}
                       >
                         <SvgInline svg={iconCopy} className={styles.copyIconBig} />
                       </CopyToClipboard>
                     </div>
-                    <div className={styles.addressActions}>
-                      0.00000
+                    <div className={styles.balance}>
+                      {address.balance.toFormat(DECIMAL_PLACES_IN_LUX)}
                     </div>
                   </div>
                 );

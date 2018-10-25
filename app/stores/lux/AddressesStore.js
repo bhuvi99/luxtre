@@ -10,7 +10,7 @@ import type { GetAddressesResponse, CreateAddressResponse } from '../../api/lux/
 
 export default class AddressesStore extends Store {
 
-  @observable lastGeneratedAddress: ?WalletAddress = null;
+  @observable lastGeneratedAddress: ?string = null;
   @observable
   addressesRequests: Array<{
     walletId: string,
@@ -73,7 +73,7 @@ export default class AddressesStore extends Store {
     const wallet = this.stores.lux.wallets.active;
     if (!wallet) return;
     const result = this._getAddressesAllRequest(wallet.id).result;
-    return result ? result.addresses[result.addresses.length - 1] : null;
+    return result ? result.addresses[result.addresses.length - 1].address : null;
   }
 
   @computed

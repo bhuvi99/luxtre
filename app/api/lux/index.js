@@ -763,11 +763,19 @@ export default class LuxApi {
     let balance = [];
     try {
       const account = walletId;
-      const addresses: LuxAddresses = await getLuxAddressesByAccount({account});
+      const bodyAddresses: LuxAddresses = await getLuxAddressesByAccount({account});
+
+      var addresses = [];
+      bodyAddresses.forEach(function(add){
+        if(add.charAt(0)=='L'||add.charAt(0)=='S'){
+            //addsWithoutBech.addresses.push(add);
+            addresses.push(add);
+        }
+      })
   
       const minconf = 1;
       const maxconf = 9999999;
-      const unspent: LuxTransactions = await getLuxUnspentTransactions({minconf, maxconf});
+      const unspent: LuxTransactions = await getLuxUnspentTransactions({minconf, maxconf, addresses});
       Logger.debug('LuxApi::getWalletBalance success: ' + walletId + ' ' + stringifyData(unspent));
 
       addresses.forEach(function (currAdd, indexAdd, arrayAdd) {
@@ -795,16 +803,82 @@ export default class LuxApi {
   async getAddresses(request: GetAddressesRequest): Promise<GetAddressesResponse> {
     Logger.debug('LuxApi::getAddresses called: ' + stringifyData(request));
     try {
+      const walletId = '';//default account
+      const count = 100; const skip = 0;
+      let transactions: LuxTransactions = await getLuxTransactions({
+        walletId,
+        count,
+        skip
+      });
+      
       const account = '';
-      const addresses: LuxAddresses = await getLuxAddressesByAccount({account});
-      Logger.debug('LuxApi::getAddresses success: ' + stringifyData(addresses));
-      if (!addresses.length) {
-        return new Promise((resolve) => resolve({ addresses: [] }));
+      let bodyAddresses: LuxAddresses = await getLuxAddressesByAccount({account});
+      Logger.info('LuxApi::getAddresses success: ' + stringifyData(bodyAddresses));
+
+      var addresses = [];
+      bodyAddresses.forEach(function(add){
+        if(add.charAt(0)=='L'||add.charAt(0)=='S'){
+            //addsWithoutBech.addresses.push(add);
+            addresses.push(add);
+        }
+      })
+
+      const minconf = 1;
+      const maxconf = 9999999;
+      let unspent: LuxTransactions = await getLuxUnspentTransactions({minconf, maxconf, addresses});
+      Logger.info('LuxApi::getWalletBalance success: ' + walletId + ' ' + stringifyData(unspent));
+
+      if (transactions.length > 0) {
+        transactions.sort((a, b) => b.confirmations - a.confirmations);
       }
 
+      /*if (transactions.length > 0) {
+        transactions.sort(function (a, b) {
+          return b.confirmations - a.confirmations
+        }).forEach((tx,indextx,arrtx)=>{
+
+
+          if(((tx.generated&&(tx.confirmations>10))||tx.confirmations<3) && req.query.exact){
+            unspent.push({confirmations:tx.confirmations,amount:tx.amount,address:tx.address,spendable:false})
+          }
+
+          if(indextx==arrtx.length-1){
+              calcBalance(values[1]);
+          }
+        })
+      }*/
+
+      var balances = [];
+      addresses.forEach(function (currAdd, indexAdd, arrayAdd) {
+        var sum = 0.0;
+        if (unspent.length > 0) {
+            unspent.forEach(function (currTra, indexTra, arrayTra) {
+                if (currTra.address == currAdd) {
+                    if(currTra.spendable){
+                        sum += currTra.amount;
+                    }
+                }
+                if (indexTra == unspent.length - 1) {
+                    var existingAdd = balances.find(function (address) {
+                        return address.address == currAdd
+                    });
+                    if (existingAdd) {
+                        existingAdd.balance += sum;
+                    } else {
+                        balances.push({address: currAdd, balance: quantityToBigNumber(sum)});
+                    }
+                    //balances.push({address: currAdd, balance: sum});
+                }
+            })
+        } else if (unspent.length == 0) {
+            balances.push({address: currAdd, balance: quantityToBigNumber(sum)});
+        }
+      });
+
       return new Promise((resolve) => resolve({
-        addresses: addresses
+        addresses: balances.sort((a, b) => b.balance - a.balance)
       }));
+
     } catch (error) {
       Logger.error('LuxApi::getAddresses error: ' + stringifyError(error));
       throw new GenericApiError();
