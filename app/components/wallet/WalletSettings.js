@@ -25,6 +25,8 @@ import ImportPrivateKeySuccessDialog from '../../components/wallet/ImportPrivate
 import ImportPrivateKeySuccessDialogContainer from '../../containers/wallet/dialogs/ImportPrivateKeySuccessDialogContainer';
 import ExportPrivateKeyDialog from '../../components/wallet/ExportPrivateKeyDialog';
 import ExportPrivateKeyDialogContainer from '../../containers/wallet/dialogs/ExportPrivateKeyDialogContainer';
+import WalletFileImportDialogContainer from '../../containers/wallet/dialogs/WalletFileImportDialogContainer';
+import WalletFileImportDialog from '../../components/wallet/file-import/WalletFileImportDialog';
 /* eslint-disable max-len */
 // import ExportPaperWalletPrinterCopyDialog from './settings/paper-wallet-export-dialogs/ExportPaperWalletPrinterCopyDialog';
 // import ExportPaperWalletPrinterCopyDialogContainer from '../../containers/wallet/dialogs/paper-wallet-export/ExportPaperWalletPrinterCopyDialogContainer';
@@ -280,11 +282,16 @@ export default class WalletSettings extends Component<Props> {
               className={importButtonClasses}
               label="Restore"
               onMouseUp={() => {
+                openDialogAction({dialog: WalletFileImportDialog});
               }}
               skin={<SimpleButtonSkin />}
             />
           </div>
         </BorderedBox>
+
+        {isDialogOpen(WalletFileImportDialog) ? (
+          <WalletFileImportDialogContainer />
+        ) : null}
 
         {isDialogOpen(ChangeWalletPasswordDialog) ? (
           <ChangeWalletPasswordDialogContainer />

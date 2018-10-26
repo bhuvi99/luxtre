@@ -235,8 +235,6 @@ export type ImportWalletFromKeyRequest = {
 export type ImportWalletFromKeyResponse = Wallet;
 export type ImportWalletFromFileRequest = {
   filePath: string,
-  walletPassword: ?string,
-  walletName: ?string,
 };
 export type ImportWalletFromFileResponse = Wallet;
 export type NextUpdateResponse = ?{
@@ -885,21 +883,16 @@ export default class LuxApi {
       throw new WalletFileImportError();
     }
   }
-
+*/
   async importWalletFromFile(
     request: ImportWalletFromFileRequest
   ): Promise<ImportWalletFromFileResponse> {
     Logger.debug('LuxApi::importWalletFromFile called');
-    const { filePath, walletPassword } = request;
-    const isKeyFile = filePath.split('.').pop().toLowerCase() === 'key';
+    const { filePath } = request;
     try {
-      const importedWallet: LuxWallet = isKeyFile ? (
-        await importLuxWallet({ ca, walletPassword, filePath })
-      ) : (
-        await importLuxBackupJSON({ ca, filePath })
-      );
+      await importLuxWallet({ filePath });     
       Logger.debug('LuxApi::importWalletFromFile success');
-      return _createWalletFromServerData(importedWallet);
+      //return _createWalletFromServerData(importedWallet);
     } catch (error) {
       Logger.error('LuxApi::importWalletFromFile error: ' + stringifyError(error));
       if (error.message.includes('already exists')) {
@@ -908,7 +901,7 @@ export default class LuxApi {
       throw new WalletFileImportError();
     }
   }
-*/
+
   async importPrivateKey(request: ImportPrivateKeyRequest): Promise<ImportPrivateKeyResponse> {
     Logger.debug('LuxApi::importPrivateKey called');
     const { privateKey } = request;

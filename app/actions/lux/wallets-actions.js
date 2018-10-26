@@ -4,8 +4,6 @@ import type { walletExportTypeChoices } from '../../types/walletExportTypes';
 
 export type WalletImportFromFileParams = {
   filePath: string,
-  walletName: ?string,
-  walletPassword: ?string,
 };
 
 // ======= WALLET ACTIONS =======
