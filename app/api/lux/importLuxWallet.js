@@ -17,8 +17,6 @@ export const importLuxWallet = (
   }, {
     jsonrpc: '2.0',
     method: 'importwallet',
-    params: [
-      filePath
-    ]
+    params: [filePath]
   })
 );

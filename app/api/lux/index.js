@@ -236,7 +236,7 @@ export type ImportWalletFromKeyResponse = Wallet;
 export type ImportWalletFromFileRequest = {
   filePath: string,
 };
-export type ImportWalletFromFileResponse = Wallet;
+export type ImportWalletFromFileResponse = boolean;
 export type NextUpdateResponse = ?{
   version: ?string,
 };
@@ -892,6 +892,7 @@ export default class LuxApi {
     try {
       await importLuxWallet({ filePath });     
       Logger.debug('LuxApi::importWalletFromFile success');
+      return true;
       //return _createWalletFromServerData(importedWallet);
     } catch (error) {
       Logger.error('LuxApi::importWalletFromFile error: ' + stringifyError(error));

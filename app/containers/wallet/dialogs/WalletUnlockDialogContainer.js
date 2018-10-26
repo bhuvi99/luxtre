@@ -14,6 +14,7 @@ type Props = {
   unlockWallet: Function,
   exportPrivateKey: Function,
   importPrivateKey: Function,
+  importWallet: Function,
   stores: any | StoresMap,
   actions: any | ActionsMap,
   actionType: string,
@@ -48,6 +49,9 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
         break;
       case 'importPrivateKey':
         this.props.importPrivateKey(password);
+        break;
+      case 'importWallet':
+        this.props.importWallet(password);
         break;
     }
   };

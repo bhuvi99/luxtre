@@ -72,10 +72,7 @@ export default class WalletFileImportDialog extends Component<Props, State> {
     this.form.submit({
       onSuccess: (form) => {
         const { walletFile } = form.values();
-        const walletData = {
-          filePath: walletFile.path,
-        };
-        this.props.onSubmit(walletData);
+        this.props.onSubmit(walletFile.path);
       },
       onError: () => {}
     });

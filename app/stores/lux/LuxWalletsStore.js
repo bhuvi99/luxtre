@@ -154,7 +154,7 @@ export default class LuxWalletsStore extends WalletStore {
     }, this.MIN_NOTIFICATION_TIME);
     if (!importedWallet) throw new Error('Imported wallet was not received correctly');
     this.importFromFileRequest.reset();
-    await this._patchWalletRequestWithNewWallet(importedWallet);
+//    await this._patchWalletRequestWithNewWallet(importedWallet);
     this.refreshWalletsData();
   };
 

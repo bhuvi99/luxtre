@@ -12,7 +12,7 @@ export default class WalletFileImportDialogContainer extends Component<Props> {
   static defaultProps = { actions: null, stores: null, children: null, onClose: () => {} };
 
   onSubmit = ( filePath: string ) => {
-    this.props.actions.lux.wallets.importWalletFromFile.trigger(filePath);
+    this.props.actions.lux.wallets.importWalletFromFile.trigger({filePath});
   };
 
   onCancel = () => {

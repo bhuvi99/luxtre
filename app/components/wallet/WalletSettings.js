@@ -282,7 +282,13 @@ export default class WalletSettings extends Component<Props> {
               className={importButtonClasses}
               label="Restore"
               onMouseUp={() => {
-                openDialogAction({dialog: WalletFileImportDialog});
+                if(isWalletLocked){
+                  this.setState({ actionType: 'importWallet' });
+                  openDialogAction({dialog: WalletUnlockDialog});
+                }
+                else{
+                  openDialogAction({dialog: WalletFileImportDialog});
+                }
               }}
               skin={<SimpleButtonSkin />}
             />
@@ -321,6 +327,11 @@ export default class WalletSettings extends Component<Props> {
             }}
 
             importPrivateKey = {(password) => (
+              onUnlockWallet(password)
+              // openDialogAction({dialog: ImportPrivateKeyDialog})
+            )}
+
+            importWallet = {(password) => (
               onUnlockWallet(password)
               // openDialogAction({dialog: ImportPrivateKeyDialog})
             )}
