@@ -10,6 +10,7 @@ import Chart from './Chart';
 
 import type { LGPrice } from '../../domain/LGPriceArray';
 
+import Datafeed from './api/'
 const TradingView = require("./charting_library/charting_library.min.js");
 
 type Props = {
