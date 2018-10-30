@@ -10,12 +10,62 @@ import Chart from './Chart';
 
 import type { LGPrice } from '../../domain/LGPriceArray';
 
+const TradingView = require("./charting_library/charting_library.min.js");
+
 type Props = {
   data: Array<LGPrice>
 };
 
 @observer
 export default class ExchangeChartPage extends Component<Props> {
+
+  static defaultProps = {
+		symbol: 'Cryptopia:LUX/USD',
+		interval: '20',
+		containerId: 'tv_chart',
+		libraryPath: '/charting_library/',
+		chartsStorageUrl: 'https://saveload.tradingview.com',
+		chartsStorageApiVersion: '1.1',
+		clientId: 'tradingview.com',
+		userId: 'public_user_id',
+		fullscreen: false,
+		autosize: true,
+		studiesOverrides: {},
+	};
+
+	componentDidMount() {
+		const widgetOptions = {
+			debug: false,
+			symbol: this.props.symbol,
+			datafeed: Datafeed,
+			interval: this.props.interval,
+			container_id: this.props.containerId,
+			library_path: this.props.libraryPath,
+			locale: getLanguageFromURL() || 'en',
+			disabled_features: ['use_localstorage_for_settings'],
+			enabled_features: ['study_templates'],
+			charts_storage_url: this.props.chartsStorageUrl,
+			charts_storage_api_version: this.props.chartsStorageApiVersion,
+			client_id: this.props.clientId,
+			user_id: this.props.userId,
+			fullscreen: this.props.fullscreen,
+			autosize: this.props.autosize,
+			studies_overrides: this.props.studiesOverrides,
+			overrides: {
+				// "mainSeriesProperties.showCountdown": true,
+				"paneProperties.background": "#131722",
+				"paneProperties.vertGridProperties.color": "#363c4e",
+				"paneProperties.horzGridProperties.color": "#363c4e",
+				"symbolWatermarkProperties.transparency": 90,
+				"scalesProperties.textColor" : "#AAA",
+				"mainSeriesProperties.candleStyle.wickUpColor": '#336854',
+				"mainSeriesProperties.candleStyle.wickDownColor": '#7f323f',
+			}
+		};
+
+	}
+
+
   render() {
     // d.date = parse(d.date);
     // d.open = +d.open;
