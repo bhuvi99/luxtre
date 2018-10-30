@@ -154,6 +154,7 @@
     "react-table": "^6.8.2",
     "react-tabs": "^2.2.2",
     "recharts": "1.0.0-alpha.4",
+    "request-promise": "^4.2.2",
     "route-parser": "0.0.5",
     "safe-buffer": "5.1.1",
     "source-map-support": "0.4.14",
