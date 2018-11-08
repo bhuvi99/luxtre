@@ -10,7 +10,7 @@ import type { GetAddressesResponse, CreateAddressResponse } from '../../api/lux/
 
 export default class AddressesStore extends Store {
 
-  @observable lastGeneratedAddress: ?WalletAddress = null;
+  @observable lastGeneratedAddress: ?string = null;
   @observable
   addressesRequests: Array<{
     walletId: string,
@@ -33,9 +33,8 @@ export default class AddressesStore extends Store {
   _createAddress = async (params: { walletId: string, password: ?string }) => {
     try {
       const { walletId, password } = params;
-      const accountId = this._getAccountIdByWalletId(walletId);
       const address: ?CreateAddressResponse = await this.createAddressRequest.execute({
-        accountId,
+        walletId,
         password
       }).promise;
       if (address != null) {
@@ -74,7 +73,7 @@ export default class AddressesStore extends Store {
     const wallet = this.stores.lux.wallets.active;
     if (!wallet) return;
     const result = this._getAddressesAllRequest(wallet.id).result;
-    return result ? result.addresses[result.addresses.length - 1] : null;
+    return result ? result.addresses[result.addresses.length - 1].address : null;
   }
 
   @computed
@@ -100,11 +99,6 @@ export default class AddressesStore extends Store {
   @action
   _resetErrors = () => {
     this.error = null;
-  };
-
-  _getAccountIdByWalletId = (walletId: string): ?string => {
-    const result = this._getAddressesAllRequest(walletId).result;
-    return result ? result.accountId : null;
   };
 
   _getAddressesAllRequest = (walletId: string): CachedRequest<GetAddressesResponse> => {
