@@ -36,11 +36,11 @@
 }
 
 .outgoingLux {
-  color: #ba3112;
+  color: var(--theme-send-text-color);
 }
 
 .remainLux {
-  color: #135a23;
+  color: var(--theme-recb-text-color);
 }
 
 .totalBalance,

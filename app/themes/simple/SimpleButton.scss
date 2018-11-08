@@ -28,7 +28,7 @@
       background: var(--theme-button-primary-background-color);
       color: var(--theme-button-primary-text-color);
       &:hover {
-        background: var(--theme-button-primary-background-color-hover);
+        background: var(--theme-button-primary-background-color-active);
       }
       &:active {
         background: var(--theme-button-primary-background-color-active);

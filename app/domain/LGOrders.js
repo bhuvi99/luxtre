@@ -1,19 +1,37 @@
 // @flow
 import { observable } from 'mobx';
 
+export type LGBid = {
+  coin: string,
+  address: string,
+  price: number,
+  numutxos: number,
+  minvolume: number,
+  maxvolume: number,
+  pubkey: string,
+  age: number
+};
+
+export type LGAsk = LGBid;
+
+export type LGOrdersData = {
+  bids: Array<LGBid>,
+  numbids: number,
+  asks: Array<LGAsk>,
+  numasks: number
+};
+
 export default class LGOrders {
+  @observable
+  asks: Array<LGAsk>;
+  @observable
+  numasks: number;
+  @observable
+  bids: Array<LGBid>;
+  @observable
+  numbids: number;
 
-  @observable sellers: string;
-  @observable sellerCount: number;
-  @observable buyers: string;
-  @observable buyerCount: number;
-
-  constructor(data: {
-    bids: Array,
-    numbids: number,
-    asks: Array,
-    numasks: number,
-  }) {
+  constructor(data: { bids: Array<LGBid>, numbids: number, asks: Array<LGAsk>, numasks: number }) {
     Object.assign(this, data);
   }
 }

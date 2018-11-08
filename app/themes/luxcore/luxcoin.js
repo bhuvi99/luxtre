@@ -257,7 +257,8 @@ export default {
   '--theme-connecting-background-color': '#061532',
   '--theme-connecting-text-color': '#fff',
   '--theme-syncing-text-color': '#050b2d',
-
+  '--theme-send-text-color': '#ba3112',
+  '--theme-recv-text-color': '#135a23',
   '--theme-error-color': '#ea4c5b',
 
   '--theme-instructions-text-color': '#050b2d',
@@ -280,11 +281,17 @@ export default {
   '--theme-wallet-password-switch-label-color': '#050b2d',
 
   '--theme-luxgate-statusbar-background-color': '#40c2dc',
-  //'--theme-luxgate-statusbar-color': '#40c2dc',
+  // '--theme-luxgate-statusbar-color': '#40c2dc',
   '--theme-luxgate-tablecell-color': '#3058a2',
   '--theme-luxgate-tablecell-fontcolor': '#ffffff',
   '--theme-luxgate-checkbox-checked-color': '#0097e0',
   '--theme-luxgate-checkbox-unchecked-color': '#756767',
-
-
+  '--theme-luxgate-primary-background-color': '#85e3f6',
+  '--theme-luxgate-primary-background-color-hover': '#061532',
+  '--theme-luxgate-assist-background-color': '#061532',
+  '--theme-luxgate-swap-background-color': '#32a4bb',
+  '--theme-luxgate-swap-background-color-hover': '#85e3f6',
+  '--theme-luxgate-swap-background-color-active': '#40c2dc',
+  '--theme-luxgate-tab-color-active': '#32a4bb',
+  
 };

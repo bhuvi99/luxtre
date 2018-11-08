@@ -4,6 +4,7 @@ import LuxgateLoginInfoStore from './LuxgateLoginInfoStore';
 import LuxgateSettingInfoStore from './LuxgateSettingInfoStore';
 import LuxgateCoinInfoStore from './LuxgateCoinInfoStore';
 import LuxgateMarketInfoStore from './LuxgateMarketInfoStore';
+import LuxgateTransactionsStore from './LuxgateTransactionsStore';
 import LuxgateLoggerStore from './LuxgateLoggerStore';
 
 export const luxgateStoreClasses = {
@@ -11,7 +12,8 @@ export const luxgateStoreClasses = {
   settingInfo: LuxgateSettingInfoStore,
   coinInfo: LuxgateCoinInfoStore,
   marketInfo: LuxgateMarketInfoStore,
-  loggerInfo: LuxgateLoggerStore,
+  transactions: LuxgateTransactionsStore,
+  loggerInfo: LuxgateLoggerStore
 };
 
 export type LuxgateStoresMap = {
@@ -19,7 +21,8 @@ export type LuxgateStoresMap = {
   settingInfo: LuxgateSettingInfoStore,
   coinInfo: LuxgateCoinInfoStore,
   marketInfo: LuxgateMarketInfoStore,
-  loggerInfo: LuxgateLoggerStore,
+  transactions: LuxgateTransactionsStore,
+  loggerInfo: LuxgateLoggerStore
 };
 
 const luxgateStores = observable({
@@ -27,16 +30,23 @@ const luxgateStores = observable({
   settingInfo: null,
   coinInfo: null,
   marketInfo: null,
-  loggerInfo: null,
+  transactions: null,
+  loggerInfo: null
 });
 
 // Set up and return the stores and reset all stores to defaults
-export default action((stores, api, actions): LuxgateStoresMap => {
-  const storeNames = Object.keys(luxgateStoreClasses);
-  storeNames.forEach(name => { if (luxgateStores[name]) luxgateStores[name].teardown(); });
-  storeNames.forEach(name => {
-    luxgateStores[name] = new luxgateStoreClasses[name](stores, api, actions);
-  });
-  storeNames.forEach(name => { if (luxgateStores[name]) luxgateStores[name].initialize(); });
-  return luxgateStores;
-});
+export default action(
+  (stores, api, actions): LuxgateStoresMap => {
+    const storeNames = Object.keys(luxgateStoreClasses);
+    storeNames.forEach(name => {
+      if (luxgateStores[name]) luxgateStores[name].teardown();
+    });
+    storeNames.forEach(name => {
+      luxgateStores[name] = new luxgateStoreClasses[name](stores, api, actions);
+    });
+    storeNames.forEach(name => {
+      if (luxgateStores[name]) luxgateStores[name].initialize();
+    });
+    return luxgateStores;
+  }
+);

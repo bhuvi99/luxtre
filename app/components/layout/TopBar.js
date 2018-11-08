@@ -46,15 +46,15 @@ var pageNameList = {
 
 @observer
 export default class TopBar extends Component<Props> {
-
   render() {
     const { onSwitchLuxgate, isShowingLuxtre, pageTitle, isDialogOpen } = this.props;
 
     const topBarStyles = classNames([
       styles.topBar,
-      (isShowingLuxtre == undefined || isShowingLuxtre == true) ? styles.withoutExchange : styles.withExchange
+      isShowingLuxtre == undefined || isShowingLuxtre == true
+        ? styles.withoutExchange
+        : styles.withExchange
     ]);
-
 
     const switchToggleIcon = (
       <SvgInline

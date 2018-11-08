@@ -3,6 +3,7 @@ import LoginInfoActions from './logininfo-actions';
 import SettingInfoActions from './settinginfo-actions';
 import CoinInfoActions from './coininfo-actions';
 import MarketInfoActions from './marketinfo-actions';
+import TransactionsActions from './transactions-actions';
 import LoggerActions from './logger-actions';
 
 export type LuxgateActionsMap = {
@@ -10,7 +11,8 @@ export type LuxgateActionsMap = {
   settingInfo: SettingInfoActions,
   coinInfo: CoinInfoActions,
   marketInfo: MarketInfoActions,
-  logger: LoggerActions,
+  transactions: TransactionsActions,
+  logger: LoggerActions
 };
 
 const luxgateActionsMap: LuxgateActionsMap = {
@@ -18,7 +20,8 @@ const luxgateActionsMap: LuxgateActionsMap = {
   settingInfo: new SettingInfoActions(),
   coinInfo: new CoinInfoActions(),
   marketInfo: new MarketInfoActions(),
-  logger: new LoggerActions(),
+  transactions: new TransactionsActions(),
+  logger: new LoggerActions()
 };
 
 export default luxgateActionsMap;
