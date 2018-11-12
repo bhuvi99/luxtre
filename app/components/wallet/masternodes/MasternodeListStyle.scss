@@ -174,7 +174,7 @@
 
 .scrollableDiv {
   display:block;
-  width:100%;
+  width:auto;
   height: calc(100vh - 200px);
-  overflow:auto;
+  overflow: auto;
 }

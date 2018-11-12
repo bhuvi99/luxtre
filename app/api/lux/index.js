@@ -151,7 +151,9 @@ import {
   getLuxWalletData,
   setLuxWalletData,
   unsetLuxWalletData,
-  updateLuxWalletData
+  updateLuxWalletData,
+  getLuxStakingData,
+  setLuxStakingData
 } from './luxLocalStorage';
 
 
@@ -177,6 +179,8 @@ export const LUX_API_HOST = 'localhost';
 export const LUX_API_PORT = 9888;
 export const LUX_API_USER = 'rpcuser';
 export let LUX_API_PWD = 'rpcpwd';
+export const LUX_STAKE_FETCH_INTERVAL = 600;
+export const LUX_STAKE_RECORD_DEEP = 7 * 24 * 3600;
 
 // LUX specific Request / Response params
 
@@ -273,6 +277,8 @@ export type ExportWalletToFileResponse = [];
 
 
 export default class LuxApi {
+
+  _refreshTime = 0;
 
   constructor() {
     if (environment.isTest()) {
@@ -375,15 +381,27 @@ export default class LuxApi {
         }
       }
       
+      const id = 'Main';
+
       const stakingStatus: LuxStakingStatus = await getLuxStakingStatus();
-      
       const isStaking = stakingStatus && stakingStatus.validtime == true && 
         stakingStatus.haveconnections == true && 
         stakingStatus.walletunlocked == true && 
         stakingStatus.mintablecoins == true &&
         stakingStatus.enoughcoins == 'yes';
 
-      const id = 'Main';
+      const currentTime = Date.now();
+      if(currentTime > this._refreshTime + LUX_STAKE_FETCH_INTERVAL * 1000)
+      {
+        await setLuxStakingData(id, {
+          walletWeight: stakingStatus.weight.max,
+          netWeight: stakingStatus.netWeight,
+          difficulty: stakingStatus.difficulty,
+          time: currentTime
+        }); // fetch staking data from local storage
+        this._refreshTime = currentTime;
+      }
+
       let Wallets = [];
       try {
         // use wallet data from local storage
