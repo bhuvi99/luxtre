@@ -53,6 +53,10 @@ export default {
   '--theme-bordered-box-border': '1px solid #c6cdd6',
   '--theme-bordered-box-text-color': '#050b2d',
 
+  '--theme-overview-background-color': '#c5c5c5',
+  '--theme-overview-border': '1px solid #c5c5c5',
+  '--theme-overview-text-color': '#241f1d',
+
   '--theme-button-primary-background-color': '#061532',
   '--theme-button-primary-background-color-hover': '#85e3f6',
   '--theme-button-primary-background-color-active': '#40c2dc',
@@ -92,6 +96,8 @@ export default {
   '--theme-dialog-big-button-label-color': '#050b2d',
   '--theme-dialog-big-button-description-color': '#050b2d',
   '--theme-dialog-title-color': '#050b2d',
+  '--theme-dialog-text-color': '#5e5d5d',
+  '--theme-dialog-border-color': '#c1c1c1',
 
   '--theme-input-border-color': '#c6cdd6',
   '--theme-input-label-color': '#050b2d',
@@ -251,7 +257,8 @@ export default {
   '--theme-connecting-background-color': '#061532',
   '--theme-connecting-text-color': '#fff',
   '--theme-syncing-text-color': '#050b2d',
-
+  '--theme-send-text-color': '#ba3112',
+  '--theme-recv-text-color': '#135a23',
   '--theme-error-color': '#ea4c5b',
 
   '--theme-instructions-text-color': '#050b2d',
@@ -274,11 +281,17 @@ export default {
   '--theme-wallet-password-switch-label-color': '#050b2d',
 
   '--theme-luxgate-statusbar-background-color': '#40c2dc',
-  //'--theme-luxgate-statusbar-color': '#40c2dc',
+  // '--theme-luxgate-statusbar-color': '#40c2dc',
   '--theme-luxgate-tablecell-color': '#3058a2',
   '--theme-luxgate-tablecell-fontcolor': '#ffffff',
   '--theme-luxgate-checkbox-checked-color': '#0097e0',
   '--theme-luxgate-checkbox-unchecked-color': '#756767',
-
-
+  '--theme-luxgate-primary-background-color': '#85e3f6',
+  '--theme-luxgate-primary-background-color-hover': '#061532',
+  '--theme-luxgate-assist-background-color': '#061532',
+  '--theme-luxgate-swap-background-color': '#32a4bb',
+  '--theme-luxgate-swap-background-color-hover': '#85e3f6',
+  '--theme-luxgate-swap-background-color-active': '#40c2dc',
+  '--theme-luxgate-tab-color-active': '#32a4bb',
+  
 };

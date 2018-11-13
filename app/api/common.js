@@ -5,6 +5,10 @@ import { Wallet } from '../domain/Wallet';
 import { Masternode } from '../domain/Masternode';
 import { CoinInfo } from '../domain/CoinInfo';
 
+import type { LGOpenOrder } from '../domain/LGOpenOrders';
+import type { LGSwap } from '../domain/LGSwapStatus';
+import type { LGBalance } from '../domain/LGBalances';
+
 const messages = defineMessages({
   genericApiError: {
     id: 'api.errors.GenericApiError',
@@ -30,17 +34,17 @@ const messages = defineMessages({
     id: 'api.errors.OutsidePrivateKeyError',
     defaultMessage: '!!!Private key outside allowed range',
     description: '"Private key outside allowed range" error message.'
-  },
+  }
 });
 
 export const ELECTRUM_PORT = 50001;
-export const ELECTRUM_ADDRESS = "45.76.144.46";
+export const ELECTRUM_ADDRESS = '45.76.144.46';
 
 export class GenericApiError extends LocalizableError {
   constructor() {
     super({
       id: messages.genericApiError.id,
-      defaultMessage: messages.genericApiError.defaultMessage,
+      defaultMessage: messages.genericApiError.defaultMessage
     });
   }
 }
@@ -49,7 +53,7 @@ export class IncorrectWalletPasswordError extends LocalizableError {
   constructor() {
     super({
       id: messages.incorrectWalletPasswordError.id,
-      defaultMessage: messages.incorrectWalletPasswordError.defaultMessage,
+      defaultMessage: messages.incorrectWalletPasswordError.defaultMessage
     });
   }
 }
@@ -58,7 +62,7 @@ export class WalletAlreadyRestoredError extends LocalizableError {
   constructor() {
     super({
       id: messages.walletAlreadyRestoredError.id,
-      defaultMessage: messages.walletAlreadyRestoredError.defaultMessage,
+      defaultMessage: messages.walletAlreadyRestoredError.defaultMessage
     });
   }
 }
@@ -211,10 +215,21 @@ export type StopMasternodeResponse = {
 
 export type StopManyMasternodeResponse = Array<StopMasternodeResponse>;
 
+export type SendCommandToConsoleRequest = {
+  command: string,
+  param: string,
+};
+
+export type SendCommandToConsoleResponse = {
+  txid: string,
+  sender: string,
+  hash160: string
+};
+
 //////////////////////////////////////////////////////////////////////////////
 //Luxgate type
 
-export type GetCoinInfoResponse = CoinInfo
+export type GetCoinInfoResponse = CoinInfo;
 export type GetCoinBalanceResponse = number;
 export type SendCoinResponse = boolean;
 export type SwapCoinResponse = boolean;
@@ -222,11 +237,10 @@ export type GetLGOrdersResponse = Array;
 export type GetLGTransactionsResponse = string;
 export type GetLGTradeArrayResponse = string;
 export type GetLGPriceArrayResponse = string;
+export type GetLGOpenOrdersResponse = Array<LGOpenOrder>;
+export type GetLGSwapStatusResponse = Array<LGSwap>;
 export type GetAccountNewPhraseResponse = Array<string>;
 export type GetPasswordInfoResponse = string;
 export type SetCoinSettingResponse = string;
 export type GetCoinPriceResponse = number;
-
-
-
-
+export type GetLGBalancesResponse = Array<LGBalance>;

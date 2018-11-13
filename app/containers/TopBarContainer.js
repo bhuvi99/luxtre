@@ -21,10 +21,11 @@ export default class TopBarContainer extends Component<Props> {
   render() {
     const { actions, stores } = this.props;
     const { sidebar, app, networkStatus, luxgate } = stores;
+    const { uiDialogs, uiNotifications } = stores;
     const isMainnet = environment.isMainnet();
     const isLuxApi = environment.isLuxApi();
     const activeWallet = stores[environment.API].wallets.active;
-    const {isShowingLuxtre} = sidebar;
+    const { isShowingLuxtre } = sidebar;
     const { isLogined } = luxgate.loginInfo;
     const pageTitle = stores[environment.API].wallets.pageTitle;
     const testnetLabel = (
@@ -36,14 +37,15 @@ export default class TopBarContainer extends Component<Props> {
         onSwitchLuxgate={actions.sidebar.switchLuxgate.trigger}
         isShowingLuxtre={isShowingLuxtre}
         pageTitle={pageTitle}
+        isDialogOpen={uiDialogs.isOpen}
       >
-        {isShowingLuxtre && activeWallet && activeWallet.hasPassword == true ? 
+        {isShowingLuxtre && activeWallet && activeWallet.hasPassword == true ?
           <WalletLockStatusIcon
             isLocked={activeWallet.isLocked}
           />
           : null
         }
-        {isShowingLuxtre ? 
+        {isShowingLuxtre ?
           <WalletStakingStatusIcon
             isStaking={activeWallet.isStaking}
           />
@@ -54,12 +56,11 @@ export default class TopBarContainer extends Component<Props> {
             networkStatus={networkStatus}
             isMainnet={isMainnet}
           />
-          :null
+          : null
         }
         {isShowingLuxtre ?
           <ConsoleWindowIcon
-            networkStatus={networkStatus}
-            isMainnet={isMainnet}
+            openDialogAction={actions.dialogs.open.trigger}
           />
           :null
         }
@@ -76,7 +77,7 @@ export default class TopBarContainer extends Component<Props> {
             onLogout={() => {
               actions.luxgate.loginInfo.logoutAccount.trigger();
             }}
-            openDialogAction={actions.dialogs.open.trigger}  
+            openDialogAction={actions.dialogs.open.trigger}
           />
           : null
         }

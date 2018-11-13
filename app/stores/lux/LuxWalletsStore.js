@@ -83,14 +83,14 @@ export default class LuxWalletsStore extends WalletStore {
           this._setActiveWallet({ walletId: this.active.id });
         }
       });
-      /*runInAction('refresh address data', () => {
+      runInAction('refresh address data', () => {
         const walletIds = result.map((wallet: Wallet) => wallet.id);
         this.stores.lux.addresses.addressesRequests = walletIds.map(walletId => ({
           walletId,
           allRequest: this.stores.lux.addresses._getAddressesAllRequest(walletId),
         }));
         this.stores.lux.addresses._refreshAddresses();
-      });*/
+      });
       runInAction('refresh transaction data', () => {
         const walletIds = result.map((wallet: Wallet) => wallet.id);
         this.stores.lux.transactions.transactionsRequests = walletIds.map(walletId => ({

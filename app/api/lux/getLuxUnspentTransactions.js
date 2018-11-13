@@ -6,10 +6,11 @@ import type { LuxAddresses } from './types';
 export type GetLuxUnspentTransactionsParams = {
   minconf: Number,
   maxconf: Number,
+  addresses: LuxAddresses
 };
 
 export const getLuxUnspentTransactions = (
-  { minconf, maxconf }: GetLuxUnspentTransactionsParams
+  { minconf, maxconf, addresses }: GetLuxUnspentTransactionsParams
 ): Promise<LuxTransactions> => (
   request({
     hostname: LUX_API_HOST,
@@ -21,7 +22,8 @@ export const getLuxUnspentTransactions = (
     method: 'listunspent',
     params: [
       minconf,
-      maxconf
+      maxconf,
+      addresses
     ]
   })
 );

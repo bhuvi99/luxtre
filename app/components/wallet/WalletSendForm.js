@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import classnames from 'classnames';
 import Button from 'react-polymorph/lib/components/Button';
-import SimpleButtonSkin from 'react-polymorph/lib/skins/simple/raw/ButtonSkin';
+import SimpleButtonSkin from 'react-polymorph/lib/skins/simple/ButtonSkin';
 import Input from 'react-polymorph/lib/components/Input';
 import NumericInput from 'react-polymorph/lib/components/NumericInput';
-import SimpleInputSkin from 'react-polymorph/lib/skins/simple/raw/InputSkin';
+import SimpleInputSkin from 'react-polymorph/lib/skins/simple/InputSkin';
 import { defineMessages, intlShape } from 'react-intl';
 import BigNumber from 'bignumber.js';
 import ReactToolboxMobxForm from '../../utils/ReactToolboxMobxForm';
@@ -17,6 +17,9 @@ import globalMessages from '../../i18n/global-messages';
 import WalletSendConfirmationDialog from './WalletSendConfirmationDialog';
 import WalletSendConfirmationDialogContainer from '../../containers/wallet/dialogs/WalletSendConfirmationDialogContainer';
 import { formattedAmountToBigNumber, formattedAmountToNaturalUnits } from '../../utils/formatters';
+import SvgInline from 'react-svg-inline';
+import luxSymbolBig from '../../assets/images/lux-logo.inline.svg';
+import { DECIMAL_PLACES_IN_LUX } from '../../config/numbersConfig';
 
 export const messages = defineMessages({
   titleLabel: {
@@ -97,12 +100,14 @@ type Props = {
   addressValidator: Function,
   openDialogAction: Function,
   isDialogOpen: Function,
+  balance: number
 };
 
 type State = {
   isTransactionFeeCalculated: boolean,
   transactionFee: BigNumber,
   transactionFeeError: ?string,
+
 };
 
 @observer
@@ -132,6 +137,15 @@ export default class WalletSendForm extends Component<Props, State> {
 
   componentWillUnmount() {
     this._isMounted = false;
+  }
+
+  ToFixedNumber(arg) {
+    if(arg == '') return '0.000000'
+
+    if(typeof arg === 'string')
+      return parseFloat(arg).toFixed(DECIMAL_PLACES_IN_LUX);
+    else
+      return arg.toFixed(DECIMAL_PLACES_IN_LUX);
   }
 
   // FORM VALIDATION
@@ -199,7 +213,7 @@ export default class WalletSendForm extends Component<Props, State> {
     const { intl } = this.context;
     const {
       currencyUnit, currencyMaxIntegerDigits, currencyMaxFractionalDigits,
-      openDialogAction, isDialogOpen
+      openDialogAction, isDialogOpen, balance
     } = this.props;
     const { isTransactionFeeCalculated, transactionFee, transactionFeeError } = this.state;
     const amountField = form.$('amount');
@@ -216,6 +230,31 @@ export default class WalletSendForm extends Component<Props, State> {
     return (
       <div className={styles.component}>
         <BorderedBox>
+          <div className={styles.balance}>
+            <div className={styles.balanceLabel}>
+              <div className={styles.totalBalance}>
+                {balance}
+                <SvgInline svg={luxSymbolBig} className={styles.currencySymbolBig} />
+              </div>
+              <div>Total Balance</div>
+            </div>
+
+            <div className={styles.balanceLabel}>
+              <div className={styles.outgoingLux}>
+                {this.ToFixedNumber(amountFieldProps.value)}
+                <SvgInline svg={luxSymbolBig} className={styles.currencySymbolBig} />
+              </div>
+              <div>Outgoing LUX</div>
+            </div>
+
+            <div className={styles.balanceLabel}>
+              <div className={styles.remainLux}>
+                {this.ToFixedNumber(balance - amountFieldProps.value)}
+                <SvgInline svg={luxSymbolBig} className={styles.currencySymbolBig} />
+              </div>
+              <div>Remain LUX</div>
+            </div>
+          </div>
           <div className={styles.receiverInput}>
             <Input
               className="receiver"

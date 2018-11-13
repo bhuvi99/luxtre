@@ -11,14 +11,16 @@ type Props = {
   isActiveScreen: Function,
   onWalletNavItemClick: Function,
   amount: string,
-  isShowingLuxtre: boolean
+  isShowingLuxtre: boolean,
+  onSwitchLuxgate: Function
 };
 
 @observer
 export default class WalletWithNavigation extends Component<Props> {
 
   render() {
-    const { children, topbar, isActiveScreen, onWalletNavItemClick, amount, isShowingLuxtre} = this.props;
+    const { children, topbar, isActiveScreen, onWalletNavItemClick, amount, isShowingLuxtre, onSwitchLuxgate} = this.props;
+   
     return (
       <div className={styles.component}>
         <div className={styles.navigation}>
@@ -27,6 +29,7 @@ export default class WalletWithNavigation extends Component<Props> {
             onNavItemClick={onWalletNavItemClick}
             amount={amount}
             isShowingLuxtre={isShowingLuxtre}
+            onSwitchLuxgate={onSwitchLuxgate}
           />
         </div>
         <div className={styles.content}>

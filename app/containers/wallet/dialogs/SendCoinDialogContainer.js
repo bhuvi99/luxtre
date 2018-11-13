@@ -11,9 +11,9 @@ type Props = {
   balance: string
 };
 
-@inject('actions', 'stores') @observer
+@inject('actions', 'stores')
+@observer
 export default class SendCoinDialogContainer extends Component<InjectedProps> {
-
   static defaultProps = { actions: null, stores: null };
 
   handleLuxgateSendFormSubmit = (values: Object) => {
@@ -21,25 +21,25 @@ export default class SendCoinDialogContainer extends Component<InjectedProps> {
   };
 
   render() {
-    const { actions, coinName, balance} = this.props;
+    const { actions, coinName, balance } = this.props;
     const { coinInfo } = this.props.stores.luxgate;
     const { sendCoinRequest } = coinInfo;
+    const isLogined = this.props.stores.luxgate.loginInfo.isLogined;
 
     return (
       <SendCoinDialog
+        isLogined={isLogined}
         currencyMaxIntegerDigits={MAX_INTEGER_PLACES_IN_LUX}
         currencyMaxFractionalDigits={DECIMAL_PLACES_IN_LUX}
-        coinName = {coinName}
-        balance = {balance}
+        coinName={coinName}
+        balance={balance}
         onSubmit={this.handleLuxgateSendFormSubmit}
         isSubmitting={sendCoinRequest.isExecuting}
-        error = {sendCoinRequest.error}
+        error={sendCoinRequest.error}
         onCancel={() => {
           actions.dialogs.closeActiveDialog.trigger();
         }}
-      >
-      </SendCoinDialog>
+      />
     );
   }
-
 }

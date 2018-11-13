@@ -4,13 +4,13 @@ import BigNumber from 'bignumber.js';
 
 export default class WalletAddress {
 
-  @observable id: string = '';
-  @observable amount: BigNumber;
+  @observable address: string = '';
+  @observable balance: BigNumber;
   @observable isUsed: boolean = false;
 
   constructor(data: {
-    id: string,
-    amount: BigNumber,
+    address: string,
+    balance: BigNumber,
     isUsed: boolean,
   }) {
     Object.assign(this, data);
