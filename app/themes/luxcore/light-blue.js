@@ -53,6 +53,9 @@ export default {
   '--theme-bordered-box-border': '1px solid #c6cdd6',
   '--theme-bordered-box-text-color': '#5e6066',
 
+  '--theme-overview-background-color': '#c5c5c5',
+  '--theme-overview-border': '1px solid #c5c5c5',
+  '--theme-overview-text-color': '#241f1d',
   // #243e62
   '--theme-button-primary-background-color': '#2f496e',
   // #2f496e
@@ -68,6 +71,7 @@ export default {
   '--theme-button-flat-background-color-disabled': 'rgba(240, 243, 245, 0.3)',
   '--theme-button-flat-text-color-disabled': '#5e6066',
   '--theme-button-flat-text-color': '#5e6066',
+  '--theme-tab-flat-text-color': '#596179',
 
   '--theme-checkbox-label-color': '#5e6066',
   '--theme-checkbox-border-color': '#2f496e',
@@ -93,6 +97,8 @@ export default {
   '--theme-dialog-big-button-label-color': '#5e6066',
   '--theme-dialog-big-button-description-color': '#5e6066',
   '--theme-dialog-title-color': '#5e6066',
+  '--theme-dialog-text-color': '#5e5d5d',
+  '--theme-dialog-border-color': '#c1c1c1',
 
   '--theme-input-border-color': '#c6cdd6',
   '--theme-input-label-color': '#5e6066',
@@ -252,7 +258,8 @@ export default {
   '--theme-connecting-background-color': '#0d2547',
   '--theme-connecting-text-color': '#fff',
   '--theme-syncing-text-color': '#5e6066',
-
+  '--theme-send-text-color': '#ba3112',
+  '--theme-recv-text-color': '#135a23',
   '--theme-error-color': '#ea4c5b',
 
   '--theme-instructions-text-color': '#5e6066',
@@ -280,4 +287,12 @@ export default {
   '--theme-luxgate-tablecell-fontcolor': '#ffffff',
   '--theme-luxgate-checkbox-checked-color': '#0097e0',
   '--theme-luxgate-checkbox-unchecked-color': '#756767',
+  '--theme-luxgate-primary-background-color': '#85e3f6',
+  '--theme-luxgate-primary-background-color-hover': '#061532',
+  '--theme-luxgate-assist-background-color': '#061532',
+  '--theme-luxgate-swap-background-color': '#32a4bb',
+  '--theme-luxgate-swap-background-color-hover': '#85e3f6',
+  '--theme-luxgate-swap-background-color-active': '#40c2dc',
+  '--theme-luxgate-tab-color-active': '#32a4bb',
+  
 };
