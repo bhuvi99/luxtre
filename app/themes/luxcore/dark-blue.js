@@ -53,6 +53,9 @@ export default {
   '--theme-bordered-box-border': 'none',
   '--theme-bordered-box-text-color': '#e9f4fe',
 
+  '--theme-overview-background-color': '#c5c5c5',
+  '--theme-overview-border': '1px solid #c5c5c5',
+  '--theme-overview-text-color': '#241f1d',
   '--theme-button-primary-background-color': '#657989',
   '--theme-button-primary-background-color-hover': '#536370',
   '--theme-button-primary-background-color-active': '#495763',
@@ -66,6 +69,7 @@ export default {
   '--theme-button-flat-background-color-disabled': 'rgba(83, 99, 112, 0.1)',
   '--theme-button-flat-text-color-disabled': 'rgba(233, 244, 254, 0.3)',
   '--theme-button-flat-text-color': '#e9f4fe',
+  '--theme-tab-flat-text-color': '#596179',
 
   '--theme-checkbox-label-color': '#e9f4fe',
   '--theme-checkbox-border-color': '#536370',
@@ -91,8 +95,9 @@ export default {
   '--theme-dialog-big-button-label-color': '#e9f4fe',
   '--theme-dialog-big-button-description-color': 'rgba(233, 244, 254, 0.6)',
   '--theme-dialog-title-color': '#e9f4fe',
-
+  '--theme-dialog-text-color': '#5e5d5d',
   '--theme-input-border-color': 'rgba(102, 122, 138, 0.3)',
+  '--theme-input-border-color': '#c6cdd6',
   '--theme-input-label-color': '#e9f4fe',
   '--theme-input-text-color': '#e9f4fe',
   '--theme-input-right-floating-text-color': '#8793a1',
@@ -250,7 +255,8 @@ export default {
   '--theme-connecting-background-color': '#263345',
   '--theme-connecting-text-color': '#fff',
   '--theme-syncing-text-color': '#5e6066',
-
+  '--theme-send-text-color': '#ba3112',
+  '--theme-recv-text-color': '#135a23',
   '--theme-error-color': '#ea4c5b',
 
   '--theme-instructions-text-color': '#e9f4fe',
@@ -278,4 +284,11 @@ export default {
   '--theme-luxgate-tablecell-fontcolor': '#ffffff',
   '--theme-luxgate-checkbox-checked-color': '#0097e0',
   '--theme-luxgate-checkbox-unchecked-color': '#756767',
+  '--theme-luxgate-primary-background-color': '#85e3f6',
+  '--theme-luxgate-primary-background-color-hover': '#061532',
+  '--theme-luxgate-assist-background-color': '#061532',
+  '--theme-luxgate-swap-background-color': '#32a4bb',
+  '--theme-luxgate-swap-background-color-hover': '#85e3f6',
+  '--theme-luxgate-swap-background-color-active': '#40c2dc',
+  '--theme-luxgate-tab-color-active': '#32a4bb',
 };
