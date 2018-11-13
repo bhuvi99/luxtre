@@ -146,17 +146,15 @@ export default class LuxWalletsStore extends WalletStore {
       if (!this.importFromFileRequest.isError) this.actions.dialogs.closeActiveDialog.trigger();
     }, this.WAIT_FOR_SERVER_ERROR_TIME);
 
-    const { filePath, walletName, walletPassword } = params;
-    const importedWallet = await this.importFromFileRequest.execute({
-      filePath, walletName, walletPassword,
-    }).promise;
+    const { filePath } = params;
+    const importedWallet = await this.importFromFileRequest.execute({ filePath }).promise;
     setTimeout(() => {
       this._setIsImportActive(false);
       this.actions.dialogs.closeActiveDialog.trigger();
     }, this.MIN_NOTIFICATION_TIME);
     if (!importedWallet) throw new Error('Imported wallet was not received correctly');
     this.importFromFileRequest.reset();
-    await this._patchWalletRequestWithNewWallet(importedWallet);
+//    await this._patchWalletRequestWithNewWallet(importedWallet);
     this.refreshWalletsData();
   };
 

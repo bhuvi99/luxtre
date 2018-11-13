@@ -5,6 +5,7 @@ import type { StoresMap } from '../../../stores/index';
 import type { ActionsMap } from '../../../actions/index';
 import environment from '../../../environment';
 import resolver from '../../../utils/imports';
+import LocalizableError from '../../../i18n/LocalizableError';
 
 const WalletUnlockDialog = resolver('components/wallet/WalletUnlockDialog');
 
@@ -12,9 +13,12 @@ type Props = {
   masternodeAction: Function,
   unlockWallet: Function,
   exportPrivateKey: Function,
+  importPrivateKey: Function,
+  importWallet: Function,
   stores: any | StoresMap,
   actions: any | ActionsMap,
   actionType: string,
+  error: ?LocalizableError,
 };
 
 @inject('actions', 'stores') @observer
@@ -43,6 +47,12 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
       case 'exportPrivateKey':
         this.props.exportPrivateKey(password);
         break;
+      case 'importPrivateKey':
+        this.props.importPrivateKey(password);
+        break;
+      case 'importWallet':
+        this.props.importWallet(password);
+        break;
     }
   };
 
@@ -56,7 +66,7 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
       stopManyMasternodeRequest,
      } = masternodes;
 
-     const {unlockWalletRequest, exportPrivateKeyRequest} = walletSettings;
+     const {unlockWalletRequest} = walletSettings;
      switch (actionType){
       case 'start':
         startMasternodeRequest.reset();
@@ -73,14 +83,11 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
       case 'unlock':
         unlockWalletRequest.reset();
         break;
-      case 'exportPrivateKey':
-        exportPrivateKeyRequest.reset();
-        break;
     }
   }
 
   render() {
-    const { actions } = this.props;
+    const { actions, error } = this.props;
     const { wallets } = this.props.stores[environment.API];
     const activeWallet = wallets.active;
 
@@ -88,6 +95,7 @@ export default class WalletUnlockDialogContainer extends Component<Props> {
 
     return (
       <WalletUnlockDialog
+        error = {error}
         onSubmit={this.handleUnlockWalletSubmit}
         onCancel={() => {
           actions.dialogs.closeActiveDialog.trigger();

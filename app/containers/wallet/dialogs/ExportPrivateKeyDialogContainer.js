@@ -5,47 +5,38 @@ import type { StoresMap } from '../../../stores/index';
 import type { ActionsMap } from '../../../actions/index';
 import environment from '../../../environment';
 import resolver from '../../../utils/imports';
-import LocalizableError from '../../../i18n/LocalizableError';
 
-const ImportPrivateKeyDialog = resolver('components/wallet/ImportPrivateKeyDialog');
+const ExportPrivateKeyDialog = resolver('components/wallet/ExportPrivateKeyDialog');
 
 type Props = {
-  importPrivateKey: Function,
+  exportPrivateKey: Function,
   stores: any | StoresMap,
   actions: any | ActionsMap,
-  error: ?LocalizableError
 };
 
 @inject('actions', 'stores') @observer
-export default class ImportPrivateKeyDialogContainer extends Component<Props> {
+export default class ExportPrivateKeyDialogContainer extends Component<Props> {
 
   static defaultProps = { actions: null, stores: null };
 
-  handleImportPrivateKeySubmit = (privateKey: string) => {
-      this.props.importPrivateKey(privateKey);
-  };
-
-  handleImportPrivateKeyCancel = () => {
-    const { walletSettings } = this.props.stores[environment.API];
-    const {importPrivateKeyRequest} = walletSettings;
-     
-    importPrivateKeyRequest.reset();
-  }
+  handleExportPrivateKeySubmit = (publicKey: string) => (
+      this.props.exportPrivateKey(publicKey)
+  );
 
   render() {
-    const { actions, error } = this.props;
+    const { actions } = this.props;
     const { wallets } = this.props.stores[environment.API];
+    const { isValidAddress } = wallets;
     const activeWallet = wallets.active;
 
     if (!activeWallet) throw new Error('Active wallet required for WalletSendPage.');
 
     return (
-      <ImportPrivateKeyDialog
-        onSubmit={this.handleImportPrivateKeySubmit}
-        error={error}
+      <ExportPrivateKeyDialog
+        onSubmit={this.handleExportPrivateKeySubmit}
+        addressValidator={isValidAddress}
         onCancel={() => {
           actions.dialogs.closeActiveDialog.trigger();
-          this.handleImportPrivateKeyCancel();
         }}
       />
     );

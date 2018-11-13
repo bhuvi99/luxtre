@@ -14,29 +14,29 @@ import styles from './ImportPrivateKeyDialog.scss';
 
 export const messages = defineMessages({
   dialogTitle: {
-    id: 'wallet.unlockDialog.title',
-    defaultMessage: '!!!Unlock wallet',
-    description: 'Title for the "Unlock wallet" dialog.'
+    id: 'wallet.importPrivateKeyDialog.title',
+    defaultMessage: '!!!Import Private Key',
+    description: 'Title for the "Import Private Key" dialog.'
   },
   privateKeyLabel: {
-    id: 'wallet.unlockDialog.walletPasswordLabel',
-    defaultMessage: '!!!This operation needs your wallet passphrase to unlock the wallet.',
-    description: 'Label for the "Wallet password" input in the unlock wallet dialog.',
+    id: 'wallet.importPrivateKeyDialog.privateKeyLabel',
+    defaultMessage: '!!!Type your private key',
+    description: 'Label for the "Private Key" input in the Import Private Key dialog.',
   },
   privateKeyFieldPlaceholder: {
-    id: 'wallet.unlockDialog.walletPasswordFieldPlaceholder',
-    defaultMessage: '!!!Type your wallet password',
-    description: 'Placeholder for the "Wallet password" inputs in the unlock wallet dialog.',
+    id: 'wallet.importPrivateKeyDialog.privateKeyFieldPlaceholder',
+    defaultMessage: '!!!Private Key',
+    description: 'Placeholder for the "Private Key" inputs in the Import Private Key dialog.',
   },
-  okButtonLabel: {
-    id: 'wallet.unlockDialog.submit',
-    defaultMessage: '!!!Ok',
-    description: 'Label for the ok button in the unlock wallet dialog.'
+  importButtonLabel: {
+    id: 'wallet.importPrivateKeyDialog.import',
+    defaultMessage: '!!!Import',
+    description: 'Label for the import button in the Import Private Key dialog.'
   },
   cancelButtonLabel: {
-    id: 'wallet.unlockDialog.cancel',
+    id: 'wallet.importPrivateKeyDialog.cancel',
     defaultMessage: '!!!Cancel',
-    description: 'Label for the cancel button in the unlock wallet dialog.'
+    description: 'Label for the cancel button in the Import Private Key dialog.'
   },
 });
 
@@ -46,7 +46,7 @@ type Props = {
   onSubmit: Function,
   onCancel: Function,
   //isSubmitting: boolean,
-  //error: ?LocalizableError,
+  error: ?LocalizableError,
 };
 
 @observer
@@ -59,7 +59,6 @@ export default class ImportPrivateKeyDialog extends Component<Props> {
   form = new ReactToolboxMobxForm({
     fields: {
       privateKey: {
-        type: 'privateKey',
         label: this.context.intl.formatMessage(messages.privateKeyLabel),
         placeholder: this.context.intl.formatMessage(messages.privateKeyFieldPlaceholder),
         value: '',
@@ -94,6 +93,7 @@ export default class ImportPrivateKeyDialog extends Component<Props> {
     const privateKeyField = form.$('privateKey');
     const {
       onCancel,
+      error
     } = this.props;
 
     const confirmButtonClasses = classnames([
@@ -106,7 +106,7 @@ export default class ImportPrivateKeyDialog extends Component<Props> {
         onClick: onCancel,
       },
       {
-        label: intl.formatMessage(messages.okButtonLabel),
+        label: intl.formatMessage(messages.importButtonLabel),
         onClick: this.submit.bind(this),
         primary: true,
         className: confirmButtonClasses
@@ -122,16 +122,15 @@ export default class ImportPrivateKeyDialog extends Component<Props> {
         className={styles.dialog}
         closeButton={<DialogCloseButton />}
       >
-        <div className={styles.privateKeyFields}>
+        <div className={styles.privateKey}>
           <Input
-            type="text"
-            className={styles.privateKey}
+            className="privateKey"
             {...privateKeyField.bind()}
             error={privateKeyField.error}
             skin={<SimpleInputSkin />}
             />
         </div>
-        {/*error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null*/}
+        {error ? <p className={styles.error}>{intl.formatMessage(error)}</p> : null}
       </Dialog>
     );
   }

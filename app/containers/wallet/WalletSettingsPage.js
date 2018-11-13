@@ -23,6 +23,8 @@ export default class WalletSettingsPage extends Component<Props> {
       unlockWalletRequest,
       lastUpdatedWalletField,
       walletFieldBeingEdited,
+      importPrivateKeyRequest,
+      exportPrivateKey
     } = walletSettings;
     const {
       startEditingWalletField,
@@ -30,7 +32,6 @@ export default class WalletSettingsPage extends Component<Props> {
       cancelEditingWalletField,
       updateWalletField,
       unlockWallet,
-      exportPrivateKey,
       importPrivateKey,
       lockWallet,
     } = actions.lux.walletSettings;
@@ -42,7 +43,7 @@ export default class WalletSettingsPage extends Component<Props> {
       <WalletSettings
         assuranceLevels={WALLET_ASSURANCE_LEVEL_OPTIONS}
         walletAssurance={activeWallet.assurance}
-        error={updateWalletRequest.error || unlockWalletRequest.error}
+        error={updateWalletRequest.error || unlockWalletRequest.error || importPrivateKeyRequest.error}
         openDialogAction={actions.dialogs.open.trigger}
         isWalletPasswordSet={activeWallet.hasPassword}
         isWalletLocked={activeWallet.isLocked}
@@ -58,8 +59,8 @@ export default class WalletSettingsPage extends Component<Props> {
         onCancelEditing={cancelEditingWalletField.trigger}
         onUnlockWallet={(password) => unlockWallet.trigger({ password })}
         onLockWallet={lockWallet.trigger}
-        onExportPrivateKey={(address, password) => exportPrivateKey.trigger({ address, password })}
-        onImportPrivateKey={(privateKey, password) => importPrivateKey.trigger({ privateKey, password })}
+        onExportPrivateKey={(publicKey) => ( exportPrivateKey(publicKey)) }
+        onImportPrivateKey={(privateKey) => importPrivateKey.trigger({ privateKey })}
         activeField={walletFieldBeingEdited}
         nameValidator={name => isValidWalletName(name)}
       />

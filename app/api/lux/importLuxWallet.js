@@ -1,21 +1,22 @@
 // @flow
-import type { LuxWallet } from './types';
 import { request } from './lib/request';
+import { LUX_API_HOST, LUX_API_PORT, LUX_API_USER, LUX_API_PWD } from './index';
 
 export type ImportLuxWalletParams = {
-  ca: string,
-  filePath: string,
-  walletPassword: ?string,
+  filePath: string
 };
 
 export const importLuxWallet = (
-  { ca, walletPassword, filePath }: ImportLuxWalletParams
-): Promise<LuxWallet> => (
+  { filePath }: ImportLuxWalletParams
+): Promise<void> => (
   request({
-    hostname: 'localhost',
+    hostname: LUX_API_HOST,
     method: 'POST',
-    path: '/api/wallets/keys',
-    port: 9888,
-    ca,
-  }, { passphrase: walletPassword }, filePath)
+    port: LUX_API_PORT,
+    auth: LUX_API_USER + ':' + LUX_API_PWD
+  }, {
+    jsonrpc: '2.0',
+    method: 'importwallet',
+    params: [filePath]
+  })
 );

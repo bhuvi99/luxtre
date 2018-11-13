@@ -16,7 +16,7 @@ export default class WalletExportToFileDialogContainer extends Component<Props> 
   onSubmit = (params: OnSubmitParams) => {
     const filePath = remote.dialog.showSaveDialog({
       filters: [
-        { name: 'Json', extensions: ['json'] },
+        { name: 'dat', extensions: ['dat'] },
       ]
     });
     const { stores, actions } = this.props;

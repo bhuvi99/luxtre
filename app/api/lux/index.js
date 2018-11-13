@@ -105,6 +105,7 @@ import type {
   UnlockWalletResponse,
   LockWalletResponse,
   ImportPrivateKeyResponse,
+  ExportPrivateKeyRequest,
   ExportPrivateKeyResponse,
   BackupWalletResponse,
   GetSyncProgressResponse,
@@ -139,6 +140,9 @@ import {
   GenericApiError,
   IncorrectWalletPasswordError,
   WalletAlreadyRestoredError,
+  InvalidPrivateKeyError,
+  OutsidePrivateKeyError,
+  ImportPrivateKeyRequest,
 } from '../common';
 
 import { 
@@ -231,10 +235,8 @@ export type ImportWalletFromKeyRequest = {
 export type ImportWalletFromKeyResponse = Wallet;
 export type ImportWalletFromFileRequest = {
   filePath: string,
-  walletPassword: ?string,
-  walletName: ?string,
 };
-export type ImportWalletFromFileResponse = Wallet;
+export type ImportWalletFromFileResponse = boolean;
 export type NextUpdateResponse = ?{
   version: ?string,
 };
@@ -952,21 +954,17 @@ export default class LuxApi {
       throw new WalletFileImportError();
     }
   }
-
+*/
   async importWalletFromFile(
     request: ImportWalletFromFileRequest
   ): Promise<ImportWalletFromFileResponse> {
     Logger.debug('LuxApi::importWalletFromFile called');
-    const { filePath, walletPassword } = request;
-    const isKeyFile = filePath.split('.').pop().toLowerCase() === 'key';
+    const { filePath } = request;
     try {
-      const importedWallet: LuxWallet = isKeyFile ? (
-        await importLuxWallet({ ca, walletPassword, filePath })
-      ) : (
-        await importLuxBackupJSON({ ca, filePath })
-      );
+      await importLuxWallet({ filePath });     
       Logger.debug('LuxApi::importWalletFromFile success');
-      return _createWalletFromServerData(importedWallet);
+      return true;
+      //return _createWalletFromServerData(importedWallet);
     } catch (error) {
       Logger.error('LuxApi::importWalletFromFile error: ' + stringifyError(error));
       if (error.message.includes('already exists')) {
@@ -975,26 +973,33 @@ export default class LuxApi {
       throw new WalletFileImportError();
     }
   }
-*/
-  async importPrivateKey(privateKey: string): Promise<ImportPrivateKeyResponse> {
+
+  async importPrivateKey(request: ImportPrivateKeyRequest): Promise<ImportPrivateKeyResponse> {
     Logger.debug('LuxApi::importPrivateKey called');
+    const { privateKey } = request;
     try {
       const label = '';
-      const rescan = false;
+      const rescan = true;
       await importLuxPrivateKey({privateKey, label, rescan});
       Logger.debug('LuxApi::importPrivateKey success');
       return true;
     } catch (error) {
       Logger.error('LuxApi::importPrivateKey error: ' + stringifyError(error));
+      if (error.message.includes("encoding")) {
+        throw new InvalidPrivateKeyError();
+      }
+      if (error.message.includes("range")) {
+        throw new OutsidePrivateKeyError();
+      }
       throw new GenericApiError();
     }
     return false;
   }
 
-  async exportPrivateKey(address: string): Promise<ExportPrivateKeyResponse> {
+  async exportPrivateKey(publicKey: string): Promise<ExportPrivateKeyResponse> {
     Logger.debug('LuxApi::exportPrivateKey called');
     try {
-      const privateKey = await exportLuxPrivateKey({address});
+      const privateKey = await exportLuxPrivateKey({publicKey});
       Logger.debug('LuxApi::exportPrivateKey success');
       return privateKey;
     } catch (error) {
@@ -1021,22 +1026,31 @@ export default class LuxApi {
     let nextUpdate = null;
     return nextUpdate;
   }
-/*
+
   async exportWalletToFile(
     request: ExportWalletToFileRequest
   ): Promise<ExportWalletToFileResponse> {
-    const { walletId, filePath } = request;
-    Logger.debug('LuxApi::exportWalletToFile called');
-    try {
-      const response: Promise<[]> = await exportLuxBackupJSON({ ca, walletId, filePath });
-      Logger.debug('LuxApi::exportWalletToFile success: ' + stringifyData(response));
-      return response;
-    } catch (error) {
-      Logger.error('LuxApi::exportWalletToFile error: ' + stringifyError(error));
-      throw new GenericApiError();
-    }
+    // const { walletId, filePath } = request;
+    // Logger.debug('LuxApi::exportWalletToFile called');
+    // try {
+    //   const response: Promise<[]> = await exportLuxBackupJSON({ ca, walletId, filePath });
+    //   Logger.debug('LuxApi::exportWalletToFile success: ' + stringifyData(response));
+    //   return response;
+    // } catch (error) {
+    //   Logger.error('LuxApi::exportWalletToFile error: ' + stringifyError(error));
+    //   throw new GenericApiError();
+    // }
+    const { walletId, filePath, password } = request;
+    Logger.debug('LuxApi::backupWallet called');
+      try {
+        await backupLuxWallet({filePath});
+        Logger.debug('LuxApi::backupWallet success');
+      } catch (error) {
+        Logger.error('LuxApi::backupWallet error: ' + stringifyError(error));
+        throw new GenericApiError();
+      }
   }
-
+/*
   async testReset(): Promise<void> {
     Logger.debug('LuxApi::testReset called');
     try {

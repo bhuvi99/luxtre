@@ -1,0 +1,47 @@
+@import '../../themes/mixins/loading-spinner';
+@import '../../themes/mixins/error-message';
+
+.dialog {
+  font-family: var(--font-medium);
+  width: 580px;
+
+  :global {
+    .Dialog_title {
+      margin-top: 10px;
+    }
+  }
+
+  .publicKey {
+    margin-top: 20px;
+  }
+
+  .privateKey {
+    margin-top: 20px;
+    :global {
+      .SimpleFormField_root {
+        .SimpleFormField_label {
+          color: var(--theme-input-label-color);
+        }
+      }
+  
+      .SimpleInput_disabled {
+        background: none;
+        & .SimpleInput_input {
+          background-color: var(--theme-input-background-color);
+          border-color: var(--theme-input-border-color);
+          color: var(--theme-input-text-color) !important;
+        }
+      }
+    }
+  }
+
+  .error {
+    @include error-message;
+    text-align: center;
+    margin-top: 27px;
+  }
+}
+
+.submitButtonSpinning {
+  @include loading-spinner("../../assets/images/spinner-light.svg");
+}
