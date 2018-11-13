@@ -11,7 +11,7 @@ import Chart from './Chart';
 import type { LGPrice } from '../../domain/LGPriceArray';
 
 import Datafeed from './api/'
-const TradingView = require("./charting_library/charting_library.min.js");
+const TradingView = require("../../charting_library/charting_library.min.js");
 
 type Props = {
   data: Array<LGPrice>
@@ -24,12 +24,12 @@ export default class ExchangeChartPage extends Component<Props> {
 		symbol: 'Cryptopia:LUX/USD',
 		interval: '20',
 		containerId: 'tv_chart',
-		libraryPath: '/charting_library/',
+		libraryPath: './charting_library/',
 		chartsStorageUrl: 'https://saveload.tradingview.com',
 		chartsStorageApiVersion: '1.1',
 		clientId: 'tradingview.com',
 		userId: 'public_user_id',
-		fullscreen: false,
+		fullscreen: true,
 		autosize: true,
 		studiesOverrides: {},
 	};
@@ -42,7 +42,7 @@ export default class ExchangeChartPage extends Component<Props> {
 			interval: this.props.interval,
 			container_id: this.props.containerId,
 			library_path: this.props.libraryPath,
-			locale: getLanguageFromURL() || 'en',
+			locale: 'en', //getLanguageFromURL() || 'en'
 			disabled_features: ['use_localstorage_for_settings'],
 			enabled_features: ['study_templates'],
 			charts_storage_url: this.props.chartsStorageUrl,
@@ -64,6 +64,21 @@ export default class ExchangeChartPage extends Component<Props> {
 			}
 		};
 
+    const widget = new TradingView.widget(widgetOptions);
+
+			widget.onChartReady(() => {
+				console.log('Chart has loaded!')
+			});
+		
+    /*
+    if (!!this.tvWidget) return;
+    console.log("*** Load Chart ***");
+
+    this.tvWidget = new TradingView.widget(widgetOptions);
+    
+    this.tvWidget.onChartReady(() => {
+      console.log('Chart has loaded!');
+    });*/
 	}
 
 
@@ -107,6 +122,7 @@ export default class ExchangeChartPage extends Component<Props> {
         volume: lgPrice.basevolume // I guess? or ( sum base rel / 2 )?
       };
     });
-    return <Chart type="hybrid" data={ myData } />;
+    return <div id = 'tv_chart'/>
+    //return <Chart type="hybrid" data={ myData } />;
   }
 }
