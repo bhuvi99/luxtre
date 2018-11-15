@@ -394,8 +394,8 @@ export default class LuxApi {
       if(currentTime > this._refreshTime + LUX_STAKE_FETCH_INTERVAL * 1000)
       {
         await setLuxStakingData(id, {
-          walletWeight: stakingStatus.weight.max,
-          netWeight: stakingStatus.netWeight,
+          stakingweight: stakingStatus.stakeweight.max,
+          netstakingweight: stakingStatus.netstakeweight,
           difficulty: stakingStatus.difficulty,
           time: currentTime
         }); // fetch staking data from local storage

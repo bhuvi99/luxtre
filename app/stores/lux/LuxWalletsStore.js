@@ -14,6 +14,9 @@ import type {
   GetWalletsResponse, RestoreWalletResponse,
   GetWalletRecoveryPhraseResponse
 } from '../../api/common';
+import {
+  getLuxStakingData
+} from '../../api/lux/luxLocalStorage';
 
 export default class LuxWalletsStore extends WalletStore {
 
@@ -193,4 +196,10 @@ export default class LuxWalletsStore extends WalletStore {
       this.walletExportType = params.walletExportType;
     }
   };
+
+  @computed get getStakingData(): Array<LuxStakingData> {
+    const wallet = this.active;
+    const result = await getLuxStakingData(wallet.id);
+    return result ? result : [];
+  }
 }

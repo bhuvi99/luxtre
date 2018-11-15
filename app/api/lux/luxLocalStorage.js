@@ -27,8 +27,8 @@ export type LuxWalletsData = {
 };
 
 export type LuxStakingData = {
-  weight: number,
-  netWeight: number,
+  stakingweight: number,
+  netstakingweight: number,
   difficulty: number,
   time: number
 };
@@ -141,12 +141,18 @@ export const getLuxStakingData = (
 export const setLuxStakingData = (
   walletId: string, stakingStatus: LuxStakingData
 ): Promise<void> => new Promise(async (resolve, reject) => {
+  
+  var stakingsData = [];
   const stakingDataSet = await getLuxStakingsData();
   const result = stakingDataSet[walletId];
-  const stakingsData = result.filter(stakingData => stakingData.time > currentTime - LUX_STAKE_RECORD_DEEP * 1000)
+  if(result != null && result.length > 0)
+  {
+    stakingsData = result.filter(stakingData => stakingData.time > currentTime - LUX_STAKE_RECORD_DEEP * 1000)
+  }
+  
   stakingsData.push(stakingStatus);
   set(stakingDataSet, walletId, stakingsData);
-  localStorage.set(localStorageKeys.STAKINGS, { stakings: stakingsData }, (error) => {
+  localStorage.set(localStorageKeys.STAKINGS, { stakings: stakingDataSet }, (error) => {
     if (error) return reject(error);
     resolve();
   });
