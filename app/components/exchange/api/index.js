@@ -1,4 +1,4 @@
-import historyProvider from './historyProvider'
+import dataProvider from './dataProvider'
 
 const supportedResolutions = ["1", "3", "5", "15", "30", "60", "120", "240", "D"]
 
@@ -54,7 +54,7 @@ export default {
 		if(chart_log) console.log('=====getBars running')
 		if(chart_log) console.log('function args',arguments)
 		if(chart_log) console.log(`Requesting bars between ${new Date(from * 1000).toISOString()} and ${new Date(to * 1000).toISOString()}`)
-		historyProvider.getBars(symbolInfo, resolution, from, to, firstDataRequest)
+		dataProvider.getBars(symbolInfo, resolution, from, to, firstDataRequest)
 		.then(bars => {
 			if (bars.length) {
 				onHistoryCallback(bars, {noData: false})
